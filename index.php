@@ -13,16 +13,15 @@ $chat_id = $output['message']['chat']['id'];
 
 if ($text == "/start") {
     $reply = "Добро пожаловать в бота!";
-    $key = sendKeyboard();
-    sendMessage($token,$reply,$chat_id, $key);
+    sendMessage($token,$reply.sendKeyboard(),$chat_id);
 }
-function sendMessage($token,$reply,$chat_id, $key){
+function sendMessage($token,$reply.sendKeyboard(),$chat_id){
     $parameters = [
         'chat_id' => $chat_id,
         'text' => $reply,
         
     ];
-    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters) . $key;
+    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters);
     file_get_contents($url);
 }
 function sendKeyboard(){
