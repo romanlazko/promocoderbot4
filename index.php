@@ -15,7 +15,7 @@ if ($text == "/start") {
     $reply = "Добро пожаловать в бота!";
     sendMessage($token,$reply.sendKeyboard(),$chat_id);
 }
-function sendMessage($token,$reply.sendKeyboard(),$chat_id){
+function sendMessage($token,$reply,$chat_id){
     $parameters = [
         'chat_id' => $chat_id,
         'text' => $reply,
@@ -30,4 +30,4 @@ function sendKeyboard(){
     $reply_markup = '&reply_markup' . $keyboard . '';
     return $reply_markup;
 }
-file_put_contents('logs.txt', sendKeyboard());
+file_put_contents('logs.txt', $reply_markup);
