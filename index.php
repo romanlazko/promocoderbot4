@@ -26,9 +26,10 @@ function sendMessage($token,$chat_id,$reply){
 }
 function sendKeyboard($token,$chat_id){
     $buttons = [["Последние статьи"],["Картинка"],["Гифка"]]; //Клавиатура
-    $reply_markup =  ([ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);    
+    $reply_markup =  [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => false ];    
     $parameters = [
         'chat_id' => $chat_id,
+        'text' => "Клавиатура", 
     ];
     $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters) . '&reply_markup=' . $reply_markup;
     file_get_contents($url);
