@@ -16,12 +16,12 @@ if ($text == "/start") {
     sendMessage($token,$reply.sendKeyboard(),$chat_id);
 }
 function sendMessage($token,$reply,$chat_id){
-    $parameters = [
+   /* $parameters = [
         'chat_id' => $chat_id,
         'text' => $reply,
         
-    ];
-    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters);
+    ];*/
+    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?chat_id=' . $chat_id . '&text=' .  $reply);#http_build_query($parameters);
     file_get_contents($url);
 }
 function sendKeyboard(){
