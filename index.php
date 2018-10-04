@@ -13,11 +13,18 @@ $chat_id = $output['message']['chat']['id'];
 
 if ($text == "/start") {
     $reply = "Добро пожаловать в бота!";
-    $buttons = [["Последние статьи"],["Картинка"],["Гифка"]];
+    $buttons = [["Еда и напитки"],["Развлечения и досуг"],["Доставка"]];
     sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
 }
-
+if ($text == "Еда и напитки") {
+    $reply = "Вы выбрали 'Еда и напитки'";
+    sendMessage($token,$chat_id,$reply);
+}
+if ($text == "Развлечения и досуг") {
+    $reply = "Вы выбрали 'Развлечения и досуг'";
+    sendMessage($token,$chat_id,$reply);
+}
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
         'chat_id' => $chat_id,
