@@ -11,7 +11,7 @@ $output = json_decode(file_get_contents('php://input'),true);
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 
-if ($text == "/start") {
+if ($text == "привет") {
   $reply = "Добро пожаловать в бота!";
   $parameters = [
         
@@ -20,6 +20,7 @@ if ($text == "/start") {
     
   ];
 }
+
 $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters);
 file_get_contents($url);
 file_put_contents('logs.txt', $text);
