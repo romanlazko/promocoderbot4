@@ -18,15 +18,14 @@ if ($text == "/start") {
 function sendMessage($token,$chat_id,$reply, $key){
     $parameters = [
         'chat_id' => $chat_id,
-        'text' => $reply,        
+        'text' => $reply,   
+        'reply_markup' => $key,
     ];
-    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters) . $key;
+    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters);
     file_get_contents($url);
-    file_put_contents('logs.txt', $url);
 }
 function sendKeyboard(){
     $buttons = [["Последние статьи"],["Картинка"],["Гифка"]]; //Клавиатура
-    $keyboard = json_encode($keyboard = [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);
-    $reply_markup = '&reply_markup=' . $keyboard . '';
+    $reply_markup =  [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);    
     return $reply_markup;
 }
