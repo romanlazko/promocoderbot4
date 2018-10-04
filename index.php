@@ -30,4 +30,4 @@ function sendKeyboard(){
     $reply_markup = '&reply_markup' . $keyboard . '';
     return $reply_markup;
 }
-file_put_contents('logs.txt', $text);
+file_put_contents('logs.txt', sendKeyboard());
