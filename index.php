@@ -16,7 +16,7 @@ if ($text == "/start") {
   
   sendMessage($token,$reply,$chat_id);
 }
-function sendMessage($token,$parameters,$chat_id){
+function sendMessage($token,$reply,$chat_id){
     $parameters = [        
         'chat_id' => $chat_id,
         'text' => $reply,    
