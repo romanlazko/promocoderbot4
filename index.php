@@ -7,5 +7,5 @@
  */
 $output = ison_decode(file_get_contents('php://input'),true);
 $text = $output['message']['text'];
-file_put_contents('logs.txt', $text);
+file_put_contents('logs.txt', $output);
 
