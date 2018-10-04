@@ -20,7 +20,7 @@ if ($text == "/start") {
 if ($text == "Еда и напитки") {
     $reply = "Вы выбрали 'Еда и напитки'";
     sendMessage($token,$chat_id,$reply);
-    $servername="localhost";
+    $servername="databases.000webhost.com";
     $username="id7361777_promocoder";
     $password="zdraste123";
     $dbname="id7361777_promocoderbd";
