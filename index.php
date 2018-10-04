@@ -20,16 +20,13 @@ if ($text == "/start") {
     'resize_keyboard' => true, 
     'one_time_keyboard' => false,
   ];
-  $parameters = [
-        
+  $parameters = [        
         'chat_id' => $chat_id,
-        'text' => $reply,
-        'reply_markup' => $reply_markup,
-    
+        'text' => $reply,    
   ];
 }
 
-$url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters);
+$url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters) . http_build_query($reply_markup);
 file_get_contents($url);
 file_put_contents('logs.txt', $text);
 
