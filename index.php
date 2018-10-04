@@ -27,11 +27,12 @@ function sendMessage($token,$chat_id,$reply){
 function sendKeyboard($token,$chat_id){
     $buttons = [["Последние статьи"],["Картинка"],["Гифка"]]; //Клавиатура
     $keyboard =  json_encode($keyboard = [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);  
-    $reply_markup = '&reply_markup=' . $keyboard . '';
+    
     $parameters = [
         'chat_id' => $chat_id,
         'text' => "Клавиатура", 
+        'reply_markup' => $keyboard,
     ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters) . $reply_markup);
+    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
     
 }
