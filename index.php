@@ -17,9 +17,9 @@ if ($text == "/start") {
         'chat_id' => $chat_id,
         'text' => $reply,    
     ];
-  sendMessage($parameters);
+  sendMessage($token,$parameters);
 }
-function sendMessage($parameters){
+function sendMessage($token,$parameters){
     
     $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters);
     file_get_contents($url);
