@@ -8,15 +8,23 @@
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
 
+$keyboard = [["Последние статьи"],["Картинка"],["Гифка"]];
+
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 
-if ($text == "привет") {
+if ($text == "/start") {
   $reply = "Добро пожаловать в бота!";
+  $reply_markup = [
+    'keyboard' => $keyboard, 
+    'resize_keyboard' => true, 
+    'one_time_keyboard' => false
+  ]
   $parameters = [
         
         'chat_id' => $chat_id,
         'text' => $reply,
+        'reply_markup' => $reply_markup,
     
   ];
 }
