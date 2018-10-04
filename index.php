@@ -18,8 +18,8 @@ if ($text == "/start") {
   $reply_markup = [
     'keyboard' => $keyboard, 
     'resize_keyboard' => true, 
-    'one_time_keyboard' => false
-  ]
+    'one_time_keyboard' => false,
+  ];
   $parameters = [
         
         'chat_id' => $chat_id,
