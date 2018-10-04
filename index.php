@@ -30,6 +30,7 @@ function sendKeyboard($token,$chat_id,$buttons){
     $keyboard =  json_encode($keyboard = [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => true ]);  
     $parameters = [
         'chat_id' => $chat_id, 
+        'text' => '', 
         'reply_markup' => $keyboard,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
