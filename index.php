@@ -13,9 +13,9 @@ $chat_id = $output['message']['chat']['id'];
 
 if ($text == "/start") {
     $reply = "Добро пожаловать в бота!";
-    sendMessage($token,$reply.sendKeyboard(),$chat_id);
+    sendMessage($token,$chat_id,$reply.sendKeyboard());
 }
-function sendMessage($token,$reply,$chat_id){
+function sendMessage($token,$chat_id,$reply){
    /* $parameters = [
         'chat_id' => $chat_id,
         'text' => $reply,
@@ -27,7 +27,7 @@ function sendMessage($token,$reply,$chat_id){
 function sendKeyboard(){
     $buttons = [["Последние статьи"],["Картинка"],["Гифка"]]; //Клавиатура
     $keyboard = json_encode($keyboard = [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);
-    $reply_markup = '&reply_markup' . $keyboard . '';
+    $reply_markup = '&reply_markup=' . $keyboard . '';
     return $reply_markup;
 }
 file_put_contents('logs.txt', $reply_markup);
