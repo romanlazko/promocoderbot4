@@ -13,7 +13,7 @@ $chat_id = $output['message']['chat']['id'];
 
 if ($text == "/start") {
     $reply = "Добро пожаловать в бота!";
-    sendMessage($token,$chat_id,$reply);
+    sendMessage($token,$chat_id,$reply.sendKeyboard());
 }
 function sendMessage($token,$chat_id,$reply){
    /* $parameters = [
