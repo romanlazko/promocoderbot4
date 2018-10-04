@@ -16,7 +16,7 @@ if ($text == "/start") {
   $parameters = [
         
         'chat_id' => $chat_id,
-        'text' => $text,
+        'text' => $reply,
     
   ];
 }
