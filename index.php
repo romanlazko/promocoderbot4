@@ -20,13 +20,15 @@ function sendMessage($token,$reply,$chat_id, $key){
     $parameters = [
         'chat_id' => $chat_id,
         'text' => $reply,
+        
     ];
-    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters) . '&reply_markup' . $key;
+    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters) . $key;
     file_get_contents($url);
 }
 function sendKeyboard(){
-    $keyboard = [["Последние статьи"],["Картинка"],["Гифка"]]; //Клавиатура
-    $reply_markup = json_encode([ 'keyboard' => $keyboard, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);
+    $buttons = [["Последние статьи"],["Картинка"],["Гифка"]]; //Клавиатура
+    $keyboard = json_encode($keyboard = [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => false ]);
+    $reply_markup = '&reply_markup' . $keyboard . '';
     return $reply_markup;
 }
 file_put_contents('logs.txt', $text);
