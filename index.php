@@ -11,11 +11,10 @@ $output = json_decode(file_get_contents('php://input'),true);
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 
-$buttons = [["Последние статьи"],["Картинка"],["Гифка"]];
-sendKeyboard($token,$chat_id,$buttons);
-
-if ($text == "Последние статьи") {
-    $reply = "Вы выбрали 'Последние статьи'";
+if ($text == "/start") {
+    $reply = "Добро пожаловать в бота!";
+    $buttons = [["Последние статьи"],["Картинка"],["Гифка"]];
+    sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
 }
 
@@ -30,8 +29,7 @@ function sendMessage($token,$chat_id,$reply){
 function sendKeyboard($token,$chat_id,$buttons){
     $keyboard =  json_encode($keyboard = [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => true ]);  
     $parameters = [
-        'chat_id' => $chat_id,
-        'text' => "Клавиатура", 
+        'chat_id' => $chat_id, 
         'reply_markup' => $keyboard,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
