@@ -21,7 +21,7 @@ function sendMessage($token,$chat_id,$reply){
         'text' => $reply,
         
     ];*/
-    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?chat_id=' . $chat_id . '&text=' .  $reply); 
+    $url = 'https://api.telegram.org/bot' . $token . '/sendMessage?chat_id=' . $chat_id . '&text=' .  $reply; 
     /*http_build_query($parameters);*/
     file_get_contents($url);
     file_put_contents('logs.txt', $url);
