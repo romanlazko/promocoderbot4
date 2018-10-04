@@ -15,7 +15,7 @@ if ($text == "/start") {
   $reply = "Добро пожаловать в бота!";
   sendMessage($chat_id, $reply);
 }
-funktion sendMessage($chat_id, $reply){
+function sendMessage($chat_id, $reply){
     $parameters = [        
         'chat_id' => $chat_id,
         'text' => $reply,    
