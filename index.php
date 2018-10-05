@@ -18,7 +18,7 @@ if ($text == "/start" ) {
     sendMessage($token,$chat_id,$reply,$buttons);
 }
 if ($text == "Главное меню") {
-    $reply = "";
+    $reply = "Главное меню";
     $buttons = [["Еда и напитки"],["Развлечения и досуг"],["Доставка"]];
     /*sendKeyboard($token,$chat_id,$buttons);*/
     sendMessage($token,$chat_id,$reply,$buttons);
