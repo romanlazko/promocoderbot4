@@ -20,6 +20,7 @@ if ($text == "/start") {
 if ($text == "Еда и напитки") {
     $reply = "Вы выбрали 'Еда и напитки'";
     $buttons = [["Кафе"],["Кофе"],["Ресторан"]];
+    sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
 }
 if ($text == "Развлечения и досуг") {
