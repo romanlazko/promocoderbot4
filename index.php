@@ -19,18 +19,8 @@ if ($text == "/start") {
 }
 if ($text == "Еда и напитки") {
     $reply = "Вы выбрали 'Еда и напитки'";
+    $buttons = [["Кафе"],["Кофе"],["Ресторан"]];
     sendMessage($token,$chat_id,$reply);
-    $servername="databases.000webhost.com";
-    $username="id7361777_promocoder";
-    $password="zdraste123";
-    $dbname="id7361777_promocoderbd";
-    
-    $dbconnect = new mysqli($servername, $username, $password, $dbname); 
-    
-            $userreg = "INSERT INTO newDB (name,email,password) VALUES('1','2','3')";
-            
-            
-    $dbconnect->close();
 }
 if ($text == "Развлечения и досуг") {
     $reply = "Вы выбрали 'Развлечения и досуг'";
@@ -45,7 +35,7 @@ function sendMessage($token,$chat_id,$reply){
     file_get_contents($url);
 }
 function sendKeyboard($token,$chat_id,$buttons){
-    $keyboard =  json_encode($keyboard = [ 'keyboard' => $buttons, 'resize_keyboard' => true, 'one_time_keyboard' => true ]);  
+    $keyboard =  json_encode($keyboard = [ 'keyboard' => $buttons, 'resize_keyboard' => false, 'one_time_keyboard' => false ]);  
     $parameters = [
         'chat_id' => $chat_id, 
         'text' => 'Клавиатура', 
