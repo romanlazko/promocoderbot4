@@ -1,6 +1,26 @@
 <?php
 
+$port = '3306';
+$servername="db4free.net" . $port;
+    $username="promocoder";
+    $password="zdraste1234";
+    $dbname="promocoder";
+    $login = "roman";
+    $dbconnect = mysql_connect($servername, $username, $password);
+ 
+    if($dbconnect)
+echo 'Соединение установлено.';
+else
+die('Ошибка подключения к серверу баз данных.');
 
+
+$selected = mysql_select_db($dbname, $dbconnect);
+if($selected){
+    echo ' Подключение к базе данных прошло успешно.';
+    
+}
+else
+die(' База данных не найдена или отсутствует доступ.');
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
 
