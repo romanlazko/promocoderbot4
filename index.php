@@ -24,10 +24,7 @@ if ($text == "Главное меню") {
     $buttons = [["Еда и напитки"],["Развлечения и досуг"],["Доставка"]];
     sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
-    $dbconnect = mysql_connect($servername, $username, $password);
- 
-    if($dbconnect) sendMessage($token,$chat_id,$ok);
-    else sendMessage($token,$chat_id,$no);
+    
 }
 
 if ($text == "Еда и напитки") {
