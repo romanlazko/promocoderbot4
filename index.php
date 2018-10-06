@@ -6,6 +6,7 @@ $no = "no";
     $username="promocoder";
     $password="zdraste1234";
     $dbname="promocoder";
+echo "привет";
     
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
