@@ -6,10 +6,7 @@ $no = "no";
     $username="promocoder";
     $password="zdraste1234";
     $dbname="promocoder";
-    $dbconnect = mysql_connect($servername, $username, $password);
- 
-    if($dbconnect) sendMessage($token,$chat_id,$ok);
-    else sendMessage($token,$chat_id,$no);
+    
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
 
@@ -27,6 +24,10 @@ if ($text == "Главное меню") {
     $buttons = [["Еда и напитки"],["Развлечения и досуг"],["Доставка"]];
     sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
+    $dbconnect = mysql_connect($servername, $username, $password);
+ 
+    if($dbconnect) sendMessage($token,$chat_id,$ok);
+    else sendMessage($token,$chat_id,$no);
 }
 
 if ($text == "Еда и напитки") {
