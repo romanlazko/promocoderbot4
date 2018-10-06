@@ -11,7 +11,7 @@ $servername="db4free.net" . $port;
     if($dbconnect)
 echo 'Соединение установлено.';
 else
-die('Ошибка подключения к серверу баз данных.');
+echo 'Ошибка подключения к серверу баз данных.';
 
 
 $selected = mysql_select_db($dbname, $dbconnect);
@@ -20,7 +20,7 @@ if($selected){
     
 }
 else
-die(' База данных не найдена или отсутствует доступ.');
+echo ' База данных не найдена или отсутствует доступ.';
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
 
