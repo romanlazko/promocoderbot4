@@ -1,6 +1,15 @@
 <?php
-
-db();
+$ok = "ok";
+$no = "no";
+    $port = "3306";
+    $servername="db4free.net" . $port;
+    $username="promocoder";
+    $password="zdraste1234";
+    $dbname="promocoder";
+    $dbconnect = mysql_connect($servername, $username, $password);
+ 
+    if($dbconnect) sendMessage($token,$chat_id,$ok);
+    else sendMessage($token,$chat_id,$no);
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
 
@@ -51,16 +60,4 @@ function sendKeyboard($token,$chat_id,$buttons){
         'reply_markup' => $keyboard,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
-}
-function db(){
-    $port = "3306";
-    $servername="db4free.net" . $port;
-    $username="promocoder";
-    $password="zdraste1234";
-    $dbname="promocoder";
-    $login = "roman";
-    $dbconnect = mysql_connect($servername, $username, $password);
- 
-    if($dbconnect) echo 'Соединение установлено.';
-    else echo 'Ошибка подключения к серверу баз данных.';
 }
