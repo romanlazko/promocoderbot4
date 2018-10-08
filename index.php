@@ -33,7 +33,7 @@ if ($text == "Инлайн Клавиатура") {
 }
 if ($text == "EDIT") {
     $reply = "Исправить";
-    sendMessage($token,$chat_id,$reply);
+    editMassage($chat_id)
 }
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
@@ -75,6 +75,12 @@ if(isset($output['callback_query']['data'])){
     sendMessage($token,$inline_chat_id,$massage_id);
     sendMessage($token,$inline_chat_id,$message);
 }
-
+function editMassage($token,$chat_id){
+    $parameters = [
+        'chat_id' => $chat_id, 
+        'message_id' => '2340256930043051183', 
+    ];
+    file_get_contents('https://api.telegram.org/bot' . $token . '/deleteMessage?' . http_build_query($parameters));
+}
 
 
