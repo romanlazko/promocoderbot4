@@ -6,7 +6,7 @@ $output = json_decode(file_get_contents('php://input'),true);
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $massage_id = $output['callback_query']['id'];
-$message = $output['message']['text'];
+$message = $output['callback_query']['message']['text'];
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
