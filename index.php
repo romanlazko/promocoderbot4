@@ -1,5 +1,9 @@
 <?php
-
+if(isset($output['callback_query']['data'])){
+    $inline_chat_id = $output['callback_query']['message']['chat']['id'];
+    $reply = $output['callback_query']['data'];
+    sendMessage($token,$inline_chat_id,$reply);
+}
     
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
