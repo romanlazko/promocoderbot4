@@ -6,6 +6,7 @@ $output = json_decode(file_get_contents('php://input'),true);
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $massage_id = $output['callback_query']['id'];
+$message = $output['message']['text'];
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
@@ -33,7 +34,7 @@ if ($text == "Инлайн Клавиатура") {
 if ($text == "EDIT") {
     $reply = "Исправить";
     $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
-    editMessage($token,$chat_id,$massage_id,$reply);
+    editMessage($token,$chat_id,$massage_id,$message);
 }
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
@@ -74,13 +75,12 @@ if(isset($output['callback_query']['data'])){
     sendMessage($token,$inline_chat_id,$massage_id);
 }
 function editMessage($token,$chat_id,$massage_id,$reply){
-    
     $parameters = [
         'chat_id' => $chat_id, 
         'message_id' => $massage_id,
-        'text' => $reply, 
+        'text' => $reply . $massage_id, 
     ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
+    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 
 
