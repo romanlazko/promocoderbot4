@@ -5,6 +5,7 @@ $output = json_decode(file_get_contents('php://input'),true);
 
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
+$massage_id = $output['callback_query']['id'];
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
@@ -15,21 +16,17 @@ if ($text == "/start" ) {
 if ($text == "Главное меню") {
     $reply = "Главное меню";
     $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["Доставка"]];
-    sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
-    
 }
 
 if ($text == "Еда и напитки") {
     $reply = "Вы выбрали 'Еда и напитки'";
     $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
-    sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
 }
 if ($text == "Инлайн Клавиатура") {
     $reply = "Вы выбрали 'Инлайн Клавиатура'";
     $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
-    sendKeyboard($token,$chat_id,$buttons);
     inlineKeyboard($token,$chat_id,$reply);
 }
 function sendMessage($token,$chat_id,$reply){
@@ -64,11 +61,14 @@ function inlineKeyboard($token,$chat_id,$reply){
         'reply_markup' => $inlineKeyboard,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
-    
 }
 if(isset($output['callback_query']['data'])){
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
     $reply = $output['callback_query']['data'];
-    sendMessage($token,$inline_chat_id,$reply);
+    sendMessage($token,$inline_chat_id,$massage_id);
 }
+function editMessage(){
+    
+}
+
 
