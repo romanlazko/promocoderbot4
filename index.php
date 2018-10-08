@@ -72,7 +72,7 @@ if(isset($output['callback_query']['data'])){
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
     $massage_id = $output['callback_query']['id'];
     $message = $output['callback_query']['message']['chat']['text'];
-    sendMessage($token,$inline_chat_id,$massage);
+    sendMessage($token,$inline_chat_id,$message);
 }
 
 
