@@ -9,7 +9,7 @@ $massage_id = $output['callback_query']['id'];
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
-    $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["Доставка"]];
+    $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["EDIT"]];
     sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
 }
