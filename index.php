@@ -33,7 +33,6 @@ if ($text == "Инлайн Клавиатура") {
 }
 if ($text == "EDIT") {
     $reply = "Удалено";
-    editMassage($token,$chat_id, '633');
     sendMessage($token,$chat_id,$reply);
 }
 function sendMessage($token,$chat_id,$reply){
@@ -74,8 +73,8 @@ if(isset($output['callback_query']['data'])){
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
     
     if($inline_data == "but1"){
-        sendMessage($token,$inline_chat_id,'Вы нажали на 1 кнопку');
-        $mes_id = $message_id;
+        sendMessage($token,$inline_chat_id,'Вы нажали на 1 кнопку'.$message_id);
+        $mes_id = '638';
         editMassage($token,$chat_id,$mes_id);
     }
 }
