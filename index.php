@@ -32,8 +32,9 @@ if ($text == "Инлайн Клавиатура") {
     inlineKeyboard($token,$chat_id,$reply);
 }
 if ($text == "EDIT") {
-    $reply = "Исправить";
-    editMassage($chat_id)
+    $reply = "Удалено";
+    editMassage($token,$chat_id);
+    sendMessage($token,$chat_id,$reply);
 }
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
