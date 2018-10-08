@@ -79,9 +79,10 @@ if(isset($output['callback_query']['data'])){
 function editMassage($token,$chat_id){
     $parameters = [
         'chat_id' => $chat_id, 
-        'message_id' => '602', 
+        'message_id' => '608', 
+        'text' => 'Вы нажали на кнопку',
     ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/deleteMessage?' . http_build_query($parameters));
+    file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
 
 
