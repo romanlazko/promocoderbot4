@@ -79,7 +79,7 @@ if(isset($output['callback_query']['data'])){
 function editMassage($token,$chat_id){
     $parameters = [
         'chat_id' => $chat_id, 
-        'message_id' => '2340256930043051183', 
+        'message_id' => '2340256931951023592', 
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/deleteMessage?' . http_build_query($parameters));
 }
