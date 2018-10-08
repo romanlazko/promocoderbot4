@@ -71,7 +71,7 @@ function inlineKeyboard($token,$chat_id,$reply){
 if(isset($output['callback_query']['data'])){
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
     $massage_id = $output['callback_query']['id'];
-    $message = $output['callback_query']['message']['chat']['text'];
+    $message = $output['message']['text'];
     sendMessage($token,$inline_chat_id,$message);
 }
 
