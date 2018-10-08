@@ -9,13 +9,13 @@ $chat_id = $output['message']['chat']['id'];
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
-    $buttons = [["Еда и напитки"],["Развлечения и досуг"],["Доставка"]];
+    $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["Доставка"]];
     sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
 }
 if ($text == "Главное меню") {
     $reply = "Главное меню";
-    $buttons = [["Еда и напитки"],["Развлечения и досуг"],["Доставка"]];
+    $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["Доставка"]];
     sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
     
