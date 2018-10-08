@@ -74,11 +74,12 @@ if(isset($output['callback_query']['data'])){
     $reply = $output['callback_query']['data'];
     sendMessage($token,$inline_chat_id,$massage_id);
 }
-function editMessage($token,$chat_id,$massage_id,$reply){
+function editMessage($token,$chat_id,$massage_id,$massage){
+    $inline_chat_id = $output['callback_query']['message']['chat']['id'];
     $parameters = [
-        'chat_id' => $chat_id, 
+        'chat_id' => $inline_chat_id, 
         'message_id' => $massage_id,
-        'text' => $reply . $massage_id, 
+        'text' => $massage_id, 
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
