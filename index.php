@@ -5,7 +5,7 @@ $output = json_decode(file_get_contents('php://input'),true);
 
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-
+$message_id = ['callback_query']['message']['message_id'];
 
 
 if ($text == "/start" ) {
@@ -72,17 +72,18 @@ function inlineKeyboard($token,$chat_id,$reply){
 if(isset($output['callback_query']['data'])){
     $inline_data = $output['callback_query']['data'];
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
-    $message_id = ['callback_query']['message']['message_id'];
+    
     if($inline_data == "but1"){
         sendMessage($token,$inline_chat_id,'Вы нажали на 1 кнопку');
-        editMassage($token,$chat_id,$message_id);
+        $mes_id = $message_id;
+        editMassage($token,$chat_id,$mes_id);
     }
 }
 function editMassage($token,$chat_id,$message_id){
     $parameters = [
         'chat_id' => $chat_id, 
         'message_id' => $message_id, 
-        'text' => 'Вы нажали на кнопку',
+        'text' => 'Вы нажали на кнопку' . $message_id,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
