@@ -33,8 +33,7 @@ if ($text == "Инлайн Клавиатура") {
 }
 if ($text == "EDIT") {
     $reply = "Исправить";
-    $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
-    editMessage($token,$chat_id,$massage_id,$message);
+    sendMessage($token,$chat_id,$reply);
 }
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
