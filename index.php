@@ -58,6 +58,7 @@ function inlineKeyboard($token,$chat_id,$reply){
     $button2 = array('text' => 'button2', 'callback_data' => 'Вы выбрали вторую кнопку');
     $buttons = [[$button1],[$button2]];
     $inlineKeyboard = array('inline_keyboard' => $buttons);
+    $inlineKeyboard = json_encode($inlineKeyboard,true);
     $parameters = [
         'chat_id' => $chat_id, 
         'text' => $reply, 
