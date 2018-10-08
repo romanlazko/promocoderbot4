@@ -15,7 +15,7 @@ if ($text == "/start" ) {
 }
 if ($text == "Главное меню") {
     $reply = "Главное меню";
-    $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["Доставка"]];
+    $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["EDIT"]];
     sendMessage($token,$chat_id,$reply);
 }
 
@@ -26,8 +26,12 @@ if ($text == "Еда и напитки") {
 }
 if ($text == "Инлайн Клавиатура") {
     $reply = "Вы выбрали 'Инлайн Клавиатура'";
-    $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
     inlineKeyboard($token,$chat_id,$reply);
+}
+if ($text == "EDIT") {
+    $reply = "Исправить";
+    $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
+    editMessage($token,$chat_id,$massage_id,$reply);
 }
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
@@ -67,8 +71,14 @@ if(isset($output['callback_query']['data'])){
     $reply = $output['callback_query']['data'];
     sendMessage($token,$inline_chat_id,$massage_id);
 }
-function editMessage(){
+function editMessage($token,$chat_id,$massage_id,$reply){
     
+    $parameters = [
+        'chat_id' => $chat_id, 
+        'message_id' => $massage_id,
+        'text' => $reply, 
+    ];
+    file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
 
 
