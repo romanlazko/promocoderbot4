@@ -71,17 +71,9 @@ function inlineKeyboard($token,$chat_id,$reply){
 if(isset($output['callback_query']['data'])){
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
     $massage_id = $output['callback_query']['id'];
-    $message = $output['callback_query']['message']['text'];
+    $message = $output['callback_query']['message']['chat']['text'];
     sendMessage($token,$inline_chat_id,$massage);
 }
-function editMessage($token,$chat_id,$massage_id,$massage){
-    $inline_chat_id = $output['callback_query']['message']['chat']['id'];
-    $parameters = [
-        'chat_id' => $inline_chat_id, 
-        'message_id' => $massage_id,
-        'text' => $massage_id, 
-    ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
-}
+
 
 
