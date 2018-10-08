@@ -5,8 +5,8 @@ $output = json_decode(file_get_contents('php://input'),true);
 
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-$massage_id = $output['callback_query']['id'];
-$message = $output['callback_query']['message']['text'];
+
+
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
@@ -70,8 +70,9 @@ function inlineKeyboard($token,$chat_id,$reply){
 }
 if(isset($output['callback_query']['data'])){
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
-    $reply = $output['callback_query']['data'];
-    sendMessage($token,$inline_chat_id,$massage_id);
+    $massage_id = $output['callback_query']['id'];
+    $message = $output['callback_query']['message']['text'];
+    sendMessage($token,$inline_chat_id,$massage);
 }
 function editMessage($token,$chat_id,$massage_id,$massage){
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
