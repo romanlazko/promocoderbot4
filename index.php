@@ -16,6 +16,7 @@ if ($text == "/start" ) {
 if ($text == "Главное меню") {
     $reply = "Главное меню";
     $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["EDIT"]];
+    sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
 }
 
