@@ -22,6 +22,7 @@ if ($text == "Главное меню") {
 if ($text == "Еда и напитки") {
     $reply = "Вы выбрали 'Еда и напитки'";
     $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
+    sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
 }
 if ($text == "Инлайн Клавиатура") {
