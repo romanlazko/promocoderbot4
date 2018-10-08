@@ -31,7 +31,7 @@ if ($text == "Инлайн Клавиатура") {
     $reply = "Вы выбрали 'Инлайн Клавиатура'";
     $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
     sendKeyboard($token,$chat_id,$buttons);
-    inlineKeyboard($token,$chat_id,$reply)
+    inlineKeyboard($token,$chat_id,$reply);
 }
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
