@@ -74,12 +74,12 @@ if(isset($output['callback_query']['data'])){
     $message_id = $output['callback_query']['message']['message_id'];
     $message = $output['callback_query']['message']['text'];
     sendMessage($token,$inline_chat_id,$message_id);
-    sendMessage($token,$inline_chat_id,$message);
+    editMassage($token,$chat_id,$message_id);
 }
-function editMassage($token,$chat_id){
+function editMassage($token,$chat_id,$message_id){
     $parameters = [
         'chat_id' => $chat_id, 
-        'message_id' => '608', 
+        'message_id' => $message_id, 
         'text' => 'Вы нажали на кнопку',
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
