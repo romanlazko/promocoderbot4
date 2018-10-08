@@ -48,7 +48,7 @@ function sendKeyboard($token,$chat_id,$buttons){
                                           'selective' => false]);  
     $parameters = [
         'chat_id' => $chat_id, 
-        'text' => 'Клавиатура', 
+        'text' => '.', 
         'reply_markup' => $keyboard,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
