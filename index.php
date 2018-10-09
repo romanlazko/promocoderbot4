@@ -13,7 +13,7 @@ $message_id839 = '865';
 if(isset($output['callback_query']['data'])){
     sendMessage($token,$inline_chat_id,$inline_data);
     sendMessage($token,$inline_chat_id,$message_id);
-    editMasssge($token,$inline_chat_id,$message_id);
+    editMasssge($token,$chat_id,$message_id);
 }
 
 
