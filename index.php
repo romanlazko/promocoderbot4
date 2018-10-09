@@ -8,7 +8,7 @@ $inline_chat_id = $output['callback_query']['message']['chat']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-$massage_id839 = "839";
+$massage_id839 = '858';
 
 if(isset($output['callback_query']['data'])){
     sendMessage($token,$inline_chat_id,$inline_data);
@@ -82,7 +82,7 @@ function inlineKeyboard($token,$chat_id,$reply){
 function editMassage($token,$chat_id,$message_id){
     $parameters = [
         'chat_id' => $chat_id, 
-        'message_id' => '839', 
+        'message_id' => $message_id, 
         'text' => 'Вы нажали на кнопку',
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
