@@ -11,7 +11,11 @@ if(isset($output['callback_query']['data'])){
     $message_id = $output['callback_query']['message']['message_id'];
     sendMessage($token,$inline_chat_id,$inline_data);
     sendMessage($token,$inline_chat_id,$message_id);
-    
+    if ($text == "EDIT") {
+    $reply = "Удалено";
+    editMassage($token,$inline_chat_id,$message_id);
+    sendMessage($token,$chat_id,$reply);
+}
 }
 
 
@@ -38,11 +42,7 @@ if ($text == "Инлайн Клавиатура") {
     $reply = "Вы выбрали 'Инлайн Клавиатура'";
     inlineKeyboard($token,$chat_id,$reply);
 }
-if ($text == "EDIT") {
-    $reply = "Удалено";
-    editMassage($token,$inline_chat_id,$message_id);
-    sendMessage($token,$chat_id,$reply);
-}
+
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
         'chat_id' => $chat_id,
