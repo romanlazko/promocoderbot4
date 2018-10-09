@@ -5,7 +5,7 @@ $output = json_decode(file_get_contents('php://input'),true);
 
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-$message_id = ['callback_query']['message']['message_id'];
+
 
 
 if ($text == "/start" ) {
@@ -72,9 +72,10 @@ function inlineKeyboard($token,$chat_id,$reply){
 if(isset($output['callback_query']['data'])){
     $inline_data = $output['callback_query']['data'];
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
-    
+    $message_id = ['callback_query']['message']['message_id'];
+    $reply = 'Вы нажали на 1 кнопку'.$message_id;
     if($inline_data == "but1"){
-        sendMessage($token,$inline_chat_id,'Вы нажали на 1 кнопку'.$message_id);
+        sendMessage($token,$inline_chat_id,$reply);
         
         
     }
