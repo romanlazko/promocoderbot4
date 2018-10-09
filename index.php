@@ -72,6 +72,7 @@ if(isset($output['callback_query']['data'])){
     $inline_data = $output['callback_query']['data'];
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
     $message_id = ['callback_query']['message']['id'];
+    sendMessage($token,$inline_chat_id,$inline_data);
     sendMessage($token,$chat_id,$message_id);
 }
 function editMassage($token,$chat_id,$message_id){
