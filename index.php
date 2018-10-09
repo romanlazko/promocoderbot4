@@ -3,19 +3,17 @@
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
 
+$inline_data = $output['callback_query']['data'];
+$inline_chat_id = $output['callback_query']['message']['chat']['id'];
+$message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
+
 if(isset($output['callback_query']['data'])){
-    $inline_data = $output['callback_query']['data'];
-    $inline_chat_id = $output['callback_query']['message']['chat']['id'];
-    $message_id = $output['callback_query']['message']['message_id'];
+    
     sendMessage($token,$inline_chat_id,$inline_data);
     sendMessage($token,$inline_chat_id,$message_id);
-    if ($text == "EDIT") {
-    $reply = "Удалено";
-    editMassage($token,$inline_chat_id,$message_id);
-    sendMessage($token,$chat_id,$reply);
-}
+    
 }
 
 
@@ -41,6 +39,11 @@ if ($text == "Еда и напитки") {
 if ($text == "Инлайн Клавиатура") {
     $reply = "Вы выбрали 'Инлайн Клавиатура'";
     inlineKeyboard($token,$chat_id,$reply);
+}
+if ($text == "EDIT") {
+    $reply = "Удалено";
+    editMassage($token,$inline_chat_id,$message_id);
+    sendMessage($token,$chat_id,$reply);
 }
 
 function sendMessage($token,$chat_id,$reply){
