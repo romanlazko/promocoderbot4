@@ -10,12 +10,18 @@ $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $message_id839 = '865';
 
-if(isset($output['callback_query']['data'])){
-    sendMessage($token,$inline_chat_id,$inline_data);
-    sendMessage($token,$inline_chat_id,$message_id);
+if(isset($inline_data)){
+    if($inline_data == 'but1'){
+        $message = 'ВЫ ВЫБРАЛИ ПЕРВУЮ КНОПКУ';
+        editMassage($token,$inline_chat_id,$message_id,$message);
+    }
+    if($inline_data == 'but2';){
+        $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
+        editMassage($token,$inline_chat_id,$message_id,$message);
+    }
 }
 
-editMassage($token,$inline_chat_id,$message_id);
+
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
     $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["EDIT"]];
@@ -68,7 +74,7 @@ function sendKeyboard($token,$chat_id,$buttons){
 }
 function inlineKeyboard($token,$chat_id,$reply){
     $button1 = array('text' => 'button1', 'callback_data' => 'but1');
-    $button2 = array('text' => 'button2', 'callback_data' => 'Вы выбрали вторую кнопку');
+    $button2 = array('text' => 'button2', 'callback_data' => 'but2');
     $buttons = [[$button1],[$button2]];
     $inlineKeyboard = array("inline_keyboard" => $buttons);
     $inlineKeyboard = json_encode($inlineKeyboard,true);
