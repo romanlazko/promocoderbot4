@@ -34,6 +34,7 @@ if ($text == "Инлайн Клавиатура") {
 if ($text == "EDIT") {
     $reply = "Удалено";
     sendMessage($token,$chat_id,$reply);
+    editMassage($token,$chat_id,$message_id);
 }
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
@@ -74,8 +75,8 @@ if(isset($output['callback_query']['data'])){
     
     if($inline_data == "but1"){
         sendMessage($token,$inline_chat_id,'Вы нажали на 1 кнопку'.$message_id);
-        $mes_id = '638';
-        editMassage($token,$chat_id,$mes_id);
+        
+        
     }
 }
 function editMassage($token,$chat_id,$message_id){
