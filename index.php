@@ -87,10 +87,16 @@ function inlineKeyboard($token,$chat_id,$reply){
 }
 
 function editMassage($token,$chat_id,$message_id,$message){
+    $button1 = array('text' => 'button1', 'callback_data' => 'but1');
+    $button2 = array('text' => 'button2', 'callback_data' => 'but2');
+    $buttons = [[$button1],[$button2]];
+    $inlineKeyboard = array("inline_keyboard" => $buttons);
+    $inlineKeyboard = json_encode($inlineKeyboard,true);        
     $parameters = [
         'chat_id' => $chat_id, 
         'message_id' => $message_id, 
         'text' => $message,
+        'reply_markup' => $inlineKeyboard,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
