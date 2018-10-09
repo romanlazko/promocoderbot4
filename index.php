@@ -33,7 +33,7 @@ if ($text == "Инлайн Клавиатура") {
 }
 if ($text == "EDIT") {
     $reply = "Удалено";
-    sendMessage($token,$chat_id,$reply);
+    sendMessage($token,$chat_id,$message_id);
     editMassage($token,$chat_id,$message_id);
 }
 function sendMessage($token,$chat_id,$reply){
