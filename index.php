@@ -40,7 +40,7 @@ if ($text == "Инлайн Клавиатура") {
     inlineKeyboard($token,$chat_id,$reply);
 }
 if ($text == "EDIT") {
-    $reply = "ИЗМЕНЕНО";
+    $reply = "ИЗМЕНЕНО".$message_id;
     editMassage($token,$chat_id,$message_id);
     sendMessage($token,$chat_id,$reply);
 }
