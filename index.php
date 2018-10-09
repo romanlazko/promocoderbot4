@@ -86,11 +86,11 @@ function inlineKeyboard($token,$chat_id,$reply){
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 
-function editMassage($token,$chat_id,$message_id){
+function editMassage($token,$chat_id,$message_id,$message){
     $parameters = [
         'chat_id' => $chat_id, 
         'message_id' => $message_id, 
-        'text' => 'Вы нажали на кнопку',
+        'text' => $message,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
