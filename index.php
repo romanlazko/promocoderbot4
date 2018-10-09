@@ -15,7 +15,7 @@ if(isset($inline_data)){
         $message = 'ВЫ ВЫБРАЛИ ПЕРВУЮ КНОПКУ';
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
-    if($inline_data == 'but2';){
+    if($inline_data == 'but2'){
         $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
