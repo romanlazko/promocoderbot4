@@ -8,7 +8,7 @@ $inline_chat_id = $output['callback_query']['message']['chat']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-$massage_id839 = '858';
+$message_id839 = '865';
 
 if(isset($output['callback_query']['data'])){
     sendMessage($token,$inline_chat_id,$inline_data);
@@ -40,9 +40,9 @@ if ($text == "Инлайн Клавиатура") {
     inlineKeyboard($token,$chat_id,$reply);
 }
 if ($text == "EDIT") {
-    $reply = "Удалено";
+    $reply = "ИЗМЕНЕНО";
     editMassage($token,$chat_id,$message_id839);
-    sendMessageu($token,$chat_id,$reply);
+    sendMessage($token,$chat_id,$reply);
 }
 
 function sendMessage($token,$chat_id,$reply){
