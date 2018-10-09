@@ -74,6 +74,7 @@ if(isset($output['callback_query']['data'])){
     $inline_chat_id = $output['callback_query']['message']['chat']['id'];
     $message_id = ['callback_query']['message']['message_id'];
     $reply = 'Вы нажали на 1 кнопку'.$message_id;
+    sendMessage($token,$inline_chat_id,$message_id);
     if($inline_data == "but1"){
         sendMessage($token,$inline_chat_id,$reply);
         
