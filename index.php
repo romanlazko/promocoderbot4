@@ -5,7 +5,14 @@ $output = json_decode(file_get_contents('php://input'),true);
 
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-
+if(isset($output['callback_query']['data'])){
+    $inline_data = $output['callback_query']['data'];
+    $inline_chat_id = $output['callback_query']['message']['chat']['id'];
+    $message_id = $output['callback_query']['message']['message_id'];
+    sendMessage($token,$inline_chat_id,$inline_data);
+    sendMessage($token,$inline_chat_id,$message_id);
+    
+}
 
 
 if ($text == "/start" ) {
@@ -33,6 +40,7 @@ if ($text == "Инлайн Клавиатура") {
 }
 if ($text == "EDIT") {
     $reply = "Удалено";
+    editMassage($token,$inline_chat_id,$message_id);
     sendMessage($token,$chat_id,$reply);
 }
 function sendMessage($token,$chat_id,$reply){
@@ -68,14 +76,7 @@ function inlineKeyboard($token,$chat_id,$reply){
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
-if(isset($output['callback_query']['data'])){
-    $inline_data = $output['callback_query']['data'];
-    $inline_chat_id = $output['callback_query']['message']['chat']['id'];
-    $message_id = $output['callback_query']['message']['message_id'];
-    sendMessage($token,$inline_chat_id,$inline_data);
-    sendMessage($token,$inline_chat_id,$message_id);
-    editMassage($token,$inline_chat_id,$message_id);
-}
+
 function editMassage($token,$chat_id,$message_id){
     $parameters = [
         'chat_id' => $chat_id, 
