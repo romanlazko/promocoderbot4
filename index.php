@@ -42,7 +42,7 @@ if ($text == "Инлайн Клавиатура") {
 if ($text == "EDIT") {
     $reply = "ИЗМЕНЕНО".$message_id;
     editMassage($token,$chat_id,$message_id);
-    sendMessage($token,$chat_id,$reply);
+    sendMessage($token,$chat_id,$message_id);
 }
 
 function sendMessage($token,$chat_id,$reply){
