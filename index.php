@@ -14,30 +14,15 @@ include 'distance.php';
 if(isset($inline_data)){
     if($inline_data == 'next'){
         $message = 'NEXT';
-        $button1 = array('text' => 'button3');
-        $button2 = array('text' => 'button4');
+        $button3 = array('text' => 'button3', 'callback_data' => 'but3');
+        $button4 = array('text' => 'button4', 'callback_data' => 'but4');
         $next = array('text' => 'next', 'callback_data' => 'next');
         $prev = array('text' => 'prev', 'callback_data' => 'prev');
         $buttons = [
             [$button1],[$button2],
             [$next,$prev]
         ];
-        editMassage($token,$inline_chat_id,$message_id,$message);
-    }
-    if($inline_data == 'but2'){
-        $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
-        
-        editMassage($token,$inline_chat_id,$message_id,$message);
-    }
-    if($inline_data == 'but2'){
-        $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
-        
-        editMassage($token,$inline_chat_id,$message_id,$message);
-    }
-    if($inline_data == 'but2'){
-        $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
-        
-        editMassage($token,$inline_chat_id,$message_id,$message);
+        editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
     }
 }
 
@@ -49,8 +34,8 @@ if ($text == "/start" ) {
 
 if ($text == "Инлайн Клавиатура") {
     $reply = "Вы выбрали 'Инлайн Клавиатура'";
-    $button1 = array('text' => 'button1');
-    $button2 = array('text' => 'button2');
+    $button1 = array('text' => 'button1', 'callback_data' => 'but1');
+    $button2 = array('text' => 'button2', 'callback_data' => 'but2');
     $next = array('text' => 'next', 'callback_data' => 'next');
     $prev = array('text' => 'prev', 'callback_data' => 'prev');
     $buttons = [
@@ -94,6 +79,7 @@ function inlineKeyboard($token,$chat_id,$reply,$buttons){
 }
 
 function editMassage($token,$chat_id,$message_id,$message,$buttons){
+    
     $inlineKeyboard = array("inline_keyboard" => $buttons);
     $inlineKeyboard = json_encode($inlineKeyboard,true);        
     $parameters = [
