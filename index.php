@@ -19,7 +19,7 @@ if(isset($inline_data)){
         $next = array('text' => 'next', 'callback_data' => 'next');
         $prev = array('text' => 'prev', 'callback_data' => 'prev');
         $buttons = [
-            [$button1],[$button2],
+            [$button3],[$button4],
             [$next,$prev]
         ];
         editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
