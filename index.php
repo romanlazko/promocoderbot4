@@ -26,27 +26,12 @@ if(isset($inline_data)){
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
-    sendKeyboard($chat_id,$buttons,$reply);   
-}
-if ($text == "Главное меню") {
-    $reply = "Главное меню";
-    $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["EDIT"]];
-    sendKeyboard($token,$chat_id,$buttons);
-    sendMessage($token,$chat_id,$reply);
+    sendKeyboard($token,$chat_id,$buttons,$reply);   
 }
 
-if ($text == "ОТПРАВИТЬ ГЕОЛОКАЦИЮ") {
-    $reply = "Геолокация вычеслена".$Location;
-    sendMessage($token,$chat_id,$reply);
-}
 if ($text == "Инлайн Клавиатура") {
     $reply = "Вы выбрали 'Инлайн Клавиатура'";
     inlineKeyboard($token,$chat_id,$reply);
-}
-if ($text == "EDIT") {
-    $reply = "ИЗМЕНЕНО".$message_id;
-    editMassage($token,$inline_chat_id,$message_id);
-    sendMessage($token,$inline_chat_id,$message_id);
 }
 
 function sendMessage($token,$chat_id,$reply){
@@ -57,10 +42,10 @@ function sendMessage($token,$chat_id,$reply){
     
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
-function sendKeyboard($chat_id,$buttons,$reply){
+function sendKeyboard($token,$chat_id,$buttons,$reply){
     $keyboard =  json_encode($keyboard = ['keyboard' => $buttons, 
                                           'resize_keyboard' => false, 
-                                          'one_time_keyboard' => false , 
+                                          'one_time_keyboard' => false, 
                                           'selective' => false]);  
     $parameters = [
         'chat_id' => $chat_id, 
