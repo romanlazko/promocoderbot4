@@ -12,20 +12,31 @@ $chat_id = $output['message']['chat']['id'];
 include 'distance.php';
 
 if(isset($inline_data)){
-    if($inline_data == 'but1'){
-        $message = 'ВЫ ВЫБРАЛИ ПЕРВУЮ КНОПКУ';
+    if($inline_data == 'next'){
+        $message = 'NEXT';
+        $button1 = array('text' => 'button3');
+        $button2 = array('text' => 'button4');
+        $next = array('text' => 'next', 'callback_data' => 'next');
+        $prev = array('text' => 'prev', 'callback_data' => 'prev');
+        $buttons = [
+            [$button1],[$button2],
+            [$next,$prev]
+        ];
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
     if($inline_data == 'but2'){
         $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
+        
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
     if($inline_data == 'but2'){
         $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
+        
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
     if($inline_data == 'but2'){
         $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
+        
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
 }
@@ -38,7 +49,15 @@ if ($text == "/start" ) {
 
 if ($text == "Инлайн Клавиатура") {
     $reply = "Вы выбрали 'Инлайн Клавиатура'";
-    inlineKeyboard($token,$chat_id,$reply);
+    $button1 = array('text' => 'button1');
+    $button2 = array('text' => 'button2');
+    $next = array('text' => 'next', 'callback_data' => 'next');
+    $prev = array('text' => 'prev', 'callback_data' => 'prev');
+    $buttons = [
+        [$button1],[$button2],
+        [$next,$prev]
+    ];
+    inlineKeyboard($token,$chat_id,$reply,$buttons);
 }
 
 function sendMessage($token,$chat_id,$reply){
@@ -62,10 +81,8 @@ function sendKeyboard($token,$chat_id,$buttons,$reply){
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 
-function inlineKeyboard($token,$chat_id,$reply){
-    $button1 = array('text' => 'button1', 'callback_data' => 'but1');
-    $button2 = array('text' => 'button2', 'callback_data' => 'but2');
-    $buttons = [[$button1],[$button2]];
+function inlineKeyboard($token,$chat_id,$reply,$buttons){
+    
     $inlineKeyboard = array("inline_keyboard" => $buttons);
     $inlineKeyboard = json_encode($inlineKeyboard,true);
     $parameters = [
@@ -76,10 +93,7 @@ function inlineKeyboard($token,$chat_id,$reply){
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 
-function editMassage($token,$chat_id,$message_id,$message){
-    $button1 = array('text' => 'button3', 'callback_data' => 'but3');
-    $button2 = array('text' => 'button4', 'callback_data' => 'but4');
-    $buttons = [[$button1,$button2]];
+function editMassage($token,$chat_id,$message_id,$message,$buttons){
     $inlineKeyboard = array("inline_keyboard" => $buttons);
     $inlineKeyboard = json_encode($inlineKeyboard,true);        
     $parameters = [
