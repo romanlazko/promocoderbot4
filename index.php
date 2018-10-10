@@ -25,7 +25,7 @@ if(isset($inline_data)){
     }
     if($inline_data == 'back'){
         $message = 'Категории';
-        editMassage($token,$chat_id,$message_id,$message,category());
+        editMassage($token,$inline_chat_id,$message_id,$message,category());
     }
     
     
