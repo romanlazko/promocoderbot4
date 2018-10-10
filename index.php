@@ -36,7 +36,7 @@ if ($text == "/start" ) {
 if ($text == "Категории") {
     $reply = "Выберете категорию";
     
-    inlineKeyboard($token,$chat_id,$reply,$buttons);
+    inlineKeyboard($token,$chat_id,$reply);
 }
 
 function sendMessage($token,$chat_id,$reply){
@@ -60,8 +60,16 @@ function sendKeyboard($token,$chat_id,$buttons,$reply){
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 
-function inlineKeyboard($token,$chat_id,$reply,$buttons){
-    
+function inlineKeyboard($token,$chat_id,$reply){
+    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'eatAndFood');
+    $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
+    $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
+    $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
+    $Tourism = array('text' => 'Туризм', 'callback_data' => 'Tourism');
+    $Gagets = array('text' => 'Гаджеты', 'callback_data' => 'Gagets');
+    $buttons = [
+        [$eatAndFood],[$entertainmentAndLaisure],[$healthAndBeauty],[$Delivery],[$Tourism],[$Gagets]
+    ];
     $inlineKeyboard = array("inline_keyboard" => $buttons);
     $inlineKeyboard = json_encode($inlineKeyboard,true);
     $parameters = [
@@ -73,15 +81,6 @@ function inlineKeyboard($token,$chat_id,$reply,$buttons){
 }
 
 function editMassage($token,$chat_id,$message_id,$message,$buttons){
-    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'eatAndFood');
-    $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
-    $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
-    $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
-    $Tourism = array('text' => 'Туризм', 'callback_data' => 'Tourism');
-    $Gagets = array('text' => 'Гаджеты', 'callback_data' => 'Gagets');
-    $buttons = [
-        [$eatAndFood],[$entertainmentAndLaisure],[$healthAndBeauty],[$Delivery],[$Tourism],[$Gagets]
-    ];
     $inlineKeyboard = array("inline_keyboard" => $buttons);
     $inlineKeyboard = json_encode($inlineKeyboard,true);        
     $parameters = [
