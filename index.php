@@ -22,7 +22,7 @@ if(isset($inline_data)){
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
 }
-if(isset($location = $output(['message']['location']){
+if(isset($location = $output(['message']['location'])){
     sendMessage($token,$chat_id,$longitute);
     sendMessage($token,$chat_id,$latitute);
 
