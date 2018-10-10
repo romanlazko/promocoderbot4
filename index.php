@@ -9,6 +9,7 @@ $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $message_id839 = '865';
+$Location=$output['message']['longitude']['latitude'];
 
 if(isset($inline_data)){
     if($inline_data == 'but1'){
@@ -24,7 +25,7 @@ if(isset($inline_data)){
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
-    $buttons = [["Еда и напитки"],["Инлайн Клавиатура"],["EDIT"]];
+    $buttons = [["ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true],["Инлайн Клавиатура"],["EDIT"]];
     sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
     
@@ -36,10 +37,8 @@ if ($text == "Главное меню") {
     sendMessage($token,$chat_id,$reply);
 }
 
-if ($text == "Еда и напитки") {
-    $reply = "Вы выбрали 'Еда и напитки'";
-    $buttons = [["Кафе"],["Кофе"],["Ресторан"],["Главное меню"]];
-    sendKeyboard($token,$chat_id,$buttons);
+if ($text == "ОТПРАВИТЬ ГЕОЛОКАЦИЮ") {
+    $reply = "Геолокация вычеслена".$Location;
     sendMessage($token,$chat_id,$reply);
 }
 if ($text == "Инлайн Клавиатура") {
@@ -100,5 +99,3 @@ function editMassage($token,$chat_id,$message_id,$message){
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
-
-
