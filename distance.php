@@ -1,5 +1,5 @@
 <?php
-$latitude=$output['message']['location']['latitude'];
+$latitude = $output['message']['location']['latitude'];
 $longitude = $output['message']['location']['longitude'];
 define('EARTH_RADIUS', 6372795);
 
@@ -25,7 +25,14 @@ function distance($φA, $λA, $φB, $λB) {
  
     return $dist;
 }
+
+$dist = distance('48.4420860','35.0160808',$latitude,$longitude);
+
 if(isset($latitude) or isset($longitude)){
-    sendMessage($token,$chat_id,distance('48.4420860','35.0160808',$latitude,$longitude));
+    if($dist < 20000){
+        $reply = 'Ваш город Днепр';
+        sendMessage($token,$chat_id,$reply);
+    }
+    
 }
 ?>
