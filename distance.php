@@ -1,3 +1,4 @@
+<?php
 define('EARTH_RADIUS', 6372795);
 
 function distance($φA, $λA, $φB, $λB) {
@@ -22,3 +23,4 @@ function distance($φA, $λA, $φB, $λB) {
  
     return $dist;
 }
+?>
