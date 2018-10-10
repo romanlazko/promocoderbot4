@@ -1,4 +1,6 @@
 <?php
+$latitude=$output['message']['location']['latitude'];
+$longitude = $output['message']['location']['longitude'];
 define('EARTH_RADIUS', 6372795);
 
 function distance($φA, $λA, $φB, $λB) {
@@ -22,5 +24,8 @@ function distance($φA, $λA, $φB, $λB) {
     $dist = $ad * EARTH_RADIUS;
  
     return $dist;
+}
+if(isset($latitude) or isset($longitude)){
+    sendMessage($token,$chat_id,distance('48.4420860','35.0160808',$latitude,$longitude));
 }
 ?>
