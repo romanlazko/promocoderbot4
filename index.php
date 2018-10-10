@@ -49,7 +49,7 @@ if ($text == "EDIT") {
     sendMessage($token,$inline_chat_id,$message_id);
 }
 
-function sendMessage($token,$chat_id),$reply{
+function sendMessage($token,$chat_id,$reply){
     $parameters = [
         'chat_id' => $chat_id, 
         'text' => $reply, 
