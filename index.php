@@ -9,7 +9,7 @@ $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $message_id839 = '865';
-$Location=$output['message']['longitude']['latitude'];
+$Location=$output['message']['location'];
 
 if(isset($inline_data)){
     if($inline_data == 'but1'){
