@@ -9,7 +9,8 @@ $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $message_id839 = '865';
-$Location=$output['message']['location']['longitude']['latitude'];
+$latitude=$output['message']['location']['latitude'];
+$longitude = $output['message']['location']['longitude'];
 
 if(isset($inline_data)){
     if($inline_data == 'but1'){
@@ -21,9 +22,11 @@ if(isset($inline_data)){
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
 }
+if(isset($location = $output(['message']['location']){
+    sendMessage($token,$chat_id,$longitute);
+    sendMessage($token,$chat_id,$latitute);
 
-    sendMessage($token,$chat_id,$Location);
-
+}
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
