@@ -21,7 +21,7 @@ if(isset($inline_data)){
         $buttons = [
             [$near],[$center],[$lenynsk],[$back]
         ];
-        editMassage($token,$chat_id,$message_id,$message,$buttons);
+        editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
     }
     if($inline_data == 'back'){
         $message = 'Категории';
