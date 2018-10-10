@@ -24,11 +24,10 @@ if(isset($inline_data)){
 
 
 if ($text == "/start" ) {
-    $reply = "Добро пожаловать в бота!";
-    $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Инлайн Клавиатура"],["EDIT"]];
+    $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
+    $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons);
-    sendMessage($token,$chat_id,$reply);
-    
+    sendMessage($token,$chat_id,$reply);    
 }
 if ($text == "Главное меню") {
     $reply = "Главное меню";
