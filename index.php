@@ -43,7 +43,7 @@ function sendMessage($token,$chat_id,$reply){
 
 function sendKeyboard($token,$chat_id,$buttons,$reply){
     $keyboard =  json_encode($keyboard = ['keyboard' => $buttons, 
-                                          'resize_keyboard' => false, 
+                                          'resize_keyboard' => true, 
                                           'one_time_keyboard' => false, 
                                           'selective' => false]);  
     $parameters = [
