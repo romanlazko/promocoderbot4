@@ -25,7 +25,7 @@ if(isset($inline_data)){
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
-    $buttons = [['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true],["Инлайн Клавиатура"],["EDIT"]];
+    $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Инлайн Клавиатура"],["EDIT"]];
     sendKeyboard($token,$chat_id,$buttons);
     sendMessage($token,$chat_id,$reply);
     
