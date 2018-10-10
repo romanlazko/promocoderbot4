@@ -21,7 +21,9 @@ if(isset($inline_data)){
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
 }
-
+if(isset($Location)){
+    sendMessage($token,$chat_id,$Location);
+}
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
