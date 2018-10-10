@@ -55,7 +55,7 @@ function sendMessage($token,$chat_id),$reply{
         'text' => $reply, 
     ];
     
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters);
+    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 function sendKeyboard($chat_id,$buttons,$reply){
     $keyboard =  json_encode($keyboard = ['keyboard' => $buttons, 
@@ -67,7 +67,7 @@ function sendKeyboard($chat_id,$buttons,$reply){
         'text' => $reply, 
         'reply_markup' => $keyboard,
     ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters);
+    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 function inlineKeyboard($token,$chat_id,$reply){
     $button1 = array('text' => 'button1', 'callback_data' => 'but1');
