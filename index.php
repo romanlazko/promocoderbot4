@@ -8,9 +8,6 @@ $inline_chat_id = $output['callback_query']['message']['chat']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-$message_id839 = '865';
-$latitude=$output['message']['location']['latitude'];
-$longitude = $output['message']['location']['longitude'];
 
 include 'distance.php';
 
@@ -24,11 +21,7 @@ if(isset($inline_data)){
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
 }
-if(isset($latitude) or isset($longitude)){
-    sendMessage($token,$chat_id,$longitude);
-    sendMessage($token,$chat_id,$latitude);
-    sendMessage($token,$chat_id,distance('48.4420860','35.0160808',$latitude,$longitude));
-}
+
 
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота!";
