@@ -20,6 +20,14 @@ if(isset($inline_data)){
         $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
         editMassage($token,$inline_chat_id,$message_id,$message);
     }
+    if($inline_data == 'but2'){
+        $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
+        editMassage($token,$inline_chat_id,$message_id,$message);
+    }
+    if($inline_data == 'but2'){
+        $message = 'ВЫ ВЫБРАЛИ ВТОРУЮ КНОПКУ';
+        editMassage($token,$inline_chat_id,$message_id,$message);
+    }
 }
 
 if ($text == "/start" ) {
@@ -71,7 +79,7 @@ function inlineKeyboard($token,$chat_id,$reply){
 function editMassage($token,$chat_id,$message_id,$message){
     $button1 = array('text' => 'button3', 'callback_data' => 'but3');
     $button2 = array('text' => 'button4', 'callback_data' => 'but4');
-    $buttons = [[$button1],[$button2]];
+    $buttons = [[$button1,$button2]];
     $inlineKeyboard = array("inline_keyboard" => $buttons);
     $inlineKeyboard = json_encode($inlineKeyboard,true);        
     $parameters = [
