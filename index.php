@@ -24,6 +24,18 @@ if(isset($inline_data)){
         ];
         editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
     }
+    if($inline_data == 'prev'){
+        $message = 'PREV';
+        $button1 = array('text' => 'button1', 'callback_data' => 'but1');
+        $button2 = array('text' => 'button2', 'callback_data' => 'but2');
+        $next = array('text' => 'next', 'callback_data' => 'next');
+        $prev = array('text' => 'prev', 'callback_data' => 'prev');
+        $buttons = [
+            [$button1],[$button2],
+            [$next,$prev]
+        ];
+        editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
+    }
 }
 
 if ($text == "/start" ) {
