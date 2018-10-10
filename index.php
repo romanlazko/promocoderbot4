@@ -12,18 +12,10 @@ $chat_id = $output['message']['chat']['id'];
 include 'distance.php';
 
 if(isset($inline_data)){
-    if($inline_data == 'next'){
-        $message = 'NEXT';
-        $button3 = array('text' => 'button3', 'callback_data' => 'but3');
-        $button4 = array('text' => 'button4', 'callback_data' => 'but4');
-        $next = array('text' => 'next', 'callback_data' => 'next');
-        $prev = array('text' => 'prev', 'callback_data' => 'prev');
-        $buttons = [
-            [$button3],[$button4],
-            [$next,$prev]
-        ];
-        editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
+    if($inline_data == 'eatAndFood'){
+        
     }
+    
     
 }
 
@@ -35,7 +27,6 @@ if ($text == "/start" ) {
 
 if ($text == "Категории") {
     $reply = "Выберете категорию";
-    
     inlineKeyboard($token,$chat_id,$reply);
 }
 
@@ -70,8 +61,8 @@ function inlineKeyboard($token,$chat_id,$reply){
     $buttons = [
         [$eatAndFood],[$entertainmentAndLaisure],[$healthAndBeauty],[$Delivery],[$Tourism],[$Gagets]
     ];
-    $inlineKeyboard = array("inline_keyboard" => $buttons);
-    $inlineKeyboard = json_encode($inlineKeyboard,true);
+    
+    $inlineKeyboard = json_encode(array("inline_keyboard" => $buttons),true);
     $parameters = [
         'chat_id' => $chat_id, 
         'text' => $reply, 
