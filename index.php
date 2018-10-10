@@ -17,16 +17,24 @@ if(isset($inline_data)){
         $near = array('text' => 'Ближайшие', 'callback_data' => 'near');
         $center = array('text' => 'Центр', 'callback_data' => 'center');
         $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk');
-        $back = array('text' => 'Назад', 'callback_data' => 'back');
+        $backToCategory = array('text' => 'Назад', 'callback_data' => 'backToCategory');
         $buttons = [
-            [$near],[$center],[$lenynsk],[$back]
+            [$near],[$center],[$lenynsk],[$backToCategory]
         ];
         editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
     }
-    if($inline_data == 'back'){
+    
+    if($inline_data == 'entertainmentAndLaisure'){
+        
+    }
+    
+    if($inline_data == 'backToCategory'){
         $message = 'Категории';
         editMassage($token,$inline_chat_id,$message_id,$message,category());
     }
+    
+    
+    
     
     
 }
