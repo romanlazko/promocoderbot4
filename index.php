@@ -13,7 +13,19 @@ include 'distance.php';
 
 if(isset($inline_data)){
     if($inline_data == 'eatAndFood'){
-        
+        $message = 'Категория - Еда и напитки';
+        $near = array('text' => 'Ближайшие', 'callback_data' => 'near');
+        $center = array('text' => 'Центр', 'callback_data' => 'center');
+        $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk');
+        $back = array('text' => 'Назад', 'callback_data' => 'back');
+        $buttons = [
+            [$near],[$center],[$lenynsk],[$back]
+        ];
+        editMassage($token,$chat_id,$message_id,$message,$buttons);
+    }
+    if($inline_data == 'back'){
+        $message = 'Категории';
+        editMassage($token,$chat_id,$message_id,$message,category());
     }
     
     
@@ -27,7 +39,20 @@ if ($text == "/start" ) {
 
 if ($text == "Категории") {
     $reply = "Выберете категорию";
-    inlineKeyboard($token,$chat_id,$reply);
+    inlineKeyboard($token,$chat_id,$reply,category());
+}
+
+function category(){
+    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'eatAndFood');
+    $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
+    $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
+    $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
+    $Tourism = array('text' => 'Туризм', 'callback_data' => 'Tourism');
+    $Gagets = array('text' => 'Гаджеты', 'callback_data' => 'Gagets');
+    $buttons = [
+        [$eatAndFood],[$entertainmentAndLaisure],[$healthAndBeauty],[$Delivery],[$Tourism],[$Gagets]
+    ];
+    return $buttons;
 }
 
 function sendMessage($token,$chat_id,$reply){
@@ -51,17 +76,7 @@ function sendKeyboard($token,$chat_id,$buttons,$reply){
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 
-function inlineKeyboard($token,$chat_id,$reply){
-    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'eatAndFood');
-    $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
-    $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
-    $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
-    $Tourism = array('text' => 'Туризм', 'callback_data' => 'Tourism');
-    $Gagets = array('text' => 'Гаджеты', 'callback_data' => 'Gagets');
-    $buttons = [
-        [$eatAndFood],[$entertainmentAndLaisure],[$healthAndBeauty],[$Delivery],[$Tourism],[$Gagets]
-    ];
-    
+function inlineKeyboard($token,$chat_id,$reply,$buttons){
     $inlineKeyboard = json_encode(array("inline_keyboard" => $buttons),true);
     $parameters = [
         'chat_id' => $chat_id, 
