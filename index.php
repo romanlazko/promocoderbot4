@@ -13,7 +13,7 @@ include 'distance.php';
 
 if(isset($inline_data)){
     if($inline_data == 'eatAndFood'){
-        $pos = 'eatanddrink';
+        $pos = 'eatanddrink1';
         $message = 'Категория - Еда и напитки';
         $near = array('text' => 'Ближайшие', 'callback_data' => 'near'.$pos);
         $center = array('text' => 'Центр', 'callback_data' => 'center');
