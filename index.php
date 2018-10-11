@@ -14,14 +14,14 @@ include 'distance.php';
 if(isset($inline_data)){
     if($inline_data == 'eatAndFood'){
         $message = 'Категория - Еда и напитки';
-        $near = array('text' => 'Ближайшие', 'callback_data' => 'near');
+        $near = array('text' => 'Ближайшие', 'callback_data' => 'near'.'eatanddrink);
         $center = array('text' => 'Центр', 'callback_data' => 'center');
         $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk');
         $backToCategory = array('text' => 'Назад', 'callback_data' => 'backToCategory');
         $buttons = [
             [$near],[$center],[$lenynsk],[$backToCategory]
         ];
-        editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
+        editMassage($token,$inline_chat_id,$message_id,$inline_data,$buttons);
     }
     
     if($inline_data == 'entertainmentAndLaisure'){
