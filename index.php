@@ -8,15 +8,15 @@ $inline_chat_id = $output['callback_query']['message']['chat']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
+$category = 'eatanddrink';
 
 include 'distance.php';
 
 if(isset($inline_data)){
     if($inline_data == 'eatAndFood'){
-        $category = 'eatanddrink';
+        
         $message = 'Категория - Еда и напитки';
-        $button = location($category);
-        editMassage($token,$inline_chat_id,$message_id,$message,location($category));
+        //editMassage($token,$inline_chat_id,$message_id,$message,location($category));
     }
     sendMessage($token,$inline_chat_id,location($category));
     if($inline_data == 'entertainmentAndLaisure'){
