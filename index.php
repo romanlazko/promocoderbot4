@@ -30,7 +30,7 @@ if(isset($inline_data)){
     }
     
     
-    
+    $inline_data ='';
     
     
 }
