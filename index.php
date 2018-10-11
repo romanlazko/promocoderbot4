@@ -15,10 +15,10 @@ if(isset($inline_data)){
     if($inline_data == 'eatAndFood'){
         $category = 'eatanddrink';
         $message = 'Категория - Еда и напитки';
-        $button = location($category)[$buttons];
-        editMassage($token,$inline_chat_id,$message_id,$message,$button);
+        $button = location($category);
+        editMassage($token,$inline_chat_id,$message_id,$message,location($category));
     }
-    sendMessage($token,$inline_chat_id,$inline_data);
+    sendMessage($token,$inline_chat_id,location($category));
     if($inline_data == 'entertainmentAndLaisure'){
         
     }
