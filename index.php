@@ -13,16 +13,10 @@ include 'distance.php';
 
 if(isset($inline_data)){
     if($inline_data == 'eatAndFood'){
-        $pos = 'eatanddrink1';
+        $category = 'eatanddrink';
         $message = 'Категория - Еда и напитки';
-        $near = array('text' => 'Ближайшие', 'callback_data' => 'near'.$pos);
-        $center = array('text' => 'Центр', 'callback_data' => 'center');
-        $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk');
-        $backToCategory = array('text' => 'Назад', 'callback_data' => 'backToCategory');
-        $buttons = [
-            [$near],[$center],[$lenynsk],[$backToCategory]
-        ];
-        editMassage($token,$inline_chat_id,$message_id,$inline_data,$buttons);
+        
+        editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
     }
     sendMessage($token,$inline_chat_id,$inline_data);
     if($inline_data == 'entertainmentAndLaisure'){
@@ -49,6 +43,16 @@ if ($text == "/start" ) {
 if ($text == "Категории") {
     $reply = "Выберете категорию";
     inlineKeyboard($token,$chat_id,$reply,category());
+}
+function location($category){
+    $near = array('text' => 'Ближайшие', 'callback_data' => 'near'.$category);
+    $center = array('text' => 'Центр', 'callback_data' => 'center'.$category);
+    $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk'.$category);
+    $backToCategory = array('text' => 'Назад', 'callback_data' => 'backToCategory');
+    $buttons = [
+         [$near],[$center],[$lenynsk],[$backToCategory]
+    ];
+    return $buttons;
 }
 
 function category(){
