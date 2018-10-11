@@ -13,11 +13,12 @@ $chat_id = $output['message']['chat']['id'];
 include 'distance.php';
 
 if(isset($inline_data)){
-    if($inline_data == 'eatAndFood'){
-        $category = 'eatanddrink';
-        $message = 'Категория - Еда и напитки';
-        editMassage($token,$inline_chat_id,$message_id,$message,location($category));
-    }
+    //if($inline_data == 'eatAndFood'){
+       // $category = 'eatanddrink';
+        $message = 'Категория - '.$inline_data;
+        editMassage($token,$inline_chat_id,$message_id,$message,location($inline_data));
+    
+    
     sendMessage($token,$inline_chat_id,$inline_data);
     if($inline_data == 'entertainmentAndLaisure'){
         
