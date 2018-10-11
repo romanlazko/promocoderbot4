@@ -45,14 +45,14 @@ if ($text == "Категории") {
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 function location($category){
-    $near = array('text' => 'Ближайшие', 'callback_data' => 'near');
-    $center = array('text' => 'Центр', 'callback_data' => 'center');
-    $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk');
+    $near = array('text' => 'Ближайшие', 'callback_data' => 'near'.$category);
+    $center = array('text' => 'Центр', 'callback_data' => 'center'.$category);
+    $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk'.$category);
     $backToCategory = array('text' => 'Назад', 'callback_data' => 'backToCategory');
     $buttons = [
          [$near],[$center],[$lenynsk],[$backToCategory]
     ];
-    return $button;
+    return $buttons;
 }
 
 function category(){
