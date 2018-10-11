@@ -23,7 +23,7 @@ if(isset($inline_data)){
         ];
         editMassage($token,$inline_chat_id,$message_id,$inline_data,$buttons);
     }
-    sendMessage($token,$chat_id,$inline_data);
+    sendMessage($token,$inline_chat_id,$inline_data);
     if($inline_data == 'entertainmentAndLaisure'){
         
     }
