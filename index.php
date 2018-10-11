@@ -16,11 +16,11 @@ if(isset($inline_data)){
     //if($inline_data == 'eatAndFood'){
        // $category = 'eatanddrink';
         $message = 'Категория - '.$inline_data;
-    $param = $inline_data;
-    $cat = location($param);
+    
+    list($cat,$param) = location($inline_data);
         editMassage($token,$inline_chat_id,$message_id,$message,$cat);
     
-    sendMessage($token,$inline_chat_id,$cat);
+    sendMessage($token,$inline_chat_id,$param);
     if($inline_data == 'backToCategory'){
         $message = 'Категории';
         editMassage($token,$inline_chat_id,$message_id,$message,category());
