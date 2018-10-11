@@ -16,7 +16,7 @@ if(isset($inline_data)){
         $category = 'eatanddrink';
         $message = 'Категория - Еда и напитки';
         
-        editMassage($token,$inline_chat_id,$message_id,$message,$buttons);
+        editMassage($token,$inline_chat_id,$message_id,$message,location($category));
     }
     sendMessage($token,$inline_chat_id,$inline_data);
     if($inline_data == 'entertainmentAndLaisure'){
