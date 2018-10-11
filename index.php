@@ -19,22 +19,17 @@ if(isset($inline_data)){
         editMassage($token,$inline_chat_id,$message_id,$message,location($inline_data));
     
     
-    
-    if($inline_data == 'entertainmentAndLaisure'){
-        
-    }
-    
     if($inline_data == 'backToCategory'){
         $message = 'Категории';
         editMassage($token,$inline_chat_id,$message_id,$message,category());
     }
     
     
-    unset($inline_data);
+    
     
     
 }
-
+unset($inline_data);
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
@@ -53,6 +48,7 @@ function location($category){
     $buttons = [
          [$near],[$center],[$lenynsk],[$backToCategory]
     ];
+    unset($category);
     return $buttons;
 }
 
