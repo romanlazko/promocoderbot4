@@ -15,9 +15,10 @@ include 'distance.php';
 if(isset($inline_data)){
     //if($inline_data == 'eatAndFood'){
        // $category = 'eatanddrink';
-        $message = 'Категория - '.$inline_data;
-    
     list($cat,$param) = location($inline_data);
+        $message = 'Категория - '.$inline_data.$param;
+    
+    
         editMassage($token,$inline_chat_id,$message_id,$message,$cat);
     
     sendMessage($token,$inline_chat_id,$param);
