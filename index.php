@@ -8,17 +8,17 @@ $inline_chat_id = $output['callback_query']['message']['chat']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-$category = 'eatanddrink';
+
 
 include 'distance.php';
 
 if(isset($inline_data)){
     if($inline_data == 'eatAndFood'){
-        sendMessage($token,$inline_chat_id,location($category));
+        $category = 'eatanddrink';
         $message = 'Категория - Еда и напитки';
-        //editMassage($token,$inline_chat_id,$message_id,$message,location($category));
+        editMassage($token,$inline_chat_id,$message_id,$message,location($category));
     }
-    
+    sendMessage($token,$inline_chat_id,$inline_data);
     if($inline_data == 'entertainmentAndLaisure'){
         
     }
@@ -52,9 +52,7 @@ function location($category){
     $buttons = [
          [$near],[$center],[$lenynsk],[$backToCategory]
     ];
-    
-    $param = [[$buttons],[$category]];
-    return $param;
+    return $button;
 }
 
 function category(){
