@@ -19,7 +19,7 @@ if(isset($inline_data)){
         editMassage($token,$inline_chat_id,$message_id,$message,location($inline_data));
     
     
-    sendMessage($token,$inline_chat_id,$inline_data);
+    
     if($inline_data == 'entertainmentAndLaisure'){
         
     }
@@ -30,7 +30,7 @@ if(isset($inline_data)){
     }
     
     
-    $inline_data ='';
+    unset($inline_data);
     
     
 }
