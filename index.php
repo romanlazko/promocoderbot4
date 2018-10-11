@@ -18,9 +18,9 @@ if(isset($inline_data)){
         $message = 'Категория - '.$inline_data;
     $param = $inline_data;
     $cat = location($param);
-        editMassage($token,$inline_chat_id,$message_id,$message,location($cat));
+        editMassage($token,$inline_chat_id,$message_id,$message,$cat);
     
-    sendMessage($token,$inline_chat_id,$param);
+    sendMessage($token,$inline_chat_id,$cat);
     if($inline_data == 'backToCategory'){
         $message = 'Категории';
         editMassage($token,$inline_chat_id,$message_id,$message,category());
