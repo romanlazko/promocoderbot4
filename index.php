@@ -14,11 +14,11 @@ include 'distance.php';
 
 if(isset($inline_data)){
     if($inline_data == 'eatAndFood'){
-        
+        sendMessage($token,$inline_chat_id,location($category));
         $message = 'Категория - Еда и напитки';
         //editMassage($token,$inline_chat_id,$message_id,$message,location($category));
     }
-    sendMessage($token,$inline_chat_id,location($category));
+    
     if($inline_data == 'entertainmentAndLaisure'){
         
     }
