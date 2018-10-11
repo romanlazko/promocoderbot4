@@ -53,7 +53,7 @@ function location($category){
          [$near],[$center],[$lenynsk],[$backToCategory]
     ];
     
-    $param = [[$buttons],[$category]]
+    $param = [[$buttons],[$category]];
     return $param;
 }
 
