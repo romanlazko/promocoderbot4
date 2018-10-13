@@ -28,7 +28,7 @@ function create($token,$chat_id,$dbconnect){
     if($dbconnect->query($ucertable) === TRUE){
         sendMessage($token,$chat_id,'Создана таблица');
     }  */    
-    $login = "Zona30";
+    $login = "MisterCat";
     $createUser = "INSERT INTO EatAndDrinks(posName,posLat, posLong, posShow) VALUES('$login','48.4643541','35.0468668','notShow')";
             if($dbconnect->query($createUser) === TRUE){
                 sendMessage($token,$chat_id,'Добавлено'); 
