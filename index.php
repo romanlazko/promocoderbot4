@@ -16,7 +16,7 @@ $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $user_id = $output['message']['from']['id'];
 
-
+createRestoranPosition();
 
 include 'distance.php';
 include 'BD.php';
