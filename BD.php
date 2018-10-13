@@ -17,6 +17,7 @@ function userfunc($user_id){
             }
             else{
                 $createUser = "INSERT INTO users(user_id) VALUES($user_id)";
+                sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ');
                 
             }
         }
@@ -24,6 +25,8 @@ function userfunc($user_id){
     }
     else{
                 $createUser = "INSERT INTO users(user_id) VALUES($user_id)";
+        sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ');
+                
             }
 /*$ucertable = "CREATE TABLE $login (
     login VARCHAR(30) NOT NULL,
