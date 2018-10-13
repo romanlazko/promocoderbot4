@@ -20,14 +20,13 @@ $user_id = $output['message']['from']['id'];
 
 include 'distance.php';
 include 'BD.php';
-$pos = "eatAndDrinks";
-    $ucertable = "CREATE TABLE $pos (
-                name VARCHAR(30) NOT NULL,
-                location VARCHAR(30) NOT NULL,
-                show VARCHAR(30) NOT NULL)";
-    if($dbconnect->query($ucertable) === TRUE){
-        sendMessage($token,$chat_id,'Создана таблица');
-    }
+$login = "eatAndDrinks";
+$ucertable = "CREATE TABLE $login (
+            name VARCHAR(30) NOT NULL,
+            location VARCHAR(30) NOT NULL";
+if($dbconnect->query($ucertable) === TRUE){
+    sendMessage($token,$chat_id,'Создана таблица');
+}
 if(isset($inline_data)){
     
     if($inline_data == 'eatAndFood'){
