@@ -19,7 +19,7 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
    
 }
 function create($token,$chat_id){
-    sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ');
+    sendMessage($token,$chat_id,'создаем таблицу');
     $pos = 'eatAndDrinks';
     $ucertable = "CREATE TABLE $pos (
                 Name VARCHAR(30) NOT NULL,
