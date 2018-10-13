@@ -2,7 +2,7 @@
 
 
 function userfunc($user_id){
-    sendMessage($token,$chat_id,$user_id); 
+    sendMessage($token,$chat_id,'нихуя'); 
     /*$servername="db4free.net: 3306";
     $username="promocoder";
     $password="zdraste1234";
