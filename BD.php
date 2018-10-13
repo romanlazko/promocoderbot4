@@ -11,6 +11,7 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
         }
         else{
             $createUser = "INSERT INTO users(user_id) VALUES('$user_id')";
+            
             if($dbconnect->query($createUser) === TRUE){
                 sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ'); 
             }
@@ -18,6 +19,12 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
     }   
    
 };
+function update($token,$chat_id,$dbconnect){
+    $putLocation = "UPDATE `users` SET `lat` = '25', `long` = '31', `position` = '1' WHERE `user_id` = '544883527';
+    if($dbconnect->query($putLocation) === TRUE){
+                sendMessage($token,$chat_id,'локация записанна'); 
+            }
+}
 function create($token,$chat_id,$dbconnect){
     /*$login = "EatAndDrinks";
     $ucertable = "CREATE TABLE $login (
