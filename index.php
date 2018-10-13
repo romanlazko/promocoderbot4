@@ -1,4 +1,10 @@
 <?php
+$servername="db4free.net: 3306";
+$username="promocoder";
+$password="zdraste1234";
+$dbname="promocoder";
+$dbconnect = new mysqli($servername, $username, $password, $dbname);
+
 
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
@@ -106,3 +112,4 @@ function editMassage($token,$chat_id,$message_id,$message,$buttons){
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
+$dbconnect->close();
