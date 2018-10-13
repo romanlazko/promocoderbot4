@@ -20,10 +20,10 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
 }
 function create($token,$chat_id,$dbconnect){
     
-    $pos = 'eatAndDrinks';
+    $pos = "eatAndDrinks";
     $ucertable = "CREATE TABLE $pos (
-                Name VARCHAR(30) NOT NULL,
-                Location VARCHAR(30) NOT NULL,
+                name VARCHAR(30) NOT NULL,
+                location VARCHAR(30) NOT NULL,
                 show VARCHAR(30) NOT NULL)";
     if($dbconnect->query($ucertable) === TRUE){
         sendMessage($token,$chat_id,'Создана таблицу');
