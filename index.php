@@ -10,21 +10,10 @@ $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $user_id = $output['message']['from']['id'];
 
-$servername="db4free.net: 3306";
-$username="promocoder";
-$password="zdraste1234";
-$dbname="promocoder";
-$dbconnect = new mysqli($servername, $username, $password, $dbname); 
 
-$createUser = "INSERT INTO users(user_id) VALUES('$user_id')";
-if($dbconnect->query($createUser) === TRUE ){
-        sendMessage($token,$chat_id,'получилось');
-                
-    }
-$dbconnect->close(); 
 
 include 'distance.php';
-//include 'BD.php';
+include 'BD.php';
 
 if(isset($inline_data)){
     
@@ -40,7 +29,7 @@ if(isset($inline_data)){
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
-    //userfunc($user_id);
+    userfunc($user_id);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
 }
