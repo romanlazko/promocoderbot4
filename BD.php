@@ -6,6 +6,9 @@ $password="zdraste1234";
 $dbname="promocoder";
 $dbconnect = new mysqli($servername, $username, $password, $dbname); 
 
+$createUser = "INSERT INTO users(user_id) VALUES('слово')";
+        sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ');
+
 function userfunc($user_id){
     $bd_user_id = "SELECT user_id FROM users";
     $result = $dbconnect ->query($bd_user_id);
