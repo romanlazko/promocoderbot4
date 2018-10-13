@@ -9,12 +9,12 @@ $dbconnect = new mysqli($servername, $username, $password, $dbname);
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
 
-$inline_data = $output['callback_query']['data'];
-$inline_chat_id = $output['callback_query']['message']['chat']['id'];
-$message_id = $output['callback_query']['message']['message_id'];
+// $inline_data = $output['callback_query']['data'];
+// $inline_chat_id = $output['callback_query']['message']['chat']['id'];
+// $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-$user_id = $output['message']['from']['id'];
+// $user_id = $output['message']['from']['id'];
 
 
 
@@ -40,10 +40,10 @@ if ($text == "/start" ) {
     sendKeyboard($token,$chat_id,$buttons,$reply);   
 }
 
-if ($text == "Категории") {
-    $reply = "Выберете категорию";
-    inlineKeyboard($token,$chat_id,$reply,category());
-}
+// if ($text == "Категории") {
+//     $reply = "Выберете категорию";
+//     inlineKeyboard($token,$chat_id,$reply,category());
+// }
 // function location($category){
 //     $near = array('text' => 'Ближайшие', 'callback_data' => 'near');
 //     $center = array('text' => 'Центр', 'callback_data' => 'center');
@@ -70,13 +70,13 @@ if ($text == "Категории") {
 //     return $buttons;
 // }
 
-function sendMessage($token,$chat_id,$reply){
-    $parameters = [
-        'chat_id' => $chat_id, 
-        'text' => $reply, 
-    ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
-}
+// function sendMessage($token,$chat_id,$reply){
+//     $parameters = [
+//         'chat_id' => $chat_id, 
+//         'text' => $reply, 
+//     ];
+//     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
+// }
 
 function sendKeyboard($token,$chat_id,$buttons,$reply){
     $keyboard =  json_encode($keyboard = ['keyboard' => $buttons, 
