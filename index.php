@@ -8,15 +8,15 @@ $inline_chat_id = $output['callback_query']['message']['chat']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
-//$user_id = $output['message']['from']['id'];
+$user_id = $output['message']['from']['id'];
 
 include 'distance.php';
-//include 'BD.php';
+include 'BD.php';
 
 if(isset($inline_data)){
     
     if($inline_data == 'eatAndFood'){
-        $message = 'Категория - '$inline_data';
+        $message = 'Категория - '$inline_data;
         
     }
     if($inline_data == 'backToCategory'){
@@ -27,7 +27,7 @@ if(isset($inline_data)){
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
-    //userfunc($user_id);
+    userfunc($user_id);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
 }
