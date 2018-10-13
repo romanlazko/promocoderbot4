@@ -11,7 +11,7 @@ $chat_id = $output['message']['chat']['id'];
 $user_id = $output['message']['from']['id'];
 
 include 'distance.php';
-include 'printPosition.php';
+include 'BD.php';
 
 if(isset($inline_data)){
     
