@@ -7,7 +7,7 @@ function userfunc($user_id){
     $password="zdraste1234";
     $dbname="promocoder";
     $dbconnect = new mysqli($servername, $username, $password, $dbname); 
-    
+    sendMessage($token,$chat_id,$user_id); 
     $bool = FALSE;
     $createUser = "INSERT INTO users(user_id) VALUES('$user_id')";
     $createUser = "INSERT INTO users(user_id) VALUES('$chat_id')";
