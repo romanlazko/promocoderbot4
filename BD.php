@@ -18,5 +18,11 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
     }   
    
 }
+function createRestoranPosition(){
+    $ucertable = "CREATE TABLE 'EatAndDrinks' (
+                Name VARCHAR(30) NOT NULL,
+                Location VARCHAR(30) NOT NULL,
+                show VARCHAR(30) NOT NULL)";
+}
 
 ?>
