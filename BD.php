@@ -3,8 +3,7 @@
 
 function userfunc($token,$chat_id,$user_id,$dbconnect){
     
-    $sql = "SELECT user_id FROM users";
-    $result = $dbconnect->query($sql);
+    $result = $dbconnect->query("SELECT user_id FROM users");
     while($row = $result->fetch_assoc()){
         if($row['user_id']==$user_id){
             sendMessage($token,$chat_id,'ТЫ СТАРЫЙ ПОЛЬЗОВАТЕЛЬ');
