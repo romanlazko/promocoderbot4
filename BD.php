@@ -10,7 +10,6 @@ function userfunc($token,$chat_id,$user_id){
     $dbconnect = new mysqli($servername, $username, $password, $dbname); 
     
     $createUser = "INSERT INTO users(user_id) VALUES('$user_id')";
-    $createUser = "INSERT INTO users(user_id) VALUES('$chat_id')";
     /*$sql = "SELECT user_id FROM users";
     $result = $dbconnect->query($sql);
     
