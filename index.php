@@ -20,7 +20,7 @@ $user_id = $output['message']['from']['id'];
 
 include 'distance.php';
 include 'BD.php';
-
+update($token,$chat_id,$dbconnect);
 if(isset($inline_data)){
     
     if($inline_data == 'eatAndFood'){
