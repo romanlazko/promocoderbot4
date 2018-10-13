@@ -1,15 +1,19 @@
 <?php
-
+$slovo = "slovo";
 $servername="db4free.net: 3306";
 $username="promocoder";
 $password="zdraste1234";
 $dbname="promocoder";
 $dbconnect = new mysqli($servername, $username, $password, $dbname); 
 
-$createUser = "INSERT INTO users(user_id) VALUES('слово')";
-        sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ');
+$createUser = "INSERT INTO users(user_id) VALUES('$slovo')";
+if($dbconnect->query($createUser) === TRUE ){
+        sendMessage($token,$chat_id,'получилось');
+                
+    }
+        
 
-function userfunc($user_id){
+/*function userfunc($user_id){
     $bd_user_id = "SELECT user_id FROM users";
     $result = $dbconnect ->query($bd_user_id);
     if($result->num_rows>0){
@@ -31,7 +35,7 @@ function userfunc($user_id){
         sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ');
                 
             }
-/*$ucertable = "CREATE TABLE $login (
+$ucertable = "CREATE TABLE $login (
     login VARCHAR(30) NOT NULL,
     test1result VARCHAR(30) NOT NULL,
     test2result VARCHAR(30) NOT NULL)";      
