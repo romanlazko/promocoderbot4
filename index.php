@@ -20,10 +20,11 @@ $user_id = $output['message']['from']['id'];
 
 include 'distance.php';
 include 'BD.php';
-$login = "eatAndDrinks";
+$login = "eAd";
 $ucertable = "CREATE TABLE $login (
-            name VARCHAR(30) NOT NULL,
-            location VARCHAR(30) NOT NULL";
+                login VARCHAR(30) NOT NULL,
+                test1result VARCHAR(30) NOT NULL,
+                test2result VARCHAR(30) NOT NULL)";
 if($dbconnect->query($ucertable) === TRUE){
     sendMessage($token,$chat_id,'Создана таблица');
 }
