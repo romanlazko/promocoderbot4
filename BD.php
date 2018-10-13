@@ -21,7 +21,7 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
             }
         }
     }   
-   $dbconnect->close();
+   
 }
-
+$dbconnect->close();
 ?>
