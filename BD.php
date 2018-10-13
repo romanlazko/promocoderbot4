@@ -25,7 +25,7 @@ function userfunc($user_id){
         }
         
     }
-    
+    $dbconnect->close(); 
 }
-$dbconnect->close(); 
+
 ?>
