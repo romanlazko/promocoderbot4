@@ -29,7 +29,7 @@ if(isset($inline_data)){
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
-    sendMessage($token,$chat_id,$user_id); 
+    
     userfunc($user_id);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
