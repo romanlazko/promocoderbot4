@@ -10,19 +10,17 @@ $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $user_id = $output['message']['from']['id'];
 
-$login = "users";
 $servername="db4free.net: 3306";
 $username="promocoder";
 $password="zdraste1234";
 $dbname="promocoder";
 $dbconnect = new mysqli($servername, $username, $password, $dbname); 
 
-$ucertable = "CREATE TABLE $login (
-    user_id VARCHAR(30) NOT NULL)";      
-if($dbconnect->query($ucertable) === TRUE ){
-    sendMessage($token,$chat_id,'получилось');
-
-}
+$createUser = "INSERT INTO users(user_id) VALUES('$user_id')";
+if($dbconnect->query($createUser) === TRUE ){
+        sendMessage($token,$chat_id,'получилось');
+                
+    }
 $dbconnect->close(); 
 
 include 'distance.php';
