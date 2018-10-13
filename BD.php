@@ -15,6 +15,7 @@ function userfunc($user_id){
     if($result->num_rows>0){
         while($row = $result->fetch_assoc()){
             if($row['user_id']==$login){
+                sendMessage($token,$chat_id,$row['user_id']); 
                 $bool=TRUE;                
                 break;
             }
