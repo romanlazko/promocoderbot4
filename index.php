@@ -20,18 +20,18 @@ $user_id = $output['message']['from']['id'];
 
 //include 'distance.php';
 //include 'BD.php';
-if(isset($inline_data)){
+//  if(isset($inline_data)){
     
-    if($inline_data == 'eatAndFood'){
-        $message = 'Категория - ' .$inline_data;
+//     if($inline_data == 'eatAndFood'){
+//         $message = 'Категория - ' .$inline_data;
         
-    }
-    if($inline_data == 'backToCategory'){
-        $message = 'Категории';
-        editMassage($token,$inline_chat_id,$message_id,$message,category());
-    }
+//     }
+//     if($inline_data == 'backToCategory'){
+//         $message = 'Категории';
+//         editMassage($token,$inline_chat_id,$message_id,$message,category());
+//     }
     
-}
+// }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
     //create($token,$chat_id,$dbconnect);
@@ -44,31 +44,31 @@ if ($text == "Категории") {
     $reply = "Выберете категорию";
     inlineKeyboard($token,$chat_id,$reply,category());
 }
-function location($category){
-    $near = array('text' => 'Ближайшие', 'callback_data' => 'near');
-    $center = array('text' => 'Центр', 'callback_data' => 'center');
-    $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk');
-    $backToCategory = array('text' => 'Назад', 'callback_data' => 'backToCategory');
-    $buttons = [
-         [$near],[$center],[$lenynsk],[$backToCategory]
-    ];
+// function location($category){
+//     $near = array('text' => 'Ближайшие', 'callback_data' => 'near');
+//     $center = array('text' => 'Центр', 'callback_data' => 'center');
+//     $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk');
+//     $backToCategory = array('text' => 'Назад', 'callback_data' => 'backToCategory');
+//     $buttons = [
+//          [$near],[$center],[$lenynsk],[$backToCategory]
+//     ];
     
     
-    return array($buttons,$category);
-}
+//     return array($buttons,$category);
+// }
 
-function category(){
-    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'eatAndFood');
-    $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
-    $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
-    $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
-    $Tourism = array('text' => 'Туризм', 'callback_data' => 'Tourism');
-    $Gagets = array('text' => 'Гаджеты', 'callback_data' => 'Gagets');
-    $buttons = [
-        [$eatAndFood],[$entertainmentAndLaisure],[$healthAndBeauty],[$Delivery],[$Tourism],[$Gagets]
-    ];
-    return $buttons;
-}
+// function category(){
+//     $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'eatAndFood');
+//     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
+//     $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
+//     $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
+//     $Tourism = array('text' => 'Туризм', 'callback_data' => 'Tourism');
+//     $Gagets = array('text' => 'Гаджеты', 'callback_data' => 'Gagets');
+//     $buttons = [
+//         [$eatAndFood],[$entertainmentAndLaisure],[$healthAndBeauty],[$Delivery],[$Tourism],[$Gagets]
+//     ];
+//     return $buttons;
+// }
 
 function sendMessage($token,$chat_id,$reply){
     $parameters = [
@@ -91,25 +91,25 @@ function sendKeyboard($token,$chat_id,$buttons,$reply){
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
 
-function inlineKeyboard($token,$chat_id,$reply,$buttons){
-    $inlineKeyboard = json_encode(array("inline_keyboard" => $buttons),true);
-    $parameters = [
-        'chat_id' => $chat_id, 
-        'text' => $reply, 
-        'reply_markup' => $inlineKeyboard,
-    ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
-}
+// function inlineKeyboard($token,$chat_id,$reply,$buttons){
+//     $inlineKeyboard = json_encode(array("inline_keyboard" => $buttons),true);
+//     $parameters = [
+//         'chat_id' => $chat_id, 
+//         'text' => $reply, 
+//         'reply_markup' => $inlineKeyboard,
+//     ];
+//     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
+// }
 
-function editMassage($token,$chat_id,$message_id,$message,$buttons){
-    $inlineKeyboard = array("inline_keyboard" => $buttons);
-    $inlineKeyboard = json_encode($inlineKeyboard,true);        
-    $parameters = [
-        'chat_id' => $chat_id, 
-        'message_id' => $message_id, 
-        'text' => $message,
-        'reply_markup' => $inlineKeyboard,
-    ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
-}
+// function editMassage($token,$chat_id,$message_id,$message,$buttons){
+//     $inlineKeyboard = array("inline_keyboard" => $buttons);
+//     $inlineKeyboard = json_encode($inlineKeyboard,true);        
+//     $parameters = [
+//         'chat_id' => $chat_id, 
+//         'message_id' => $message_id, 
+//         'text' => $message,
+//         'reply_markup' => $inlineKeyboard,
+//     ];
+//     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
+// }
 //$dbconnect->close();
