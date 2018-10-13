@@ -9,14 +9,13 @@ function userfunc($token,$chat_id,$user_id){
     $dbname="promocoder";
     $dbconnect = new mysqli($servername, $username, $password, $dbname); 
     
-    $createUser = "INSERT INTO users(user_id) VALUES('$user_id')";
+    /*$createUser = "INSERT INTO users(user_id) VALUES('$user_id')";
     if($dbconnect->query($createUser) === TRUE){
-        sendMessage($token,$chat_id,$user_id);
-    }
-    /*$sql = "SELECT user_id FROM users";
-    $result = $dbconnect->query($sql);
-    
-        while($row = $result->fetch_assoc()){
+        
+    }*/
+    $result = $dbconnect->query("SELECT user_id FROM users");
+    sendMessage($token,$chat_id,$result);
+        /*while($row = $result->fetch_assoc()){
             if($row['user_id']==$user_id){
                 sendMessage($token,$chat_id,$result); 
                 $bool=TRUE;                
