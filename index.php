@@ -20,7 +20,14 @@ $user_id = $output['message']['from']['id'];
 
 include 'distance.php';
 include 'BD.php';
-
+$pos = "eatAndDrinks";
+    $ucertable = "CREATE TABLE $pos (
+                name VARCHAR(30) NOT NULL,
+                location VARCHAR(30) NOT NULL,
+                show VARCHAR(30) NOT NULL)";
+    if($dbconnect->query($ucertable) === TRUE){
+        sendMessage($token,$chat_id,'Создана таблица');
+    }
 if(isset($inline_data)){
     
     if($inline_data == 'eatAndFood'){
@@ -35,7 +42,7 @@ if(isset($inline_data)){
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
-    create($token,$chat_id,$dbconnect);
+    //create($token,$chat_id,$dbconnect);
     userfunc($token,$chat_id,$user_id,$dbconnect);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
