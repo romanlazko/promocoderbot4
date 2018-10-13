@@ -14,6 +14,7 @@ $ucertable = "CREATE TABLE $login (
         sendMessage($token,$chat_id,'получилось');
                 
     }
+$dbconnect->close(); 
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
 $output = json_decode(file_get_contents('php://input'),true);
 
