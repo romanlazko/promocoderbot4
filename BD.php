@@ -14,7 +14,7 @@ function userfunc($user_id){
     $result = $dbconnect->query($sql);
     
         while($row = $result->fetch_assoc()){
-            if($row['user_id']==$login){
+            if($row['user_id']==$user_id){
                 sendMessage($token,$chat_id,$row['user_id']); 
                 $bool=TRUE;                
                 break;
