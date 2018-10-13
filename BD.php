@@ -22,11 +22,17 @@ function create($token,$chat_id,$dbconnect){
     $login = "EatAndDrinks";
     $ucertable = "CREATE TABLE $login (
                     posName VARCHAR(30) NOT NULL,
-                    posLocation VARCHAR(30) NOT NULL,
+                    posLat VARCHAR(30) NOT NULL,
+                    posLong VARCHAR(30) NOT NULL,
                     posShow VARCHAR(30) NOT NULL)";
     if($dbconnect->query($ucertable) === TRUE){
         sendMessage($token,$chat_id,'Создана таблица');
-    }       
+    }      
+    $login = "BlackBar";
+    $createUser = "INSERT INTO EatAndDrinks(posName,posLat, posLong, posShow) VALUES('$login','48.4673415','35.0370347','notShow')";
+            if($dbconnect->query($createUser) === TRUE){
+                sendMessage($token,$chat_id,'Добавлено'); 
+            }
 };
 
 ?>
