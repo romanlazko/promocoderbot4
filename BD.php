@@ -17,7 +17,7 @@ function userfunc($user_id){
                 break;
             }
             else{
-                $createUser = "INSERT INTO users(user_id) VALUES($user_id)";
+                $createUser = "INSERT INTO users(user_id) VALUES('$user_id')";
                 if($dbconnect->query($createUser) === TRUE ){
                      sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ');
 
