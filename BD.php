@@ -21,9 +21,9 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
 function create($token,$chat_id,$dbconnect){
     $login = "eAd";
     $ucertable = "CREATE TABLE $login (
-                    name VARCHAR(30) NOT NULL,
-                    location VARCHAR(30) NOT NULL,
-                    show VARCHAR(30) NOT NULL)";
+                    1name VARCHAR(30) NOT NULL,
+                    2location VARCHAR(30) NOT NULL,
+                    3show VARCHAR(30) NOT NULL)";
     if($dbconnect->query($ucertable) === TRUE){
         sendMessage($token,$chat_id,'Создана таблица');
     }       
