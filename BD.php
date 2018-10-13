@@ -6,7 +6,7 @@ $password="zdraste1234";
 $dbname="promocoder";
 $dbconnect = new mysqli($servername, $username, $password, $dbname); 
 
-function user($user_id){
+function userfunc($user_id){
     $bd_user_id = "SELECT user_id FROM users";
     $result = $dbconnect ->query($bd_user_id);
     if($result->num_rows>0){
@@ -17,6 +17,7 @@ function user($user_id){
             }
             else{
                 $createUser = "INSERT INTO users(user_id) VALUES($user_id)";
+                
             }
         }
         
