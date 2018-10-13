@@ -16,7 +16,7 @@ include 'BD.php';
 if(isset($inline_data)){
     
     if($inline_data == 'eatAndFood'){
-        $message = 'Категория - '$inline_data;
+        $message = 'Категория - ' .$inline_data;
         
     }
     if($inline_data == 'backToCategory'){
