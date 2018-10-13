@@ -7,6 +7,7 @@ $dbconnect = new mysqli($servername, $username, $password, $dbname);
 */
 
 $token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
+
 $output = json_decode(file_get_contents('php://input'),true);
 
 // $inline_data = $output['callback_query']['data'];
@@ -34,10 +35,11 @@ $chat_id = $output['message']['chat']['id'];
 // }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
+    sendMessage($token,$chat_id,$reply);
     //create($token,$chat_id,$dbconnect);
     //userfunc($token,$chat_id,$user_id,$dbconnect);
-    $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
-    sendKeyboard($token,$chat_id,$buttons,$reply);   
+    //$buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
+    //sendKeyboard($token,$chat_id,$buttons,$reply);   
 }
 
 // if ($text == "Категории") {
@@ -70,26 +72,26 @@ if ($text == "/start" ) {
 //     return $buttons;
 // }
 
-// function sendMessage($token,$chat_id,$reply){
-//     $parameters = [
-//         'chat_id' => $chat_id, 
-//         'text' => $reply, 
-//     ];
-//     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
-// }
-
-function sendKeyboard($token,$chat_id,$buttons,$reply){
-    $keyboard =  json_encode($keyboard = ['keyboard' => $buttons, 
-                                          'resize_keyboard' => true, 
-                                          'one_time_keyboard' => false, 
-                                          'selective' => false]);  
+function sendMessage($token,$chat_id,$reply){
     $parameters = [
         'chat_id' => $chat_id, 
         'text' => $reply, 
-        'reply_markup' => $keyboard,
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
 }
+
+// function sendKeyboard($token,$chat_id,$buttons,$reply){
+//     $keyboard =  json_encode($keyboard = ['keyboard' => $buttons, 
+//                                           'resize_keyboard' => true, 
+//                                           'one_time_keyboard' => false, 
+//                                           'selective' => false]);  
+//     $parameters = [
+//         'chat_id' => $chat_id, 
+//         'text' => $reply, 
+//         'reply_markup' => $keyboard,
+//     ];
+//     file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
+// }
 
 // function inlineKeyboard($token,$chat_id,$reply,$buttons){
 //     $inlineKeyboard = json_encode(array("inline_keyboard" => $buttons),true);
