@@ -20,6 +20,7 @@ function userfunc($user_id){
                 break;
             }
             else{
+                sendMessage($token,$chat_id,$row['user_id']); 
                 $bool = FALSE;
             }
         }    
