@@ -11,28 +11,20 @@ $chat_id = $output['message']['chat']['id'];
 
 
 include 'distance.php';
+include 'printPosition.php';
 
 if(isset($inline_data)){
-    //if($inline_data == 'eatAndFood'){
-       // $category = 'eatanddrink';
-    list($cat,$param) = location($inline_data);
-        $message = 'Категория - '.$inline_data.$param;
     
-    
-        editMassage($token,$inline_chat_id,$message_id,$message,$cat);
-    
-    sendMessage($token,$inline_chat_id,$param);
+    if($inline_data == 'eatAndFood'){
+        $message = 'Категория - '$inline_data';
+        
+    }
     if($inline_data == 'backToCategory'){
         $message = 'Категории';
         editMassage($token,$inline_chat_id,$message_id,$message,category());
     }
     
-    
-    
-    
-    
 }
-unset($inline_data);
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
