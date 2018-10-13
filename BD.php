@@ -17,7 +17,7 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
         }
     }   
    
-}
+};
 function create($token,$chat_id,$dbconnect){
     
     $pos = "eatAndDrinks";
@@ -29,6 +29,6 @@ function create($token,$chat_id,$dbconnect){
         sendMessage($token,$chat_id,'Создана таблицу');
     }
         
-}
+};
 
 ?>
