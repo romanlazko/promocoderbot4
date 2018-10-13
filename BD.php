@@ -15,7 +15,7 @@ function userfunc($token,$chat_id,$user_id){
     }*/
     $sql = "SELECT user_id FROM users";
     $result = $dbconnect->query($sql);
-    sendMessage($token,$chat_id,$sql);
+    sendMessage($token,$chat_id,$result->fetch_assoc());
         /*while($row = $result->fetch_assoc()){
             if($row['user_id']==$user_id){
                 sendMessage($token,$chat_id,$result); 
