@@ -1,9 +1,5 @@
 <?php
-$servername="db4free.net: 3306";
-$username="promocoder";
-$password="zdraste1234";
-$dbname="promocoder";
-$dbconnect = new mysqli($servername, $username, $password, $dbname);
+
 
 function userfunc($token,$chat_id,$user_id,$dbconnect){
     
@@ -23,5 +19,5 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
     }   
    
 }
-$dbconnect->close();
+
 ?>
