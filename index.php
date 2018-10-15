@@ -1,9 +1,9 @@
 <?php
-// $servername="db4free.net: 3306";
-// $username="promocoder";
-// $password="zdraste1234";
-// $dbname="promocoder";
-// $dbconnect = new mysqli($servername, $username, $password, $dbname);
+$servername="db4free.net: 3306";
+$username="promocoder";
+$password="zdraste1234";
+$dbname="promocoder";
+$dbconnect = new mysqli($servername, $username, $password, $dbname);
 
 
 $token = "633839981:AAHmf8yb2TJ9oEIL9ia2qYnrbbaWb6ULaBQ";
@@ -20,7 +20,7 @@ $user_id = $output['message']['from']['id'];
 
 
 include 'distance.php';
-// include 'BD.php';
+include 'BD.php';
  if(isset($inline_data)){
     
     if($inline_data == 'eatAndFood'){
@@ -36,7 +36,7 @@ include 'distance.php';
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
     //create($token,$chat_id,$dbconnect);
-    //userfunc($token,$chat_id,$user_id,$dbconnect);
+    userfunc($token,$chat_id,$user_id,$dbconnect);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
 }
@@ -113,4 +113,4 @@ function editMassage($token,$chat_id,$message_id,$message,$buttons){
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
-// $dbconnect->close();
+$dbconnect->close();
