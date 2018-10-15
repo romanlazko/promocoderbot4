@@ -22,8 +22,8 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
 function update($token,$chat_id,$dbconnect,$user_id){
     $putLocation = "UPDATE `users` SET `lat` = '2', `long` = '5' WHERE `user_id` = '544883527'";
     if($dbconnect->query($putLocation) === TRUE){
-                sendMessage($token,$chat_id,'локация записанна'); 
-            }
+        sendMessage($token,$chat_id,'локация записанна'); 
+    }
 }
 function create($token,$chat_id,$dbconnect){
     /*$login = "EatAndDrinks";
