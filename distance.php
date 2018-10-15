@@ -1,9 +1,7 @@
 <?php
 //include 'BD.php';
 
-$latitude = $output['message']['location']['latitude'];
-$longitude = $output['message']['location']['longitude'];
-define('EARTH_RADIUS', 6372795);
+
 
 function distance($φA, $λA, $φB, $λB) {
     $lat1 = $φA * M_PI / 180;
@@ -28,15 +26,5 @@ function distance($φA, $λA, $φB, $λB) {
     return $dist;
 }
 
-$dist = distance('48.4420860','35.0160808',$latitude,$longitude);
 
-if(isset($latitude) or isset($longitude)){
-    //update($token,$chat_id,$dbconnect);
-    if($dist < 20000){
-        $reply = 'Ваш город Днепр'.$dist;
-        $buttons = [["Настройки"],["Категории"]];
-        sendKeyboard($token,$chat_id,$buttons,$reply);
-    }
-    
-}
 ?>
