@@ -6,7 +6,7 @@ $dbname="promocoder";
 $dbconnect = new mysqli($servername, $username, $password, $dbname);
 */
 
-$token = "633839981:AAFtfuE_KVcHt1huA9RV6txQczt9It3xzI0";
+$token = "633839981:AAHmf8yb2TJ9oEIL9ia2qYnrbbaWb6ULaBQ";
 
 $output = json_decode(file_get_contents('php://input'),true);
 
