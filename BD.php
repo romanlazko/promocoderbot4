@@ -19,27 +19,27 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
     }   
    
 };
-function update($token,$chat_id,$dbconnect){
-    $putLocation = "UPDATE `users` SET `userLat` = '1', `userLong` = '2', `position` = '3' WHERE `user_id` = '544883527'";
-    if($dbconnect->query($putLocation) === TRUE){
-        sendMessage($token,$chat_id,'локация записанна'); 
-    }
-}
-function create($token,$chat_id,$dbconnect){
-    /*$login = "EatAndDrinks";
-    $ucertable = "CREATE TABLE $login (
-                    posName VARCHAR(30) NOT NULL,
-                    posLat VARCHAR(30) NOT NULL,
-                    posLong VARCHAR(30) NOT NULL,
-                    posShow VARCHAR(30) NOT NULL)";
-    if($dbconnect->query($ucertable) === TRUE){
-        sendMessage($token,$chat_id,'Создана таблица');
-    }  */    
-    $login = "MisterCat";
-    $createUser = "INSERT INTO EatAndDrinks(posName,posLat, posLong, posShow) VALUES('$login','48.4643541','35.0468668','notShow')";
-            if($dbconnect->query($createUser) === TRUE){
-                sendMessage($token,$chat_id,'Добавлено'); 
-            }
-};
+//function update($token,$chat_id,$dbconnect){
+//     $putLocation = "UPDATE `users` SET `userLat` = '1', `userLong` = '2', `position` = '3' WHERE `user_id` = '544883527'";
+//     if($dbconnect->query($putLocation) === TRUE){
+//         sendMessage($token,$chat_id,'локация записанна'); 
+//     }
+// }
+// function create($token,$chat_id,$dbconnect){
+//     /*$login = "EatAndDrinks";
+//     $ucertable = "CREATE TABLE $login (
+//                     posName VARCHAR(30) NOT NULL,
+//                     posLat VARCHAR(30) NOT NULL,
+//                     posLong VARCHAR(30) NOT NULL,
+//                     posShow VARCHAR(30) NOT NULL)";
+//     if($dbconnect->query($ucertable) === TRUE){
+//         sendMessage($token,$chat_id,'Создана таблица');
+//     }  */    
+//     $login = "MisterCat";
+//     $createUser = "INSERT INTO EatAndDrinks(posName,posLat, posLong, posShow) VALUES('$login','48.4643541','35.0468668','notShow')";
+//             if($dbconnect->query($createUser) === TRUE){
+//                 sendMessage($token,$chat_id,'Добавлено'); 
+//             }
+// };
 
 ?>
