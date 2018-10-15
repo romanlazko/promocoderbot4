@@ -19,7 +19,7 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
     }   
    
 };
-function update($token,$chat_id,$dbconnect,$user_id){
+function update($token,$chat_id,$dbconnect){
     $putLocation = "UPDATE `users` SET `lat` = '1', `long` = '2', `position` = '3' WHERE 'user_id' = 544883527";
     if($dbconnect->query($putLocation) === TRUE){
         sendMessage($token,$chat_id,'локация записанна'); 
