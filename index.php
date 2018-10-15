@@ -26,7 +26,7 @@ include 'BD.php';
 
 
 if(isset($latitude) or isset($longitude)){
-    update($token,$chat_id,$dbconnect);
+    update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
     if(distance('48.4420860','35.0160808',$latitude,$longitude) < 20000){
         $reply = 'Ваш город Днепр';
         $buttons = [["Настройки"],["Категории"]];
