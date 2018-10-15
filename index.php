@@ -6,6 +6,7 @@ $dbname="promocoder";
 $dbconnect = new mysqli($servername, $username, $password, $dbname);
 
 
+define('EARTH_RADIUS', 6372795);
 $token = "633839981:AAHmf8yb2TJ9oEIL9ia2qYnrbbaWb6ULaBQ";
 
 $output = json_decode(file_get_contents('php://input'),true);
@@ -16,12 +17,23 @@ $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $user_id = $output['message']['from']['id'];
-
+$latitude = $output['message']['location']['latitude'];
+$longitude = $output['message']['location']['longitude'];
 
 
 include 'distance.php';
 include 'BD.php';
 
+
+if(isset($latitude) or isset($longitude)){
+    update($token,$chat_id,$dbconnect);
+    if(distance('48.4420860','35.0160808',$latitude,$longitude) < 20000){
+        $reply = 'Ваш город Днепр';
+        $buttons = [["Настройки"],["Категории"]];
+        sendKeyboard($token,$chat_id,$buttons,$reply);
+    }
+    
+}
  if(isset($inline_data)){
     
     if($inline_data == 'eatAndFood'){
