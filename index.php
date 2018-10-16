@@ -42,7 +42,7 @@ if(isset($latitude) or isset($longitude)){
         $reply = 'Категории';
         //takePos($token,$inline_chat_id,$dbconnect,$inline_data);
         //takePosName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data);
-        inlineKeyboard($token,$chat_id,$reply,nextprev());
+        inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     if($inline_data == 'backToCategory'){
         $message = 'Категории';
