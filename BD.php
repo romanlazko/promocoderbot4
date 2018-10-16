@@ -43,6 +43,12 @@ function takePos($token,$chat_id,$dbconnect,$inline_data){
 //         sendMessage($token,$chat_id,$result); 
 //     }
 }
+function takePosName($token,$user_id,$inline_chat_id,$dbconnect,$inline_data){
+    $takePosName = "UPDATE `users` SET `posName` = '$inline_data' WHERE `user_id` = '$user_id'";
+    if($dbconnect->query($takePosName) === TRUE){
+        sendMessage($token,$chat_id,'PosName Set'); 
+    }
+}
 
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
