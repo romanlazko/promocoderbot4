@@ -27,7 +27,7 @@ function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
     }
 }
 function takePos($token,$chat_id,$dbconnect,$user_id){
-    $result = $dbconnect->query("SELECT position FROM users WHERE 'user_id' = '$user_id'");
+    $result = $dbconnect->query("SELECT position FROM users WHERE user_id = '$user_id'");
     while($row = $result->fetch_assoc()){
         
             sendMessage($token,$chat_id,$row['position']);
