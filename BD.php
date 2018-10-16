@@ -2,22 +2,27 @@
 
 
 function userfunc($token,$chat_id,$user_id,$dbconnect){
-    
+    $new_user = true;
     $result = $dbconnect->query("SELECT user_id FROM users");
     while($row = $result->fetch_assoc()){
+        
         if($row['user_id']==$user_id){
-            sendMessage($token,$chat_id,'ТЫ СТАРЫЙ ПОЛЬЗОВАТЕЛЬ');
+            $new_user = false;
             break;
         }
         else{
-            $createUser = "INSERT INTO users(user_id,userLat,userLong,position,posName) VALUES('$user_id','0','0','0','a')";
-            
-            if($dbconnect->query($createUser) === TRUE){
-                sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ'); 
-            }
-            break;
+            $new_user = true;            
         }
     }   
+    if($new_user = false){
+        sendMessage($token,$chat_id,'ТЫ СТАРЫЙ ПОЛЬЗОВАТЕЛЬ');
+    }
+    else{
+        $createUser = "INSERT INTO users(user_id,userLat,userLong,position,posName) VALUES('$user_id','0','0','0','a')";            
+        if($dbconnect->query($createUser) === TRUE){
+            sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ'); 
+        }
+    }
    
 };
 function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
