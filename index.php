@@ -36,8 +36,9 @@ if(isset($latitude) or isset($longitude)){
 }
  if(isset($inline_data)){
     
-    if($inline_data == 'eatAndFood'){
+    if($inline_data == 'EatAndDrinks'){
         $message = 'Категория - ' .$inline_data;
+        takePos($dbconnect,$inline_data);
         
     }
     if($inline_data == 'backToCategory'){
@@ -73,7 +74,7 @@ function location($category){
 }
 
 function category(){
-    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'eatAndFood');
+    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'EatAndDrinks');
     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
     $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
     $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
