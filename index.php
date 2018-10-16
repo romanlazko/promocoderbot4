@@ -13,12 +13,14 @@ $output = json_decode(file_get_contents('php://input'),true);
 
 $inline_data = $output['callback_query']['data'];
 $inline_chat_id = $output['callback_query']['message']['chat']['id'];
+$inline_user_id = $output['callback_query']['message']['from']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $user_id = $output['message']['from']['id'];
 $latitude = $output['message']['location']['latitude'];
 $longitude = $output['message']['location']['longitude'];
+
 
 
 include 'distance.php';
@@ -38,7 +40,7 @@ if(isset($latitude) or isset($longitude)){
     
     if($inline_data == 'EatAndDrinks'){
         //takePos($token,$inline_chat_id,$dbconnect,$inline_data);
-        takePosName($token,$user_id,$inline_chat_id,$dbconnect,$inline_data);
+        takePosName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data);
     }
     if($inline_data == 'backToCategory'){
         $message = 'Категории';
