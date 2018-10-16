@@ -29,7 +29,7 @@ function takePos($token,$chat_id,$dbconnect,$inline_data){
     $result = $dbconnect->query("SELECT posName FROM $inline_data WHERE posShow = '1'");
     while($row = $result->fetch_assoc()){
         
-            sendMessage($token,$chat_id,$row['posName']);
+            sendMessage($token,$chat_id,$user_id);
            
         
     }         
