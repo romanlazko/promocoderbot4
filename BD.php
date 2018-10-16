@@ -29,7 +29,7 @@ function takePos($dbconnect,$inline_data){
     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = 1");
     while($row = $result->fetch_assoc()){
         if($row['posName']=='BlackBar'){
-            sendMessage($token,$chat_id,$row['posName']);
+            sendMessage($token,$chat_id,'BlackBar');
             break;
         }
         
