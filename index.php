@@ -37,7 +37,7 @@ if(isset($latitude) or isset($longitude)){
  if(isset($inline_data)){
     
     if($inline_data == 'EatAndDrinks'){
-        takePos($token,$inline_chat_id,$dbconnect,$inline_data);
+        //takePos($token,$inline_chat_id,$dbconnect,$inline_data);
         takePosName($token,$user_id,$inline_chat_id,$dbconnect,$inline_data);
     }
     if($inline_data == 'backToCategory'){
