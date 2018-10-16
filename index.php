@@ -63,19 +63,16 @@ if ($text == "Категории") {
     $reply = "Выберете категорию";
     inlineKeyboard($token,$chat_id,$reply,category());
 }
-function location($category){
-    $near = array('text' => 'Ближайшие', 'callback_data' => 'near');
-    $center = array('text' => 'Центр', 'callback_data' => 'center');
-    $lenynsk = array('text' => 'Ленинский район', 'callback_data' => 'lenynsk');
-    $backToCategory = array('text' => 'Назад', 'callback_data' => 'backToCategory');
+function nextprev(){
+    $prev = array('text' => 'Предидущие', 'callback_data' => 'prev');
+    $next = array('text' => 'Следующие', 'callback_data' => 'next');
     $buttons = [
-         [$near],[$center],[$lenynsk],[$backToCategory]
+         [$prev],[$next]
     ];
     
     
-    return array($buttons,$category);
+    return $buttons;
 }
-
 function category(){
     $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'EatAndDrinks');
     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
@@ -132,13 +129,4 @@ function editMassage($token,$chat_id,$message_id,$message,$buttons){
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
 $dbconnect->close();
-function nextprev(){
-    $prev = array('text' => 'Предидущие', 'callback_data' => 'prev');
-    $next = array('text' => 'Следующие', 'callback_data' => 'next');
-    $buttons = [
-         [$prev],[$next]
-    ];
-    
-    
-    return $buttons;
-}
+
