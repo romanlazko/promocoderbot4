@@ -132,7 +132,7 @@ function editMassage($token,$chat_id,$message_id,$message,$buttons){
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
 $dbconnect->close();
-function nextprev($token,$chat_id,$reply,$buttons){
+function nextprev(){
     $prev = array('text' => 'Предидущие', 'callback_data' => 'prev');
     $next = array('text' => 'Следующие', 'callback_data' => 'next');
     $buttons = [
