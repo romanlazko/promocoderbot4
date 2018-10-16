@@ -44,7 +44,7 @@ function takePos($token,$chat_id,$dbconnect,$inline_data){
 //     }
 }
 function takePosName($token,$user_id,$chat_id,$dbconnect,$inline_data){
-    $takePosName = "UPDATE `users` SET `posName` = 'hey' WHERE `user_id` = '$user_id'";
+    $takePosName = "UPDATE `users` SET `posName` = 'hey' WHERE `user_id` = '586605619'";
     if($dbconnect->query($takePosName) === TRUE){
         sendMessage($token,$chat_id,'PosName Set'); 
     }
