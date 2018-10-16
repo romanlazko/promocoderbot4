@@ -2,16 +2,13 @@
 
 
 function userfunc($token,$chat_id,$user_id,$dbconnect){
-    $new_user = false;
+    $new_user = true;
     $result = $dbconnect->query("SELECT user_id FROM users");
     while($row = $result->fetch_assoc()){
         
         if($row['user_id']==$user_id){
             $new_user = false;
             break;
-        }
-        else{
-            $new_user = true;            
         }
     }   
     if($new_user = false){
