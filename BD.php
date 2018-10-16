@@ -27,7 +27,7 @@ function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
 }
 function takePos($dbconnect,$inline_data){
     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '1'");
-    for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row);
+    for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row)
     sendMessage($token,$chat_id,$data);
 //     if($dbconnect->query($result) === TRUE){
 //         sendMessage($token,$chat_id,$result); 
