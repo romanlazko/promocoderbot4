@@ -26,7 +26,7 @@ function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
     }
 }
 function takePos($token,$chat_id,$dbconnect,$inline_data){
-    $result = $dbconnect->query("SELECT posName FROM '$inline_data' WHERE posShow = '1'");
+    $result = $dbconnect->query("SELECT posName FROM $inline_data WHERE posShow = '1'");
     while($row = $result->fetch_assoc()){
         
             sendMessage($token,$chat_id,$row['posName']);
