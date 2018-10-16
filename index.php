@@ -41,6 +41,7 @@ if(isset($latitude) or isset($longitude)){
     if($inline_data == 'EatAndDrinks'){
         //takePos($token,$inline_chat_id,$dbconnect,$inline_data);
         takePosName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data);
+        inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
     if($inline_data == 'backToCategory'){
         $message = 'Категории';
@@ -130,3 +131,13 @@ function editMassage($token,$chat_id,$message_id,$message,$buttons){
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
 $dbconnect->close();
+function nextprev($token,$chat_id,$reply,$buttons){
+    $prev = array('text' => 'Предидущие', 'callback_data' => 'prev');
+    $next = array('text' => 'Следующие', 'callback_data' => 'next');
+    $buttons = [
+         [$prev,$next]
+    ];
+    
+    
+    return $buttons;
+}
