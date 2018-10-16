@@ -25,8 +25,8 @@ function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
         sendMessage($token,$chat_id,'локация записанна'); 
     }
 }
-function takePos($token,$chat_id,$dbconnect){
-    $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '1'");
+function takePos($token,$chat_id,$dbconnect,$inline_data){
+    $result = $dbconnect->query("SELECT posName FROM $inline_data WHERE posShow = '1'");
     while($row = $result->fetch_assoc()){
         
             sendMessage($token,$chat_id,$row['posName']);
