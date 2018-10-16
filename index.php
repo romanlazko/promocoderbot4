@@ -13,7 +13,7 @@ $output = json_decode(file_get_contents('php://input'),true);
 
 $inline_data = $output['callback_query']['data'];
 $inline_chat_id = $output['callback_query']['message']['chat']['id'];
-$inline_user_id = $output['callback_query']['message']['from']['id'];
+$inline_user_id = $output['callback_query']['from']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
