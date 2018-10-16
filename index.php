@@ -40,7 +40,7 @@ if(isset($latitude) or isset($longitude)){
     
     if($inline_data == 'EatAndDrinks'){
         //takePos($token,$inline_chat_id,$dbconnect,$inline_data);
-        takePosName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data);
+        //takePosName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data);
         inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
     if($inline_data == 'backToCategory'){
@@ -135,7 +135,7 @@ function nextprev($token,$chat_id,$reply,$buttons){
     $prev = array('text' => 'Предидущие', 'callback_data' => 'prev');
     $next = array('text' => 'Следующие', 'callback_data' => 'next');
     $buttons = [
-         [$prev,$next]
+         [$prev],[$next]
     ];
     
     
