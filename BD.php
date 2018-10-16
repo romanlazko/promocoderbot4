@@ -26,23 +26,14 @@ function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
         sendMessage($token,$chat_id,'локация записанна'); 
     }
 }
-function takePos($token,$chat_id,$dbconnect,$inline_data){
-    $result = $dbconnect->query("SELECT posName FROM $inline_data WHERE posShow = '1'");
+function takePos($token,$chat_id,$dbconnect,$user_id){
+    $result = $dbconnect->query("SELECT position FROM users WHERE user_id = '$user_id'");
     while($row = $result->fetch_assoc()){
         
             sendMessage($token,$chat_id,$user_id);
            
         
     }         
-//         if($row['user_id']==$user_id){
-//             sendMessage($token,$chat_id,'ТЫ СТАРЫЙ ПОЛЬЗОВАТЕЛЬ');
-//         }
-    
-//     for ($data = []; $row = mysqli_fetch_assoc($result); $data[] = $row)
-//     sendMessage($token,$chat_id,$data);
-//     if($dbconnect->query($result) === TRUE){
-//         sendMessage($token,$chat_id,$result); 
-//     }
 }
 function takePosName($token,$user_id,$chat_id,$dbconnect,$inline_data){
     $takePosName = "UPDATE `users` SET `posName` = '$inline_data' WHERE `user_id` = '$user_id'";
