@@ -11,7 +11,7 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
             break;
         }
     }   
-    if($new_user = false){
+    if($new_user === false){
         sendMessage($token,$chat_id,'ТЫ СТАРЫЙ ПОЛЬЗОВАТЕЛЬ');
     }
     else{
