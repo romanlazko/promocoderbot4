@@ -2,7 +2,6 @@
 
 
 function userfunc($token,$chat_id,$user_id,$dbconnect){
-    $new_user = true;
     $result = $dbconnect->query("SELECT user_id FROM users");
     while($row = $result->fetch_assoc()){
         
