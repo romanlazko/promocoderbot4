@@ -37,8 +37,7 @@ if(isset($latitude) or isset($longitude)){
  if(isset($inline_data)){
     
     if($inline_data == 'EatAndDrinks'){
-        $message = 'Категория - ' .$inline_data;
-        takePos($dbconnect,$inline_data);
+        takePos($token,$chat_id,$dbconnect);
         
     }
     if($inline_data == 'backToCategory'){
