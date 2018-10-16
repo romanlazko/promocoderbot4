@@ -15,6 +15,7 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
             if($dbconnect->query($createUser) === TRUE){
                 sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ'); 
             }
+            break;
         }
     }   
    
