@@ -26,9 +26,9 @@ function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
     }
 }
 function takePos($dbconnect,$inline_data){
-    $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '1'");
+    $result = $dbconnect->query("SELECT * FROM EatAndDrinks WHERE posShow = '1'");
     while($row = $result->fetch_assoc()){
-        sendMessage($token,$chat_id,$row['user_id']);
+        sendMessage($token,$chat_id,$row['posName']);
         
 //         if($row['user_id']==$user_id){
 //             sendMessage($token,$chat_id,'ТЫ СТАРЫЙ ПОЛЬЗОВАТЕЛЬ');
