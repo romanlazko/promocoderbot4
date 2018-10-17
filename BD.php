@@ -28,20 +28,16 @@ function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
         sendMessage($token,$chat_id,'локация записанна'); 
     }
 }
-function takePos($token,$chat_id,$dbconnect,$user_id){
-    $result = $dbconnect->query("SELECT position,posName FROM users WHERE user_id = '$user_id'");
-    while($row = $result->fetch_assoc()){
-        
-            sendMessage($token,$chat_id,$row['posName']);
-           
-        
+function takeUserPosName($dbconnect,$user_id){
+    $result = $dbconnect->query("SELECT position FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+            return $row['position'];      
     }   
-    //return $row['position'];
 }
-function takePosName($token,$user_id,$chat_id,$dbconnect,$inline_data){
-    $takePosName = "UPDATE `users` SET `posName` = '$inline_data','position'='1' WHERE `user_id` = '$user_id'";
-    if($dbconnect->query($takePosName) === TRUE){
-        sendMessage($token,$chat_id,$user_id); 
+function updateUserPosName($token,$user_id,$chat_id,$dbconnect,$inline_data){
+    $updateUserPosName = "UPDATE `users` SET `posName` = '$inline_data','position'='0' WHERE `user_id` = '$user_id'";
+    if($dbconnect->query($updateUserPosName) === TRUE){
+        sendMessage($token,$chat_id,'User Position and PosName Updated'); 
     }
 }
 function position($token,$chat_id,$dbconnect,$user_id){
@@ -54,6 +50,14 @@ function position($token,$chat_id,$dbconnect,$user_id){
     }   
     //return $row['position'];
 }
+function showPos($posShow,$token,$dbconnect,$chat_id){
+    
+    $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '$posShow'");
+    while($row = $result->fetch_assoc()){
+            sendMessage($token,$chat_id,$row['posName']);
+    }   
+}
+
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
 //     $ucertable = "CREATE TABLE $login (
