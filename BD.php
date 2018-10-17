@@ -44,7 +44,7 @@ function updateUserPosName($token,$user_id,$chat_id,$dbconnect,$inline_data){
 function nextfun($dbconnect,$user_id,$token,$chat_id){
     $position = takeUserPosName($dbconnect,$user_id) + 1;
     $updateUserPos = "UPDATE `users` SET 'position'='$position' WHERE `user_id` = '$user_id'";
-    if($dbconnect->query($updateUserPosName) === TRUE){
+    if($dbconnect->query($updateUserPos) === TRUE){
         showPos($position,$token,$dbconnect,$chat_id); 
     }
     
