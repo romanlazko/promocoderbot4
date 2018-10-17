@@ -40,7 +40,7 @@ if(isset($latitude) or isset($longitude)){
     
     if($inline_data == 'EatAndDrinks'){
         $reply = 'Категория '.$inline_data;
-        showPos(takeUserPosName($dbconnect,$inline_user_id),$token,$dbconnect,$inline_chat_id);
+        //showPos(takeUserPosName($dbconnect,$inline_user_id),$token,$dbconnect,$inline_chat_id);
         //takePos($token,$inline_chat_id,$dbconnect,$inline_user_id);
         updateUserPosName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data);
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
