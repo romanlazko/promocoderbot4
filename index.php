@@ -52,7 +52,7 @@ if(isset($latitude) or isset($longitude)){
      if($inline_data == 'nextfun'){
         
     
-     nextfun($dbconnect,$inline_user_id,$token,$chat_id);
+     nextfun($dbconnect,$inline_user_id,$token,$inline_chat_id);
      }
 }
 if ($text == "/start" ) {
