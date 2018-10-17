@@ -40,15 +40,14 @@ function updateUserPosName($token,$user_id,$chat_id,$dbconnect,$inline_data){
         sendMessage($token,$chat_id,'User Position and PosName Updated'); 
     }
 }
-function position($token,$chat_id,$dbconnect,$user_id){
-    $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '$position'");
-    while($row = $result->fetch_assoc()){
-        
-            sendMessage($token,$chat_id,$row['posName']);
-           
-        
-    }   
-    //return $row['position'];
+
+function nextfun($dbconnect,$user_id,$token,$chat_id){
+    $position = takeUserPosName($dbconnect,$user_id) + 1;
+    $updateUserPos = "UPDATE `users` SET 'position'='$position' WHERE `user_id` = '$user_id'";
+    if($dbconnect->query($updateUserPosName) === TRUE){
+        showPos($position,$token,$dbconnect,$chat_id); 
+    }
+    
 }
 function showPos($posShow,$token,$dbconnect,$chat_id){
     
