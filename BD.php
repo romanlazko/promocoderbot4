@@ -34,10 +34,10 @@ function takeUserPosName($dbconnect,$user_id){
             return $row['position'];      
     }   
 }
-function updateUserPosName($token,$user_id,$chat_id,$dbconnect,$position){
+function updateUserPosName($token,$user_id,$chat_id,$dbconnect){
     $updateUserPosName = "UPDATE `users` SET 'position' = '0' WHERE `user_id` = '$user_id'";
     if($dbconnect->query($updateUserPosName) === TRUE){
-        sendMessage($token,$chat_id,'User Position and PosName Updated'); 
+        sendMessage($token,$chat_id,$user_id.'User Position and PosName Updated'); 
     }
 }
 
