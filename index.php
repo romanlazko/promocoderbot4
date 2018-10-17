@@ -50,8 +50,8 @@ if(isset($latitude) or isset($longitude)){
         editMassage($token,$inline_chat_id,$message_id,$message,category());
     }
      if($inline_data == 'nextfun'){
-         $position = takeUserPosName($dbconnect,$user_id) + 1;
-        sendMessage($token,$inline_chat_id,takeUserPosName($dbconnect,$user_id));
+         $position = takeUserPosName($dbconnect,$inline_user_id) + 1;
+        sendMessage($token,$inline_chat_id,$position);
         
         
     
