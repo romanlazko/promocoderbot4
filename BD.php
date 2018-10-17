@@ -29,13 +29,14 @@ function update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
     }
 }
 function takePos($token,$chat_id,$dbconnect,$user_id){
-    $result = $dbconnect->query("SELECT position FROM users WHERE user_id = '$user_id'");
+    $result = $dbconnect->query("SELECT position, posName FROM users WHERE user_id = '$user_id'");
     while($row = $result->fetch_assoc()){
         
-            sendMessage($token,$chat_id,$row['position']);
+            sendMessage($token,$chat_id,$row['position'].$row['posName']);
            
         
-    }         
+    }   
+    return $row['position'];
 }
 function takePosName($token,$user_id,$chat_id,$dbconnect,$inline_data){
     $takePosName = "UPDATE `users` SET `posName` = '$inline_data' WHERE `user_id` = '$user_id'";
