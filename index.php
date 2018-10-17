@@ -52,9 +52,10 @@ if(isset($latitude) or isset($longitude)){
      if($inline_data == 'nextfun'){
          $position = takeUserPosName($dbconnect,$inline_user_id) + 1;
         $updateUserPos = "UPDATE `users` SET 'position'='$position' WHERE `user_id` = '$inline_user_id'";
-    if($dbconnect->query($updateUserPos) === TRUE){
-        showPos($position,$token,$dbconnect,$inline_chat_id); 
-    }
+        if($dbconnect->query($updateUserPos) === TRUE){
+            sendMessage($token,$inline_chat_id,'User Position Updated'); 
+            //showPos($position,$token,$dbconnect,$inline_chat_id); 
+        }
         
         
     
