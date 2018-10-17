@@ -50,9 +50,12 @@ if(isset($latitude) or isset($longitude)){
         editMassage($token,$inline_chat_id,$message_id,$message,category());
     }
      if($inline_data == 'nextfun'){
+         $position = takeUserPosName($dbconnect,$user_id) + 1;
+        sendMessage($token,$inline_chat_id,$position);
+        
         
     
-     nextfun($dbconnect,$inline_user_id,$token,$inline_chat_id);
+     //nextfun($dbconnect,$inline_user_id,$token,$inline_chat_id);
      }
 }
 if ($text == "/start" ) {
