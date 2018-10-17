@@ -34,8 +34,8 @@ function takeUserPosName($dbconnect,$user_id){
             return $row['position'];      
     }   
 }
-function updateUserPosName($token,$user_id,$chat_id,$dbconnect,$inline_data){
-    $updateUserPosName = "UPDATE `users` SET `posName` = '$inline_data','position'='0' WHERE `user_id` = '$user_id'";
+function updateUserPosName($token,$user_id,$chat_id,$dbconnect,$position){
+    $updateUserPosName = "UPDATE `users` SET 'position'='0' WHERE `user_id` = '$user_id'";
     if($dbconnect->query($updateUserPosName) === TRUE){
         sendMessage($token,$chat_id,'User Position and PosName Updated'); 
     }
