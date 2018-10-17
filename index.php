@@ -49,7 +49,11 @@ if(isset($latitude) or isset($longitude)){
         $message = 'Категории';
         editMassage($token,$inline_chat_id,$message_id,$message,category());
     }
+     if($inline_data == 'next'){
+        
     
+     nextfun($dbconnect,$inline_user_id,$token,$chat_id);
+     }
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
@@ -65,8 +69,8 @@ if ($text == "Категории") {
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 function nextprev(){
-    $prev = array('text' => 'Предидущие', 'callback_data' => 'prev');
-    $next = array('text' => 'Следующие', 'callback_data' => 'next');
+    $prev = array('text' => 'Предидущие', 'callback_data' => 'prevfun');
+    $next = array('text' => 'Следующие', 'callback_data' => 'nextfun');
     $buttons = [
          [$prev],[$next]
     ];
