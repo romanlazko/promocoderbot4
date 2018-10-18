@@ -28,53 +28,34 @@ include 'BD.php';
 
 
 if(isset($latitude) or isset($longitude)){
-    update($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
+    updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
     if(distance('48.4420860','35.0160808',$latitude,$longitude) < 20000){
         $reply = 'Ваш город Днепр';
         $buttons = [["Настройки"],["Категории"]];
         sendKeyboard($token,$chat_id,$buttons,$reply);
     }
-    
 }
- if(isset($inline_data)){
-    
+if(isset($inline_data)){
     if($inline_data == 'EatAndDrinks'){
-        $reply = 'Категория '.$inline_data;
-        //showPos(takeUserPosName($dbconnect,$inline_user_id),$token,$dbconnect,$inline_chat_id);
-        //takePos($token,$inline_chat_id,$dbconnect,$inline_user_id);
+    $reply = 'Категория '.$inline_data;
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data,1);
-        
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
-    if($inline_data == 'backToCategory'){
-        $message = 'Категории';
-        editMassage($token,$inline_chat_id,$message_id,$message,category());
+    if($inline_data == 'nextfun'){
+        $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
+        $position = takeUserPos($dbconnect,$inline_user_id) + 1;
+        updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
+        inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
-     if($inline_data == 'nextfun'){
-         $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
-         $position = takeUserPosName($dbconnect,$inline_user_id) + 1;
-         
+    if($inline_data == 'prevfun'){
+        $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
+        $position = takeUserPos($dbconnect,$inline_user_id) - 1;
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
-        
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
-    
-     //nextfun($dbconnect,$inline_user_id,$token,$inline_chat_id);
-     }
-     if($inline_data == 'prevfun'){
-         $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
-         $position = takeUserPosName($dbconnect,$inline_user_id) - 1;
-         
-        updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
-        
-        inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
-    
-     //nextfun($dbconnect,$inline_user_id,$token,$inline_chat_id);
-     }
+    }
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
- 
-    //create($token,$chat_id,$dbconnect);
     userfunc($token,$chat_id,$user_id,$dbconnect);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
