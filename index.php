@@ -131,7 +131,7 @@ function editMassage($token,$chat_id,$message_id,$message,$buttons){
     ];
     file_get_contents('https://api.telegram.org/bot' . $token . '/editMessageText?' . http_build_query($parameters));
 }
-function deleteMessage($token,$chat_id,$message_id){     
+function deleteMessage($token,$inline_chat_id,$message_id){     
     $parameters = [
         'chat_id' => $chat_id, 
         'message_id' => $message_id, 
