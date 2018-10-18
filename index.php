@@ -43,6 +43,7 @@ if(isset($latitude) or isset($longitude)){
         //showPos(takeUserPosName($dbconnect,$inline_user_id),$token,$dbconnect,$inline_chat_id);
         //takePos($token,$inline_chat_id,$dbconnect,$inline_user_id);
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data,1);
+        showPos(takeUserPosName($dbconnect,$inline_user_id),$token,$dbconnect,$inline_chat_id);
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     if($inline_data == 'backToCategory'){
