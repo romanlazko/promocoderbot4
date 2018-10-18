@@ -51,6 +51,7 @@ if(isset($latitude) or isset($longitude)){
         editMassage($token,$inline_chat_id,$message_id,$message,category());
     }
      if($inline_data == 'nextfun'){
+         $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
          $position = takeUserPosName($dbconnect,$inline_user_id) + 1;
          
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
