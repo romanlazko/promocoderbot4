@@ -34,6 +34,12 @@ function takeUserPosName($dbconnect,$user_id){
             return $row['position'];      
     }   
 }
+function takeUserName($dbconnect,$user_id){
+    $result = $dbconnect->query("SELECT posName FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+            return $row['posName'];      
+    }   
+}
 function updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,$position){
     $updateName = "UPDATE `users` SET `position` = '$position', `posName` = '$inline_data' WHERE `users`.`user_id` = $user_id";
     if($dbconnect->query($updateName) === TRUE){
