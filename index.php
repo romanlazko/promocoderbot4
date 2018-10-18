@@ -48,12 +48,7 @@ if(isset($inline_data)){
         deleteMessage($token,$inline_chat_id,$message_id);
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
-    if($inline_data == 'prevfun'){
-        $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
-        $position = takeUserPos($dbconnect,$inline_user_id) - 1;
-        updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
-        inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
-    }
+    
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
@@ -67,10 +62,9 @@ if ($text == "Категории") {
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 function nextprev(){
-    $prev = array('text' => 'Предидущие', 'callback_data' => 'prevfun');
     $next = array('text' => 'Следующие', 'callback_data' => 'nextfun');
     $buttons = [
-         [$prev],[$next]
+         [$next]
     ];
     
     
