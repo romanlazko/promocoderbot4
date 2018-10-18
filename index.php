@@ -136,7 +136,6 @@ function deleteMessage($token,$chat_id,$message_id){
         'chat_id' => $chat_id, 
         'message_id' => $message_id, 
     ];
-    sendMessage($token,$chat_id,$message_id);
     file_get_contents('https://api.telegram.org/bot' . $token . '/deleteMessage?' . http_build_query($parameters));
 }
 $dbconnect->close();
