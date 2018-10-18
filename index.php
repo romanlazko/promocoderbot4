@@ -60,6 +60,16 @@ if(isset($latitude) or isset($longitude)){
     
      //nextfun($dbconnect,$inline_user_id,$token,$inline_chat_id);
      }
+     if($inline_data == 'prevfun'){
+         $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
+         $position = takeUserPosName($dbconnect,$inline_user_id) - 1;
+         
+        updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
+        
+        inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
+    
+     //nextfun($dbconnect,$inline_user_id,$token,$inline_chat_id);
+     }
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
