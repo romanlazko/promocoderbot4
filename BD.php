@@ -60,6 +60,7 @@ function showPos($posShow,$token,$dbconnect,$chat_id){
     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '$posShow'");
     while($row = $result->fetch_assoc()){
             sendMessage($token,$chat_id,$row['posName']);
+        inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }   
 }
 
