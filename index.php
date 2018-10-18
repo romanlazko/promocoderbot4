@@ -45,7 +45,7 @@ if(isset($inline_data)){
         $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
         $position = takeUserPos($dbconnect,$inline_user_id) + 1;
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
-        deleteMessage($token,$inline_chat_id,2277);
+        deleteMessage($token,$inline_chat_id,$message_id);
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     if($inline_data == 'prevfun'){
@@ -136,7 +136,7 @@ function deleteMessage($token,$chat_id,$message_id){
         'chat_id' => $chat_id, 
         'message_id' => $message_id, 
     ];
-    sendMessage($token,$inline_chat_id,$message_id);
+    sendMessage($token,$chat_id,$message_id);
     file_get_contents('https://api.telegram.org/bot' . $token . '/deleteMessage?' . http_build_query($parameters));
 }
 $dbconnect->close();
