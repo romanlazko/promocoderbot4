@@ -51,8 +51,9 @@ if(isset($latitude) or isset($longitude)){
     }
      if($inline_data == 'nextfun'){
          $position = takeUserPosName($dbconnect,$inline_user_id) + 1;
-        updateUserPosName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data);
-        
+         
+        updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
+        showPos(takeUserPosName($dbconnect,$inline_user_id),$token,$dbconnect,$inline_chat_id);
         
     
      //nextfun($dbconnect,$inline_user_id,$token,$inline_chat_id);
