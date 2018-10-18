@@ -14,8 +14,7 @@ $output = json_decode(file_get_contents('php://input'),true);
 $inline_data = $output['callback_query']['data'];
 $inline_chat_id = $output['callback_query']['message']['chat']['id'];
 $inline_user_id = $output['callback_query']['from']['id'];
-$message_id = $output['message']['id'];
-//$message_id = $output['callback_query']['message']['message_id'];
+$message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $chat_id = $output['message']['chat']['id'];
 $user_id = $output['message']['from']['id'];
@@ -46,7 +45,7 @@ if(isset($inline_data)){
         $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
         $position = takeUserPos($dbconnect,$inline_user_id) + 1;
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
-        deleteMessage($token,$inline_chat_id,$message_id);
+        deleteMessage($token,$inline_chat_id,2277);
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     if($inline_data == 'prevfun'){
