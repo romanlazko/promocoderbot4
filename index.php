@@ -38,12 +38,12 @@ if(isset($latitude) or isset($longitude)){
 if(isset($inline_data)){
     if($inline_data == 'EatAndDrinks'){
         //sendMessage($token,$inline_chat_id,'[​​​​​​​​​​​](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Stack_Overflow_logo.svg/200px-Stack_Overflow_logo.svg.png) Some text here.');
-        $reply = '-';
+        $reply = '⬇️⬇️⬇️';
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data,1);
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     if($inline_data == 'nextfun'){
-        $reply = '-';
+        $reply = '⬇️⬇️⬇️';
         $position = takeUserPos($dbconnect,$inline_user_id) + 1;
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
         deleteMessage($token,$inline_chat_id,$message_id);
@@ -52,7 +52,7 @@ if(isset($inline_data)){
     
 }
 if ($text == "/start" ) {
-    $reply = "Добро пожаловать в бота!🔥🔥 Чтобы начать, отправь свою геолокацию!";
+    $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
     userfunc($token,$chat_id,$user_id,$dbconnect);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
