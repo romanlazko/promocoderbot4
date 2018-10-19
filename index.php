@@ -112,7 +112,7 @@ function inlineKeyboard($token,$chat_id,$reply,$buttons){
         'text' => $reply, 
         'reply_markup' => $inlineKeyboard,
     ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
+    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters).'&parse_mode=Markdown');
 }
 
 function editMassage($token,$chat_id,$message_id,$message,$buttons){
