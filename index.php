@@ -43,7 +43,7 @@ if(isset($inline_data)){
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     if($inline_data == 'nextfun'){
-        $reply = '\xE2\xAC\x87';
+        $reply = '-------------';
         $position = takeUserPos($dbconnect,$inline_user_id) + 1;
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
         deleteMessage($token,$inline_chat_id,$message_id);
