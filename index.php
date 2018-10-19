@@ -43,7 +43,7 @@ if(isset($inline_data)){
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     if($inline_data == 'nextfun'){
-        $reply = 'Категория '.takeUserName($dbconnect,$inline_user_id);
+        $reply = '​​​​​​​​​​​';
         $position = takeUserPos($dbconnect,$inline_user_id) + 1;
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
         deleteMessage($token,$inline_chat_id,$message_id);
@@ -63,7 +63,7 @@ if ($text == "Категории") {
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 function nextprev(){
-    $next = array('text' => 'Следующие', 'callback_data' => 'nextfun');
+    $next = array('text' => 'Показать еще', 'callback_data' => 'nextfun');
     $buttons = [
          [$next]
     ];
