@@ -88,7 +88,7 @@ function sendMessage($token,$chat_id,$reply){
         'chat_id' => $chat_id, 
         'text' => $reply, 
     ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters).&parse_mode=Markdown);
+    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters).'&parse_mode=Markdown');
 }
 
 function sendKeyboard($token,$chat_id,$buttons,$reply){
