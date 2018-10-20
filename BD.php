@@ -40,12 +40,7 @@ function takeUserName($dbconnect,$user_id){
             return $row['posName'];      
     }   
 }
-function takePosId($dbconnect,$posName){
-    $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks WHERE posName = '$posName'");
-    while($row = $result->fetch_assoc()){        
-            return $row['pos_id'];      
-    }   
-}
+
 function updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,$position){
     $updateName = "UPDATE `users` SET `position` = '$position', `posName` = '$inline_data' WHERE `users`.`user_id` = $user_id";
     if($dbconnect->query($updateName) === TRUE){
@@ -57,11 +52,19 @@ function showPos($posShow,$token,$dbconnect,$chat_id){
     $result = $dbconnect->query("SELECT posName, pos_id FROM EatAndDrinks WHERE posShow = '$posShow'");
     while($row = $result->fetch_assoc()){
         inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));
-        sendMessage($token,$chat_id,$row['pos_id']);
+        //sendMessage($token,$chat_id,$row['pos_id']);
         
     }   
 }
-
+function showMore($inline_data,$token,$dbconnect,$chat_id){
+    
+    $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
+    while($row = $result->fetch_assoc()){
+        //inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));
+        sendMessage($token,$chat_id,$row['more']);
+        
+    }   
+}
 
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
