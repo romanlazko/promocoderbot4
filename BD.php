@@ -40,12 +40,12 @@ function takeUserName($dbconnect,$user_id){
             return $row['posName'];      
     }   
 }
-// function takePosId($dbconnect,$posName){
-//     $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks WHERE posName = '$posName'");
-//     while($row = $result->fetch_assoc()){        
-//             return $row['pos_id'];      
-//     }   
-// }
+function takePosId($dbconnect,$posName){
+    $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks WHERE posName = '$posName'");
+    while($row = $result->fetch_assoc()){        
+            return $row['pos_id'];      
+    }   
+}
 function updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,$position,$buttons){
     $updateName = "UPDATE `users` SET `position` = '$position', `posName` = '$inline_data' WHERE `users`.`user_id` = $user_id";
     if($dbconnect->query($updateName) === TRUE){
@@ -57,7 +57,7 @@ function showPos($posShow,$token,$dbconnect,$chat_id,$buttons){
     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '$posShow'");
     while($row = $result->fetch_assoc()){
         inlineKeyboard($token,$chat_id,$row['posName'],$buttons);
-        //takePosId($dbconnect,$row['posName']);
+        sendMessage($token,$chat_id,takePosId($dbconnect,$row['posName']);
         
     }   
 }
