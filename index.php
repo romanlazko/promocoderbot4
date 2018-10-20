@@ -30,17 +30,6 @@ include 'BD.php';
 if(isset($latitude) or isset($longitude)){
     
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
-    if(distance('48.4420860','35.0160808',$latitude,$longitude) < 20000){
-        $reply = 'Ваш город Днепр';
-        $buttons = [["Настройки"],["Категории"]];
-        sendKeyboard($token,$chat_id,$buttons,$reply);
-    }
-    else {
-        $reply = 'Ваш город в Пизде мира';
-        $buttons = [["Настройки"],["Категории"]];
-        sendKeyboard($token,$chat_id,$buttons,$reply);
-        
-    }
     $reply = "Выберете категорию";
     inlineKeyboard($token,$chat_id,$reply,category());
 }
