@@ -50,6 +50,7 @@ if(isset($inline_data)){
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     
+    
 }
 if ($text == "/start" ) {
     $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
@@ -69,8 +70,8 @@ function nextprev(){
     ];
     return $buttons;
 }
-function More(){
-    $more = array('text' => 'Подробнее', 'callback_data' => 'nextfun');
+function More($more){
+    $more = array('text' => 'Подробнее', 'callback_data' => $more);
     $buttons = [
          [$more]
     ];  
