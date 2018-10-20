@@ -28,6 +28,8 @@ include 'BD.php';
 
 
 if(isset($latitude) or isset($longitude)){
+    $reply = "Выберете категорию";
+    inlineKeyboard($token,$chat_id,$reply,category());
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
     if(distance('48.4420860','35.0160808',$latitude,$longitude) < 20000){
         $reply = 'Ваш город Днепр';
@@ -38,6 +40,7 @@ if(isset($latitude) or isset($longitude)){
         $reply = 'Ваш город в Пизде мира';
         $buttons = [["Настройки"],["Категории"]];
         sendKeyboard($token,$chat_id,$buttons,$reply);
+        
     }
 }
 if(isset($inline_data)){
@@ -68,6 +71,10 @@ if ($text == "/start" ) {
     sendKeyboard($token,$chat_id,$buttons,$reply);   
 }
 
+if ($text == "Настройки") {
+    $reply = "Тут нихуя нет, хули палишь?";
+    sendMessage($token,$inline_chat_id,$reply);
+}
 if ($text == "Категории") {
     $reply = "Выберете категорию";
     inlineKeyboard($token,$chat_id,$reply,category());
