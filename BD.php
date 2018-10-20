@@ -57,7 +57,7 @@ function showPos($posShow,$token,$dbconnect,$chat_id,$buttons){
     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '$posShow'");
     while($row = $result->fetch_assoc()){
         inlineKeyboard($token,$chat_id,$row['posName'],$buttons);
-        sendMessage($token,$chat_id,takePosId($dbconnect,$row['posName']);
+        sendMessage($token,$chat_id,takePosId($dbconnect,$row['posName']));
         
     }   
 }
