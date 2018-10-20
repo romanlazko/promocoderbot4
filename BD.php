@@ -56,12 +56,13 @@ function showPos($posShow,$token,$dbconnect,$chat_id){
         
     }   
 }
-function showMore($inline_data,$token,$dbconnect,$chat_id){
+function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id){
     
     $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
     while($row = $result->fetch_assoc()){
         //inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));
-        sendMessage($token,$chat_id,$row['more']);
+        //sendMessage($token,$chat_id,$row['more']);
+        editMassage($token,$chat_id,$message_id,$row['more'],More($inline_data))
         
     }   
 }
