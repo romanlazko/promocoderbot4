@@ -49,7 +49,7 @@ if(isset($inline_data)){
         deleteMessage($token,$inline_chat_id,$message_id);
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
-    showMore($inline_data,$token,$dbconnect,$inline_chat_id);
+    showMore($inline_data,$token,$dbconnect,$inline_chat_id,$message_id);
     
     
 }
