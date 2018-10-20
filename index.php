@@ -50,7 +50,10 @@ if(isset($inline_data)){
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     showMore($inline_data,$token,$dbconnect,$inline_chat_id,$message_id);
-    
+    if($inline_data == 'promocode'){
+        $reply = 'kode';
+        sendMessage($token,$inline_chat_id,$reply);
+    }
     
 }
 if ($text == "/start" ) {
