@@ -78,6 +78,13 @@ function More($more){
     ];  
     return $buttons;
 }
+function generate(){
+    $more = array('text' => 'Подробнее', 'callback_data' => 'promocode');
+    $buttons = [
+         [$more]
+    ];  
+    return $buttons;
+}
 function category(){
     $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'EatAndDrinks');
     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
