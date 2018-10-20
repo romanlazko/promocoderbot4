@@ -25,7 +25,14 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
 function updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude){
     $putLocation = "UPDATE `users` SET `userLat` = '$latitude', `userLong` = '$longitude' WHERE `user_id` = '$user_id'";
     if($dbconnect->query($putLocation) === TRUE){
-        sendMessage($token,$chat_id,'локация записанна'); 
+        if(distance('48.4420860','35.0160808',$latitude,$longitude) < 20000){
+            $reply = 'Ваш город Днепр';        
+        }
+        else {
+            $reply = 'Ваш город в Пизде мира';
+        }
+        $buttons = [["Настройки"],["Категории"]];
+        sendKeyboard($token,$chat_id,$buttons,$reply);
     }
 }
 function takeUserPos($dbconnect,$user_id){
