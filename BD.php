@@ -15,7 +15,7 @@ function userfunc($token,$chat_id,$user_id,$dbconnect){
         sendMessage($token,$chat_id,'ТЫ СТАРЫЙ ПОЛЬЗОВАТЕЛЬ');
     }
     else{
-        $createUser = "INSERT INTO users(user_id,userLat,userLong,position,posName) VALUES('$user_id','0','0','0','a')";            
+        $createUser = "INSERT INTO users(user_id,userLat,userLong,position,posName,'pos_id') VALUES('$user_id','0','0','0','a','0')";            
         if($dbconnect->query($createUser) === TRUE){
             sendMessage($token,$chat_id,'ТЫ НОВЫЙ ПОЛЬЗОВАТЕЛЬ'); 
         }
@@ -54,10 +54,10 @@ function updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,$position){
 }
 function showPos($posShow,$token,$dbconnect,$chat_id){
     
-    $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE posShow = '$posShow'");
+    $result = $dbconnect->query("SELECT posName, pos_id FROM EatAndDrinks WHERE posShow = '$posShow'");
     while($row = $result->fetch_assoc()){
-        inlineKeyboard($token,$chat_id,$row['posName'],More(takePosId($dbconnect,$row['posName'])));
-        //sendMessage($token,$chat_id,takePosId($dbconnect,$row['posName']));
+        inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));
+        sendMessage($token,$chat_id,$row['pos_id']);
         
     }   
 }
