@@ -34,6 +34,11 @@ if(isset($latitude) or isset($longitude)){
         $buttons = [["Настройки"],["Категории"]];
         sendKeyboard($token,$chat_id,$buttons,$reply);
     }
+    else {
+        $reply = 'Ваш город в Пизде мира';
+        $buttons = [["Настройки"],["Категории"]];
+        sendKeyboard($token,$chat_id,$buttons,$reply);
+    }
 }
 if(isset($inline_data)){
     if($inline_data == 'EatAndDrinks'){
