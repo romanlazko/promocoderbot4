@@ -61,9 +61,8 @@ if ($text == "/start" ) {
     $reply = "Привет ".$first_name.".\n".
         "Добро пожаловать в бота!
         \n*Список доступных команд:*
-        \n/start
-        \n/help
-        \n
+        \n/start\n
+        /help
         \nЧтобы начать, отправь свою геолокацию!";
     userfunc($token,$chat_id,$user_id,$dbconnect);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
@@ -130,7 +129,7 @@ function sendKeyboard($token,$chat_id,$buttons,$reply){
         'text' => $reply, 
         'reply_markup' => $keyboard,
     ];
-    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters));
+    file_get_contents('https://api.telegram.org/bot' . $token . '/sendMessage?' . http_build_query($parameters).'&parse_mode=Markdown');
 }
 
 function inlineKeyboard($token,$chat_id,$reply,$buttons){
