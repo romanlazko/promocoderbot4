@@ -66,18 +66,20 @@ function showPos($posShow,$token,$dbconnect,$chat_id){
 function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
     
     $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
-    while($row = $result->fetch_assoc()){
-        //inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));
-        //sendMessage($token,$chat_id,$row['more']);
-        editMassage($token,$chat_id,$message_id,$row['more'],generate());
+    while($row = $result->fetch_assoc()){        
         $updateName = "UPDATE `users` SET `pos_id` = '$inline_data' WHERE `users`.`user_id` = $user_id";
         if($dbconnect->query($updateName) === TRUE){
-             sendMessage($token,$chat_id,$inline_data);
-        }
-        
+             editMassage($token,$chat_id,$message_id,$row['more'],generate());
+        }        
     }   
 }
-
+function generate($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
+    
+    $result = $dbconnect->query("SELECT pos_id FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+        return $row['pos_id'];      
+    }   
+}
 
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
