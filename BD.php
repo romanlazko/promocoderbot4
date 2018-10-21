@@ -73,13 +73,13 @@ function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
         }        
     }   
 }
-// function generate($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
+function takePos_id($dbconnect,$user_id){
     
-//     $result = $dbconnect->query("SELECT pos_id FROM users WHERE user_id = '$user_id'");
-//     while($row = $result->fetch_assoc()){        
-//         return $row['pos_id'];      
-//     }   
-// }
+    $result = $dbconnect->query("SELECT pos_id FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+        return $row['pos_id'];      
+    }   
+}
 
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
