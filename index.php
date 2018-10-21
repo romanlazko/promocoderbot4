@@ -58,8 +58,13 @@ if(isset($inline_data)){
     
 }
 if ($text == "/start" ) {
-    $reply = "Привет ".$first_name."\n".
-        " Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
+    $reply = "Привет ".$first_name.".\n".
+        "Добро пожаловать в бота!
+        \n*Список доступных команд:*
+        \n/start
+        \n/help
+        \n
+        \nЧтобы начать, отправь свою геолокацию!";
     userfunc($token,$chat_id,$user_id,$dbconnect);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
