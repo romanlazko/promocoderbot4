@@ -16,7 +16,7 @@ $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
 $latitude = $output['message']['location']['latitude'];
 $longitude = $output['message']['location']['longitude'];
-
+$first_name = $output['message']['from']['first_name'];
 if(isset($inline_data)){
     $chat_id = $output['callback_query']['message']['chat']['id'];
     $user_id = $output['callback_query']['from']['id'];
@@ -58,7 +58,8 @@ if(isset($inline_data)){
     
 }
 if ($text == "/start" ) {
-    $reply = "Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
+    $reply = "Привет ".$first_name.
+        " Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
     userfunc($token,$chat_id,$user_id,$dbconnect);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
