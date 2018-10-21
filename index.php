@@ -36,12 +36,12 @@ if(isset($latitude) or isset($longitude)){
 if(isset($inline_data)){
     if($inline_data == 'EatAndDrinks'){
         //sendMessage($token,$inline_chat_id,'[​​​​​​​​​​​](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Stack_Overflow_logo.svg/200px-Stack_Overflow_logo.svg.png) Some text here.');
-        $reply = '⬇️⬇️⬇️';
+        $reply = 'Показать еще';
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data,1);
         inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
     }
     if($inline_data == 'nextfun'){
-        $reply = '⬇️⬇️⬇️';
+        $reply = 'Показать еще';
         $position = takeUserPos($dbconnect,$inline_user_id) + 1;
         updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
         deleteMessage($token,$inline_chat_id,$message_id);
@@ -70,7 +70,7 @@ if ($text == "Категории") {
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 function nextprev(){
-    $next = array('text' => 'Показать еще', 'callback_data' => 'nextfun');
+    $next = array('text' => '⬇️⬇️⬇️', 'callback_data' => 'nextfun');
     $buttons = [
          [$next]
     ];
@@ -84,7 +84,7 @@ function More($more){
     return $buttons;
 }
 function generate(){
-    $more = array('text' => 'Подробнее', 'callback_data' => 'promocode');
+    $more = array('text' => 'Получить промо-код', 'callback_data' => 'promocode');
     $buttons = [
          [$more]
     ];  
