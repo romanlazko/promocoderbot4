@@ -12,15 +12,18 @@ $token = "633839981:AAHmf8yb2TJ9oEIL9ia2qYnrbbaWb6ULaBQ";
 $output = json_decode(file_get_contents('php://input'),true);
 
 $inline_data = $output['callback_query']['data'];
-$inline_chat_id = $output['callback_query']['message']['chat']['id'];
-$inline_user_id = $output['callback_query']['from']['id'];
 $message_id = $output['callback_query']['message']['message_id'];
 $text = $output['message']['text'];
-$chat_id = $output['message']['chat']['id'];
-$user_id = $output['message']['from']['id'];
 $latitude = $output['message']['location']['latitude'];
 $longitude = $output['message']['location']['longitude'];
 
+if(isset($inline_data)){
+    $chat_id = $output['callback_query']['message']['chat']['id'];
+    $user_id = $output['callback_query']['from']['id'];
+}else{
+    $chat_id = $output['message']['chat']['id'];
+    $user_id = $output['message']['from']['id'];
+}
 
 
 include 'distance.php';
@@ -37,20 +40,20 @@ if(isset($inline_data)){
     if($inline_data == 'EatAndDrinks'){
         //sendMessage($token,$inline_chat_id,'[​​​​​​​​​​​](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Stack_Overflow_logo.svg/200px-Stack_Overflow_logo.svg.png) Some text here.');
         $reply = 'Показать еще';
-        updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,$inline_data,1);
-        inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
+        updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,1);
+        inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
     if($inline_data == 'nextfun'){
         $reply = 'Показать еще';
-        $position = takeUserPos($dbconnect,$inline_user_id) + 1;
-        updateName($token,$inline_user_id,$inline_chat_id,$dbconnect,takeUserName($dbconnect,$inline_user_id),$position);
-        deleteMessage($token,$inline_chat_id,$message_id);
-        inlineKeyboard($token,$inline_chat_id,$reply,nextprev());
+        $position = takeUserPos($dbconnect,$user_id) + 1;
+        updateName($token,$user_id,$chat_id,$dbconnect,takeUserName($dbconnect,$user_id),$position);
+        deleteMessage($token,$chat_id,$message_id);
+        inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
-    showMore($inline_data,$token,$dbconnect,$inline_chat_id,$message_id);
+    showMore($inline_data,$token,$dbconnect,$chat_id,$message_id);
     if($inline_data == 'promocode'){
         $reply = 'kode';
-        sendMessage($token,$inline_chat_id,$reply);
+        sendMessage($token,$chat_id,$reply);
     }
     
 }
@@ -62,8 +65,8 @@ if ($text == "/start" ) {
 }
 
 if ($text == "Настройки") {
-    $reply = "Тут нихуя нет, хули палишь?";
-    sendMessage($token,$inline_chat_id,$reply);
+    $reply = "Тут нихуя не работает, хули палишь?";
+    sendMessage($token,$chat_id,$reply);
 }
 if ($text == "Категории") {
     $reply = "Выберете категорию";
