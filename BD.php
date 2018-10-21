@@ -80,6 +80,14 @@ function takePos_id($dbconnect,$user_id){
         return $row['pos_id'];      
     }   
 }
+function takePosName($dbconnect,$user_id){
+    
+    $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = 'takePos_id($dbconnect,$user_id)'");
+    while($row = $result->fetch_assoc()){        
+        return $row['posName'];      
+    }   
+}
+
 
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
