@@ -53,7 +53,7 @@ if(isset($inline_data)){
     showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
     if($inline_data == 'promocode'){
         promocode();
-        $reply = 'kode';
+        $reply = promocode();
         sendMessage($token,$chat_id,$reply);
     }
     
