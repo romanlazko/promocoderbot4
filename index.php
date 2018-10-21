@@ -28,7 +28,7 @@ if(isset($inline_data)){
 
 include 'distance.php';
 include 'BD.php';
-
+include 'promocode.php';
 
 if(isset($latitude) or isset($longitude)){
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
@@ -52,6 +52,7 @@ if(isset($inline_data)){
     }
     showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
     if($inline_data == 'promocode'){
+        promocode();
         $reply = 'kode';
         sendMessage($token,$chat_id,$reply);
     }
