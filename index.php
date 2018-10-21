@@ -54,7 +54,7 @@ if(isset($inline_data)){
     if($inline_data == 'promocode'){
         
         $reply = promocode();
-        sendMessage($token,$chat_id,$reply);
+        editMassage($token,$chat_id,$message_id,$reply,More(takePos_id($dbconnect,$user_id)));
     }
     
 }
