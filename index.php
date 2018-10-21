@@ -58,7 +58,7 @@ if(isset($inline_data)){
     
 }
 if ($text == "/start" ) {
-    $reply = "Привет ".$first_name.
+    $reply = "Привет ".$first_name."\n".
         " Добро пожаловать в бота! Чтобы начать, отправь свою геолокацию!";
     userfunc($token,$chat_id,$user_id,$dbconnect);
     $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
