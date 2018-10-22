@@ -31,7 +31,7 @@ include 'promocode.php';
 
 
 
-$POS_NAME = takeUserPosName($dbconnect,$user_id)['position'];
+$POS_NAME = takeUserPosName($dbconnect,$user_id)['posName'];
 sendMessage($token,$chat_id,$POS_NAME);
 
 if(isset($latitude) or isset($longitude)){
