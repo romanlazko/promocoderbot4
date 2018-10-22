@@ -52,42 +52,31 @@ if(isset($inline_data)){
     }
             
 }
-// switch ($text) {
-//     case '/start':{
-//         $reply = "Привет ".$first_name.".\n".
-//             "Добро пожаловать в бота!
-//             \n*Список доступных команд:*
-//             \n/start\n/help
-//             \nЧтобы начать, отправь свою геолокацию!";
-//         userfunc($token,$chat_id,$user_id,$dbconnect);
-//         $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Категории"]];
-//         sendKeyboard($token,$chat_id,$buttons,$reply);
-//         break;
-//     }
-//     default:
-//         //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-//             editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
-//         //}
-//     }
-if ($text == "/start" ) {
-    $reply = "Привет ".$first_name.".\n".
-        "Добро пожаловать в бота!
-        \n*Список доступных команд:*
-        \n/start\n/help
-        \nЧтобы начать, отправь свою геолокацию!";
-    userfunc($token,$chat_id,$user_id,$dbconnect);
-    $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Категории"]];
-    sendKeyboard($token,$chat_id,$buttons,$reply);   
+switch ($text) {
+    case '/start':
+        $reply = "Привет ".$first_name.".\n".
+            "Добро пожаловать в бота!
+            \n*Список доступных команд:*
+            \n/start\n/help
+            \nЧтобы начать, отправь свою геолокацию!";
+        userfunc($token,$chat_id,$user_id,$dbconnect);
+        $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Категории"]];
+        sendKeyboard($token,$chat_id,$buttons,$reply);
+        break;
+    case 'Настройки':
+        $reply = "Тут нихуя не работает, хули палишь?";
+        sendMessage($token,$chat_id,$reply);
+        break;
+    case 'Категории':
+        $reply = "Выберете категорию";
+        inlineKeyboard($token,$chat_id,$reply,category());
+        break;
+    default:
+        //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
+        editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
+        
 }
 
-if ($text == "Настройки") {
-    $reply = "Тут нихуя не работает, хули палишь?";
-    sendMessage($token,$chat_id,$reply);
-}
-if ($text == "Категории") {
-    $reply = "Выберете категорию";
-    inlineKeyboard($token,$chat_id,$reply,category());
-}
 function nextprev(){
     $next = array('text' => '⬇️⬇️⬇️', 'callback_data' => 'nextfun');
     $buttons = [
