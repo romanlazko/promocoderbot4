@@ -26,7 +26,7 @@ if(isset($inline_data)){
 }
 
 $POS_NAME = takeUserPosName($dbconnect,$user_id);
-sendMessage($token,$chat_id,$POS_NAME['pos_id']);
+sendMessage($token,$chat_id,$POS_NAME['position']);
 include 'distance.php';
 include 'BD.php';
 include 'promocode.php';
