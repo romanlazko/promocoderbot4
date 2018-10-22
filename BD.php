@@ -69,7 +69,7 @@ function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
     while($row = $result->fetch_assoc()){        
         $updateName = "UPDATE `users` SET `pos_id` = '$inline_data' WHERE `users`.`user_id` = $user_id";
         if($dbconnect->query($updateName) === TRUE){
-             editMassage($token,$chat_id,$message_id,$row['more'],generate());
+             editMassage($token,$chat_id,$message_id,$row['more'],More($inline_data));
         }        
     }   
 }
