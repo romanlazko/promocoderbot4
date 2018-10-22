@@ -58,7 +58,7 @@ if(isset($inline_data)){
         editMassage($token,$chat_id,$message_id,$reply,More(takePos_id($dbconnect,$user_id)));
     }
     
-// }
+}
 if ($text == "/start" ) {
     $reply = "Привет ".$first_name.".\n".
         "Добро пожаловать в бота!
