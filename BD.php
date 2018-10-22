@@ -35,12 +35,12 @@ function updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude
         sendKeyboard($token,$chat_id,$buttons,$reply);
     }
 }
-function takeUserPosName($dbconnect,$user_id){
-    $result = $dbconnect->query("SELECT position,posName FROM users WHERE user_id = '$user_id'");
-    while($row = $result->fetch_assoc()){        
-            return array($row['position'],$row['posName']);      
-    }   
-}
+// function takeUserPosName($dbconnect,$user_id){
+//     $result = $dbconnect->query("SELECT position,posName FROM users WHERE user_id = '$user_id'");
+//     while($row = $result->fetch_assoc()){        
+//             return array($row['position'],$row['posName']);      
+//     }   
+// }
 function takeUserPos($dbconnect,$user_id){
     $result = $dbconnect->query("SELECT position FROM users WHERE user_id = '$user_id'");
     while($row = $result->fetch_assoc()){        
