@@ -56,11 +56,11 @@ function showPos($posShow,$token,$dbconnect,$chat_id){
         inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));        
     }   
 }
-function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id){
+function showMore($inline_data,$dbconnect){
     
     $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
     while($row = $result->fetch_assoc()){        
-        editMassage($token,$chat_id,$message_id,$row['more'],More($inline_data));
+        return $row['more'];
     }   
 }
 function takePosName($dbconnect,$user_id){
