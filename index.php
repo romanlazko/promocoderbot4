@@ -44,7 +44,7 @@ if(isset($inline_data)){
         $reply = 'Показать еще';
         
         
-        showPos($POS_NAME['position'],$token,$dbconnect,$chat_id);
+        showPos($POS_NAME['position'],$token,$dbconnect,$chat_id,$inline_data);
        
               
         inlineKeyboard($token,$chat_id,$reply,nextprev());
