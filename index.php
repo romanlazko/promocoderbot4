@@ -58,7 +58,9 @@ if(isset($inline_data)){
         $reply = takePosName($dbconnect,$user_id)."\n"."Промо-код: "."\n".promocode();
         editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
     }
-    
+    if($inline_data == setMore($inline_data,$dbconnect)){
+        showMore($inline_data,$token,$dbconnect,$chat_id,$message_id);
+    }
 }
 if ($text == "/start" ) {
     $reply = "Привет ".$first_name.".\n".
