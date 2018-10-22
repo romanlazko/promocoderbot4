@@ -49,8 +49,8 @@ if(isset($inline_data)){
     }
     if($inline_data == 'nextfun'){
         $reply = 'Показать еще';
-        $position = takeUserPos($dbconnect,$user_id) + 1;
-        updateName($token,$user_id,$chat_id,$dbconnect,takeUserName($dbconnect,$user_id),$position);
+        $position = $POS_NAME['position'] + 1;
+        updateName($token,$user_id,$chat_id,$dbconnect,$POS_NAME['posName'],$position);
         deleteMessage($token,$chat_id,$message_id);
         inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
