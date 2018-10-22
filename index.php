@@ -51,6 +51,11 @@ if(isset($inline_data)){
             deleteMessage($token,$chat_id,$message_id);
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
             break;
+        case 'promocode'.'1111':
+//             $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
+//             editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
+                sendMessage($token,$chat_id,promocode());
+            break;
         default:
             //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
             editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));
@@ -92,7 +97,7 @@ function nextprev(){
 }
 function More($more){
     $more = array('text' => 'Подробнее', 'callback_data' => $more);
-    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode');
+    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode'.$more);
     $buttons = [
          [$more,$promocode]
     ];  
