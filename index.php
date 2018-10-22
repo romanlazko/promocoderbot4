@@ -56,7 +56,7 @@ if(isset($inline_data)){
     if($inline_data == 'promocode'){
         
         $reply = takePosName($dbconnect,$user_id)."\n"."Промо-код: "."\n".promocode();
-        editMassage($token,$chat_id,$message_id,$reply,More(takePos_id($dbconnect,$user_id)));
+        editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
     }
     
 }
