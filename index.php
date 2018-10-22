@@ -1,4 +1,5 @@
 <?php
+
 $servername="db4free.net: 3306";
 $username="promocoder";
 $password="zdraste1234";
@@ -24,12 +25,14 @@ if(isset($inline_data)){
     $chat_id = $output['message']['chat']['id'];
     $user_id = $output['message']['from']['id'];
 }
-
-$POS_NAME = takeUserPosName($dbconnect,$user_id)['position'];
-sendMessage($token,$chat_id,$POS_NAME);
 include 'distance.php';
 include 'BD.php';
 include 'promocode.php';
+
+
+
+$POS_NAME = takeUserPosName($dbconnect,$user_id)['position'];
+sendMessage($token,$chat_id,$POS_NAME);
 
 if(isset($latitude) or isset($longitude)){
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
