@@ -44,21 +44,21 @@ if(isset($inline_data)){
         updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,1);
         inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
-    if($inline_data == 'nextfun'){
-        $reply = 'Показать еще';
-        $position = takeUserPos($dbconnect,$user_id) + 1;
-        updateName($token,$user_id,$chat_id,$dbconnect,takeUserName($dbconnect,$user_id),$position);
-        deleteMessage($token,$chat_id,$message_id);
-        inlineKeyboard($token,$chat_id,$reply,nextprev());
-    }
-    showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
-    if($inline_data == 'promocode'){
+//     if($inline_data == 'nextfun'){
+//         $reply = 'Показать еще';
+//         $position = takeUserPos($dbconnect,$user_id) + 1;
+//         updateName($token,$user_id,$chat_id,$dbconnect,takeUserName($dbconnect,$user_id),$position);
+//         deleteMessage($token,$chat_id,$message_id);
+//         inlineKeyboard($token,$chat_id,$reply,nextprev());
+//     }
+//     showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
+//     if($inline_data == 'promocode'){
         
-        $reply = takePosName($dbconnect,$user_id)."\n"."Промо-код: "."\n".promocode();
-        editMassage($token,$chat_id,$message_id,$reply,More(takePos_id($dbconnect,$user_id)));
-    }
+//         $reply = takePosName($dbconnect,$user_id)."\n"."Промо-код: "."\n".promocode();
+//         editMassage($token,$chat_id,$message_id,$reply,More(takePos_id($dbconnect,$user_id)));
+//     }
     
-}
+// }
 if ($text == "/start" ) {
     $reply = "Привет ".$first_name.".\n".
         "Добро пожаловать в бота!
