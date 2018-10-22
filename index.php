@@ -31,7 +31,8 @@ include 'promocode.php';
 
 
 
-$POS_NAME = takeUserPosName($dbconnect,$user_id);
+$userData = takeUserData($dbconnect,$user_id);
+// $posData = takePosData($dbconnect,$user_id,$userData['posName']);
 if(isset($latitude) or isset($longitude)){
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
     $reply = "Выберете категорию";
@@ -41,27 +42,27 @@ if(isset($inline_data)){
     if($inline_data == 'EatAndDrinks'){
         //deleteMessage($token,$chat_id,$message_id);
         //sendMessage($token,$inline_chat_id,'[​​​​​​​​​​​](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Stack_Overflow_logo.svg/200px-Stack_Overflow_logo.svg.png) Some text here.');
-        $reply = 'Показать еще';
+//         $reply = 'Показать еще';
         
-        
-        showPos($POS_NAME['position'],$token,$dbconnect,$chat_id,$inline_data);
+        updateName($user_id,$dbconnect,$inline_data,1);
+        showPos($userData['position'],$token,$dbconnect,$chat_id,$inline_data);
        
               
-        inlineKeyboard($token,$chat_id,$reply,nextprev());
+//         inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
-    if($inline_data == 'nextfun'){
-        $reply = 'Показать еще';
-        $position = $POS_NAME['position'] + 1;
-        updateName($token,$user_id,$chat_id,$dbconnect,$POS_NAME['posName'],$position);
-        deleteMessage($token,$chat_id,$message_id);
-        inlineKeyboard($token,$chat_id,$reply,nextprev());
-    }
+//     if($inline_data == 'nextfun'){
+//         $reply = 'Показать еще';
+//         $position = $POS_NAME['position'] + 1;
+//         updateName($token,$user_id,$chat_id,$dbconnect,$POS_NAME['posName'],$position);
+//         deleteMessage($token,$chat_id,$message_id);
+//         inlineKeyboard($token,$chat_id,$reply,nextprev());
+//     }
     //showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
-    if($inline_data == 'promocode'){
+//     if($inline_data == 'promocode'){
         
-        $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
-        editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
-    }
+//         $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
+//         editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
+//     }
     if($inline_data == setMore($inline_data,$dbconnect)){
         editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
     }
