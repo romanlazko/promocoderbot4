@@ -49,9 +49,9 @@ function updateName($user_id,$dbconnect,$inline_data,$position){
         return TRUE;
     }
 }
-function showPos($posShow,$token,$dbconnect,$chat_id){
+function showPos($posShow,$token,$dbconnect,$chat_id,$category){
     
-    $result = $dbconnect->query("SELECT posName, pos_id FROM EatAndDrinks WHERE posShow = '$posShow'");
+    $result = $dbconnect->query("SELECT posName, pos_id FROM $category WHERE posShow = '$posShow'");
     while($row = $result->fetch_assoc()){
         inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));        
     }   
