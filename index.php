@@ -43,11 +43,17 @@ if(isset($inline_data)){
         case 'EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
             showPos(takeUserData($dbconnect,$user_id)['position'],$token,$dbconnect,$chat_id,$inline_data);
+            inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
             break;
-        
+        case 'nextfun':           
+            $position = takeUserData($dbconnect,$user_id)['position'] + 1;
+            updateName($user_id,$dbconnect,takeUserData($dbconnect,$user_id)['posName'],$position);
+            deleteMessage($token,$chat_id,$message_id);
+            inlineKeyboard($token,$chat_id,$reply,nextprev());
+            break;
         default:
             //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-                editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
+            editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));
             //}
     }
             
@@ -156,13 +162,6 @@ function deleteMessage($token,$chat_id,$message_id){
     file_get_contents('https://api.telegram.org/bot' . $token . '/deleteMessage?' . http_build_query($parameters));
 }
 $dbconnect->close();
-    //     if($inline_data == 'nextfun'){
-//         $reply = 'Показать еще';
-//         $position = $POS_NAME['position'] + 1;
-//         updateName($token,$user_id,$chat_id,$dbconnect,$POS_NAME['posName'],$position);
-//         deleteMessage($token,$chat_id,$message_id);
-//         inlineKeyboard($token,$chat_id,$reply,nextprev());
-//     }
     //showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
 //     if($inline_data == 'promocode'){
         
