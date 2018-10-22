@@ -36,7 +36,7 @@ function updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude
     }
 }
 function takeUserPosName($dbconnect,$user_id){
-    $result = $dbconnect->query("SELECT position,posName FROM users WHERE user_id = '$user_id'");
+    $result = $dbconnect->query("SELECT position,posName,pos_id FROM users WHERE user_id = '$user_id'");
     while($row = $result->fetch_assoc()){        
             return $row;      
     }   
@@ -53,9 +53,7 @@ function showPos($posShow,$token,$dbconnect,$chat_id){
     
     $result = $dbconnect->query("SELECT posName, pos_id FROM EatAndDrinks WHERE posShow = '$posShow'");
     while($row = $result->fetch_assoc()){
-        inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));
-        //sendMessage($token,$chat_id,$row['pos_id']);
-        
+        inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));        
     }   
 }
 function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
@@ -68,15 +66,8 @@ function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
         }        
     }   
 }
-function takePos_id($dbconnect,$user_id){
-    
-    $result = $dbconnect->query("SELECT pos_id FROM users WHERE user_id = '$user_id'");
-    while($row = $result->fetch_assoc()){        
-        return $row['pos_id'];      
-    }   
-}
 function takePosName($dbconnect,$user_id){
-    $pos_id = takePos_id($dbconnect,$user_id);
+    $pos_id = takeUserPosName($dbconnect,$user_id)['pos_id'];
     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = '$pos_id'");
     while($row = $result->fetch_assoc()){        
         return $row['posName'];      
