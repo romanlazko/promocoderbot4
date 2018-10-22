@@ -50,7 +50,7 @@ if(isset($inline_data)){
             updateName($user_id,$dbconnect,takeUserData($dbconnect,$user_id)['posName'],$position);
             showPos($position,$token,$dbconnect,$chat_id,takeUserData($dbconnect,$user_id)['posName']);
             deleteMessage($token,$chat_id,$message_id);
-            inlineKeyboard($token,$chat_id,$reply,nextprev());
+            inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
             break;
         default:
             //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
