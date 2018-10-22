@@ -63,8 +63,8 @@ function showMore($inline_data,$dbconnect){
         return $row['more'];
     }   
 }
-function takePosName($dbconnect,$user_id){
-    $pos_id = $POS_NAME['pos_id'];
+function takePosName($dbconnect,$user_id,$pos_id){
+     
     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = '$pos_id'");
     while($row = $result->fetch_assoc()){        
         return $row['posName'];      
