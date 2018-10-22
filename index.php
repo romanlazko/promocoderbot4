@@ -63,7 +63,7 @@ if(isset($inline_data)){
 //         $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
 //         editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
 //     }
-    if($inline_data == setMore($inline_data,$dbconnect)){
+    if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
         editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
     }
 }
