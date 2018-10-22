@@ -39,10 +39,14 @@ if(isset($latitude) or isset($longitude)){
 }
 if(isset($inline_data)){
     if($inline_data == 'EatAndDrinks'){
-        deleteMessage($token,$chat_id,$message_id);
+        //deleteMessage($token,$chat_id,$message_id);
         //sendMessage($token,$inline_chat_id,'[​​​​​​​​​​​](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Stack_Overflow_logo.svg/200px-Stack_Overflow_logo.svg.png) Some text here.');
         $reply = 'Показать еще';
-        updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,1);
+        
+        if(updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,1) === TRUE){
+            showPos($POS_NAME['position'],$token,$dbconnect,$chat_id);
+        }
+              
         inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
     if($inline_data == 'nextfun'){
@@ -55,7 +59,7 @@ if(isset($inline_data)){
     //showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
     if($inline_data == 'promocode'){
         
-        $reply = takePosName($dbconnect,$user_id)."\n"."Промо-код: "."\n".promocode();
+        $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
         editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
     }
     if($inline_data == setMore($inline_data,$dbconnect)){
