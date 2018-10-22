@@ -56,7 +56,7 @@ function showPos($posShow,$token,$dbconnect,$chat_id){
         inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));        
     }   
 }
-function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
+function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id){
     
     $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
     while($row = $result->fetch_assoc()){        
@@ -64,13 +64,13 @@ function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
     }   
 }
 function takePosName($dbconnect,$user_id){
-    $pos_id = takeUserPosName($dbconnect,$user_id)['pos_id'];
+    $pos_id = $POS_NAME['pos_id'];
     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = '$pos_id'");
     while($row = $result->fetch_assoc()){        
         return $row['posName'];      
     }   
 }
-// function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
+// function setMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
     
 //     $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks");
 //     while($row = $result->fetch_assoc()){        
