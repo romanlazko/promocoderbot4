@@ -38,6 +38,7 @@ if(isset($latitude) or isset($longitude)){
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 if(isset($inline_data)){
+    sendMessage($token,$chat_id,$inline_data);
     switch ($inline_data) {
         case 'EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
