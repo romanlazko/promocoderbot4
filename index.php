@@ -29,7 +29,6 @@ include 'distance.php';
 include 'BD.php';
 include 'promocode.php';
 
-sendMessage($token,$chat_id,'глюк');
 
 //$userData = takeUserData($dbconnect,$user_id);
 // $posData = takePosData($dbconnect,$user_id,$userData['posName']);
