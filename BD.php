@@ -60,8 +60,7 @@ function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
     
     $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
     while($row = $result->fetch_assoc()){        
-        $updateName = "UPDATE `users` SET `pos_id` = '$inline_data' WHERE `users`.`user_id` = $user_id";
-        if($dbconnect->query($updateName) === TRUE){
+        if($result === TRUE){
              editMassage($token,$chat_id,$message_id,$row['more'],More($inline_data));
         }        
     }   
@@ -73,7 +72,15 @@ function takePosName($dbconnect,$user_id){
         return $row['posName'];      
     }   
 }
-
+function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
+    
+    $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks");
+    while($row = $result->fetch_assoc()){        
+        if($row['pos_id'] == $inline_data){
+            
+        }      
+    }   
+}
 
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
