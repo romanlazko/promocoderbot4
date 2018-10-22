@@ -76,9 +76,9 @@ function showMore($inline_data,$dbconnect){
 // }
 function setMore($inline_data,$dbconnect,$from){
     
-    $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks");
+    $result = $dbconnect->query("SELECT pos_id FROM $from");
     while($row = $result->fetch_assoc()){        
-        if($row['pos_id'] == $inline_data){
+        if('promocode.'$row['pos_id'] == $inline_data){
             return TRUE;
         }      
     }   
