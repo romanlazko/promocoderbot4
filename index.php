@@ -39,33 +39,18 @@ if(isset($latitude) or isset($longitude)){
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 if(isset($inline_data)){
-    if($inline_data == 'EatAndDrinks'){
-        //deleteMessage($token,$chat_id,$message_id);
-        //sendMessage($token,$inline_chat_id,'[​​​​​​​​​​​](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Stack_Overflow_logo.svg/200px-Stack_Overflow_logo.svg.png) Some text here.');
-//         $reply = 'Показать еще';
-        
-        updateName($user_id,$dbconnect,$inline_data,1);
-        showPos(takeUserData($dbconnect,$user_id)['position'],$token,$dbconnect,$chat_id,$inline_data);
-       
-              
-//         inlineKeyboard($token,$chat_id,$reply,nextprev());
+    switch ($inline_data) {
+        case 'EatAndDrinks':{        
+            updateName($user_id,$dbconnect,$inline_data,1);
+            showPos(takeUserData($dbconnect,$user_id)['position'],$token,$dbconnect,$chat_id,$inline_data);
+            break;
+        }
+        default:
+            if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
+                editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
+            }
     }
-//     if($inline_data == 'nextfun'){
-//         $reply = 'Показать еще';
-//         $position = $POS_NAME['position'] + 1;
-//         updateName($token,$user_id,$chat_id,$dbconnect,$POS_NAME['posName'],$position);
-//         deleteMessage($token,$chat_id,$message_id);
-//         inlineKeyboard($token,$chat_id,$reply,nextprev());
-//     }
-    //showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
-//     if($inline_data == 'promocode'){
-        
-//         $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
-//         editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
-//     }
-    if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-        editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
-    }
+            
 }
 if ($text == "/start" ) {
     $reply = "Привет ".$first_name.".\n".
@@ -165,4 +150,20 @@ function deleteMessage($token,$chat_id,$message_id){
     file_get_contents('https://api.telegram.org/bot' . $token . '/deleteMessage?' . http_build_query($parameters));
 }
 $dbconnect->close();
-
+    //     if($inline_data == 'nextfun'){
+//         $reply = 'Показать еще';
+//         $position = $POS_NAME['position'] + 1;
+//         updateName($token,$user_id,$chat_id,$dbconnect,$POS_NAME['posName'],$position);
+//         deleteMessage($token,$chat_id,$message_id);
+//         inlineKeyboard($token,$chat_id,$reply,nextprev());
+//     }
+    //showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
+//     if($inline_data == 'promocode'){
+        
+//         $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
+//         editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
+//     }
+    //         inlineKeyboard($token,$chat_id,$reply,nextprev());
+//deleteMessage($token,$chat_id,$message_id);
+        //sendMessage($token,$inline_chat_id,'[​​​​​​​​​​​](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Stack_Overflow_logo.svg/200px-Stack_Overflow_logo.svg.png) Some text here.');
+?>
