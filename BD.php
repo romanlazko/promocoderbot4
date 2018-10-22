@@ -60,9 +60,7 @@ function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
     
     $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
     while($row = $result->fetch_assoc()){        
-        if($result === TRUE){
-             editMassage($token,$chat_id,$message_id,$row['more'],More($inline_data));
-        }        
+        editMassage($token,$chat_id,$message_id,$row['more'],More($inline_data));
     }   
 }
 function takePosName($dbconnect,$user_id){
