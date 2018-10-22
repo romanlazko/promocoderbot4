@@ -72,15 +72,15 @@ function takePosName($dbconnect,$user_id){
         return $row['posName'];      
     }   
 }
-function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
+// function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
     
-    $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks");
-    while($row = $result->fetch_assoc()){        
-        if($row['pos_id'] == $inline_data){
+//     $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks");
+//     while($row = $result->fetch_assoc()){        
+//         if($row['pos_id'] == $inline_data){
             
-        }      
-    }   
-}
+//         }      
+//     }   
+// }
 
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
