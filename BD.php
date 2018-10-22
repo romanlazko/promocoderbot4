@@ -67,19 +67,19 @@ function showMore($inline_data,$dbconnect){
         return $row['more'];
     }   
 }
-function takePosName($dbconnect,$user_id,$pos_id){
+// function takePosName($dbconnect,$user_id,$pos_id){
      
-    $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = '$pos_id'");
-    while($row = $result->fetch_assoc()){        
-        return $row['posName'];      
-    }   
-}
-function setMore($inline_data,$dbconnect){
+//     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = '$pos_id'");
+//     while($row = $result->fetch_assoc()){        
+//         return $row['posName'];      
+//     }   
+// }
+function setMore($inline_data,$dbconnect,$from){
     
     $result = $dbconnect->query("SELECT pos_id FROM EatAndDrinks");
     while($row = $result->fetch_assoc()){        
         if($row['pos_id'] == $inline_data){
-            return $row['pos_id'];
+            return TRUE;
         }      
     }   
 }
