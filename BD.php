@@ -35,18 +35,18 @@ function updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude
         sendKeyboard($token,$chat_id,$buttons,$reply);
     }
 }
-// function takeUserPosName($dbconnect,$user_id){
-//     $result = $dbconnect->query("SELECT position, posName FROM users WHERE user_id = '$user_id'");
-//     while($row = $result->fetch_assoc()){        
-//             return array($row['position'],$row['posName']);      
-//     }   
-// }
-// function takeUserName($dbconnect,$user_id){
-//     $result = $dbconnect->query("SELECT posName FROM users WHERE user_id = '$user_id'");
-//     while($row = $result->fetch_assoc()){        
-//             return $row['posName'];      
-//     }   
-// }
+function takeUserPos($dbconnect,$user_id){
+    $result = $dbconnect->query("SELECT position FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+            return $row['position'];      
+    }   
+}
+function takeUserName($dbconnect,$user_id){
+    $result = $dbconnect->query("SELECT posName FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+            return $row['posName'];      
+    }   
+}
 
 function updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,$position){
     $updateName = "UPDATE `users` SET `position` = '$position', `posName` = '$inline_data' WHERE `users`.`user_id` = $user_id";
@@ -54,39 +54,39 @@ function updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,$position){
         showPos(takeUserPos($dbconnect,$user_id),$token,$dbconnect,$chat_id); 
     }
 }
-// function showPos($posShow,$token,$dbconnect,$chat_id){
+function showPos($posShow,$token,$dbconnect,$chat_id){
     
-//     $result = $dbconnect->query("SELECT posName, pos_id FROM EatAndDrinks WHERE posShow = '$posShow'");
-//     while($row = $result->fetch_assoc()){
-//         inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));
-//         //sendMessage($token,$chat_id,$row['pos_id']);
+    $result = $dbconnect->query("SELECT posName, pos_id FROM EatAndDrinks WHERE posShow = '$posShow'");
+    while($row = $result->fetch_assoc()){
+        inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));
+        //sendMessage($token,$chat_id,$row['pos_id']);
         
-//     }   
-// }
-// function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
+    }   
+}
+function showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id){
     
-//     $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
-//     while($row = $result->fetch_assoc()){        
-//         $updateName = "UPDATE `users` SET `pos_id` = '$inline_data' WHERE `users`.`user_id` = $user_id";
-//         if($dbconnect->query($updateName) === TRUE){
-//              editMassage($token,$chat_id,$message_id,$row['more'],More($inline_data));
-//         }        
-//     }   
-// }
-// function takePos_id($dbconnect,$user_id){
+    $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
+    while($row = $result->fetch_assoc()){        
+        $updateName = "UPDATE `users` SET `pos_id` = '$inline_data' WHERE `users`.`user_id` = $user_id";
+        if($dbconnect->query($updateName) === TRUE){
+             editMassage($token,$chat_id,$message_id,$row['more'],More($inline_data));
+        }        
+    }   
+}
+function takePos_id($dbconnect,$user_id){
     
-//     $result = $dbconnect->query("SELECT pos_id FROM users WHERE user_id = '$user_id'");
-//     while($row = $result->fetch_assoc()){        
-//         return $row['pos_id'];      
-//     }   
-// }
-// function takePosName($dbconnect,$user_id){
-//     $pos_id = takePos_id($dbconnect,$user_id);
-//     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = '$pos_id'");
-//     while($row = $result->fetch_assoc()){        
-//         return $row['posName'];      
-//     }   
-// }
+    $result = $dbconnect->query("SELECT pos_id FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+        return $row['pos_id'];      
+    }   
+}
+function takePosName($dbconnect,$user_id){
+    $pos_id = takePos_id($dbconnect,$user_id);
+    $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = '$pos_id'");
+    while($row = $result->fetch_assoc()){        
+        return $row['posName'];      
+    }   
+}
 
 
 // function create($token,$chat_id,$dbconnect){
