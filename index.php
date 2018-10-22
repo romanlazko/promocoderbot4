@@ -40,11 +40,11 @@ if(isset($latitude) or isset($longitude)){
 }
 if(isset($inline_data)){
     switch ($inline_data) {
-        case 'EatAndDrinks':{        
+        case 'EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
             showPos(takeUserData($dbconnect,$user_id)['position'],$token,$dbconnect,$chat_id,$inline_data);
             break;
-        }
+        
         default:
             //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
                 editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
@@ -52,6 +52,23 @@ if(isset($inline_data)){
     }
             
 }
+// switch ($text) {
+//     case '/start':{
+//         $reply = "Привет ".$first_name.".\n".
+//             "Добро пожаловать в бота!
+//             \n*Список доступных команд:*
+//             \n/start\n/help
+//             \nЧтобы начать, отправь свою геолокацию!";
+//         userfunc($token,$chat_id,$user_id,$dbconnect);
+//         $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Категории"]];
+//         sendKeyboard($token,$chat_id,$buttons,$reply);
+//         break;
+//     }
+//     default:
+//         //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
+//             editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
+//         //}
+//     }
 if ($text == "/start" ) {
     $reply = "Привет ".$first_name.".\n".
         "Добро пожаловать в бота!
