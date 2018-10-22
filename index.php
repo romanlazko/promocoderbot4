@@ -31,7 +31,7 @@ include 'promocode.php';
 
 sendMessage($token,$chat_id,'глюк');
 
-$userData = takeUserData($dbconnect,$user_id);
+//$userData = takeUserData($dbconnect,$user_id);
 // $posData = takePosData($dbconnect,$user_id,$userData['posName']);
 if(isset($latitude) or isset($longitude)){
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
@@ -45,7 +45,7 @@ if(isset($inline_data)){
 //         $reply = 'Показать еще';
         
         updateName($user_id,$dbconnect,$inline_data,1);
-        showPos($userData['position'],$token,$dbconnect,$chat_id,$inline_data);
+        showPos(takeUserData($dbconnect,$user_id)['position'],$token,$dbconnect,$chat_id,$inline_data);
        
               
 //         inlineKeyboard($token,$chat_id,$reply,nextprev());
