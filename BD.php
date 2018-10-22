@@ -35,18 +35,24 @@ function updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude
         sendKeyboard($token,$chat_id,$buttons,$reply);
     }
 }
-function takeUserPos($dbconnect,$user_id){
+function takeUserPosName($dbconnect,$user_id){
     $result = $dbconnect->query("SELECT position,posName FROM users WHERE user_id = '$user_id'");
     while($row = $result->fetch_assoc()){        
             return array($row['position'],$row['posName']);      
     }   
 }
-// function takeUserName($dbconnect,$user_id){
-//     $result = $dbconnect->query("SELECT posName FROM users WHERE user_id = '$user_id'");
-//     while($row = $result->fetch_assoc()){        
-//             return $row['posName'];      
-//     }   
-// }
+function takeUserPos($dbconnect,$user_id){
+    $result = $dbconnect->query("SELECT position FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+            return $row['position'];      
+    }   
+}
+function takeUserName($dbconnect,$user_id){
+    $result = $dbconnect->query("SELECT posName FROM users WHERE user_id = '$user_id'");
+    while($row = $result->fetch_assoc()){        
+            return $row['posName'];      
+    }   
+}
 
 function updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,$position){
     $updateName = "UPDATE `users` SET `position` = '$position', `posName` = '$inline_data' WHERE `users`.`user_id` = $user_id";
