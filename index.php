@@ -73,7 +73,7 @@ if ($text == "/start" ) {
         \n/start\n/help
         \nЧтобы начать, отправь свою геолокацию!";
     userfunc($token,$chat_id,$user_id,$dbconnect);
-    $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]]];
+    $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Категории"]];
     sendKeyboard($token,$chat_id,$buttons,$reply);   
 }
 
