@@ -59,7 +59,7 @@ if(isset($inline_data)){
         editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
     }
     if($inline_data == setMore($inline_data,$dbconnect)){
-        showMore($inline_data,$token,$dbconnect,$chat_id,$message_id);
+        editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
     }
 }
 if ($text == "/start" ) {
