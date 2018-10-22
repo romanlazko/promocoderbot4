@@ -86,18 +86,13 @@ function nextprev(){
 }
 function More($more){
     $more = array('text' => 'Подробнее', 'callback_data' => $more);
+    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode');
     $buttons = [
-         [$more]
+         [$more,$promocode]
     ];  
     return $buttons;
 }
-function generate(){
-    $more = array('text' => 'Получить промо-код', 'callback_data' => 'promocode');
-    $buttons = [
-         [$more]
-    ];  
-    return $buttons;
-}
+
 function category(){
     $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'EatAndDrinks');
     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
