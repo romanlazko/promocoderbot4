@@ -43,7 +43,7 @@ if(isset($inline_data)){
         //sendMessage($token,$inline_chat_id,'[​​​​​​​​​​​](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Stack_Overflow_logo.svg/200px-Stack_Overflow_logo.svg.png) Some text here.');
         $reply = 'Показать еще';
         
-        if(updateName($token,$user_id,$chat_id,$dbconnect,$inline_data,1) === TRUE){
+        if(updateName($user_id,$dbconnect,$inline_data,1) === TRUE){
             showPos($POS_NAME['position'],$token,$dbconnect,$chat_id);
         }
               
