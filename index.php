@@ -52,15 +52,18 @@ if(isset($inline_data)){
             deleteMessage($token,$chat_id,$message_id);
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
             break;
-        case 'promocode'.'1111':
-//             $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
-//             editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
-            sendMessage($token,$chat_id,'слово');
-            break;
+//         case 'promocode'.'1111':
+// //             $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
+// //             editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
+//             sendMessage($token,$chat_id,'слово');
+//             break;
         default:
             //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
             editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data,$inline_data));
             //}
+    }
+    if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
+        sendMessage($token,$chat_id,'код');
     }
             
 }
