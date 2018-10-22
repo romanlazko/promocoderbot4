@@ -52,7 +52,7 @@ if(isset($inline_data)){
         deleteMessage($token,$chat_id,$message_id);
         inlineKeyboard($token,$chat_id,$reply,nextprev());
     }
-    showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
+    //showMore($inline_data,$token,$dbconnect,$chat_id,$message_id,$user_id);
     if($inline_data == 'promocode'){
         
         $reply = takePosName($dbconnect,$user_id)."\n"."Промо-код: "."\n".promocode();
