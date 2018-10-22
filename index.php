@@ -59,7 +59,7 @@ if(isset($inline_data)){
             break;
         default:
             //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-            editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));
+            editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data,1111));
             //}
     }
             
@@ -82,11 +82,7 @@ switch ($text) {
     case 'Категории':
         $reply = "Выберете категорию";
         inlineKeyboard($token,$chat_id,$reply,category());
-        break;
-    default:
-        //if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-        editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data));;
-        
+        break;        
 }
 
 function nextprev(){
@@ -96,7 +92,7 @@ function nextprev(){
     ];
     return $buttons;
 }
-function More($more){
+function More($more,$code){
     $more = array('text' => 'Подробнее', 'callback_data' => $more);
     $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode');
     $buttons = [
