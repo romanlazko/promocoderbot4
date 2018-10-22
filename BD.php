@@ -35,23 +35,27 @@ function updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude
         sendKeyboard($token,$chat_id,$buttons,$reply);
     }
 }
-function takeUserPosName($dbconnect,$user_id){
+function takeUserData($dbconnect,$user_id){
     $result = $dbconnect->query("SELECT position,posName,pos_id FROM users WHERE user_id = '$user_id'");
     while($row = $result->fetch_assoc()){        
             return $row;      
     }   
 }
-
+// function takePosData($dbconnect,$user_id,$userData){
+//     $result = $dbconnect->query("SELECT posName,pos_id,position,more FROM $userData WHERE user_id = '$user_id'");
+//     while($row = $result->fetch_assoc()){        
+//             return $row;      
+//     }   
+// }
 
 function updateName($user_id,$dbconnect,$inline_data,$position){
-    $updateName = "UPDATE `users` SET `position` = '$position', `posName` = '$inline_data' WHERE `users`.`user_id` = $user_id";
-    if($dbconnect->query($updateName) === TRUE){
-        return TRUE;
-    }
-}
-function showPos($posShow,$token,$dbconnect,$chat_id,$category){
+    $dbconnect->query("UPDATE `users` 
+                       SET `position` = '$position',`posName` = '$inline_data' 
+                       WHERE `users`.`user_id` = $user_id");
     
-    $result = $dbconnect->query("SELECT posName, pos_id FROM $category WHERE posShow = '$posShow'");
+}
+function showPos($position,$token,$dbconnect,$chat_id,$category){
+    $result = $dbconnect->query("SELECT posName, pos_id FROM $category WHERE position = '$position'");
     while($row = $result->fetch_assoc()){
         inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id']));        
     }   
