@@ -43,7 +43,7 @@ function showPos($position,$token,$dbconnect,$chat_id,$category){
 }
 function posData($pos_id,$dbconnect,$from){
     
-    $result = $dbconnect->query("SELECT more, posName FROM $from WHERE pos_id = '$pos_id'");
+    $result = $dbconnect->query("SELECT posName,more   FROM $from WHERE pos_id = '$pos_id'");
     while($row = $result->fetch_assoc()){        
         return array($row['more'],$row['posName']);
     }   
