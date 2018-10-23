@@ -35,54 +35,20 @@ function updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude
         sendKeyboard($token,$chat_id,$buttons,$reply);
     }
 }
-function takeUserData($dbconnect,$user_id){
-    $result = $dbconnect->query("SELECT position,posName,pos_id FROM users WHERE user_id = '$user_id'");
-    while($row = $result->fetch_assoc()){        
-            return $row;      
-    }   
-}
-// function takePosData($dbconnect,$user_id,$userData){
-//     $result = $dbconnect->query("SELECT posName,pos_id,position,more FROM $userData WHERE user_id = '$user_id'");
-//     while($row = $result->fetch_assoc()){        
-//             return $row;      
-//     }   
-// }
-
-function updateName($user_id,$dbconnect,$inline_data,$position){
-    $dbconnect->query("UPDATE `users` 
-                       SET `position` = '$position',`posName` = '$inline_data' 
-                       WHERE `users`.`user_id` = $user_id");
-    
-}
 function showPos($position,$token,$dbconnect,$chat_id,$category){
     $result = $dbconnect->query("SELECT posName, pos_id FROM $category WHERE position = '$position'");
     while($row = $result->fetch_assoc()){
         inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id'],$category,$row['pos_id']));        
     }   
 }
-function showMore($pos_id,$dbconnect,$from){
+function posData($pos_id,$dbconnect,$from){
     
-    $result = $dbconnect->query("SELECT more FROM $from WHERE pos_id = '$pos_id'");
+    $result = $dbconnect->query("SELECT more,posName FROM $from WHERE pos_id = '$pos_id'");
     while($row = $result->fetch_assoc()){        
-        return $row['more'];
+        return array($row['more'],$row['posName']);
     }   
 }
-function takePosName($dbconnect,$user_id,$pos_id,$from){
-     
-    $result = $dbconnect->query("SELECT posName FROM $from WHERE pos_id = '$pos_id'");
-    while($row = $result->fetch_assoc()){        
-        return $row['posName'];      
-    }   
-}
-function setMore($inline_data,$dbconnect,$from){
-    
-    $result = $dbconnect->query("SELECT pos_id FROM $from");
-    while($row = $result->fetch_assoc()){        
-        if('promocode'.$row['pos_id'] == $inline_data){
-            return TRUE;
-        }      
-    }   
-}
+
 
 // function create($token,$chat_id,$dbconnect){
 //     /*$login = "EatAndDrinks";
