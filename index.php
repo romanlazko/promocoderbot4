@@ -32,7 +32,7 @@ include 'promocode.php';
 
 
 //$userData = takeUserData($dbconnect,$user_id);
-// $posData = takePosData($dbconnect,$user_id,$userData['posName']);
+//$posData = posData($dbconnect,$user_id,$userData['posName']);
 if(isset($latitude) or isset($longitude)){
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
     $reply = "Выберете категорию";
