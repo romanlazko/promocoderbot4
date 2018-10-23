@@ -43,6 +43,7 @@ if(isset($inline_data)){
     $category = substr($str, strrpos($str,"/")+1);
     $button = substr($str, 0, strrpos($str, '/'));
     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
+    $posData = posData($pos_id,$dbconnect,$category);
     //sendMessage($token,$chat_id,$pos_id);
     switch ($inline_data) {
         case 'EatAndDrinks':        
@@ -59,10 +60,10 @@ if(isset($inline_data)){
     }
     
     if($button == 'more'){
-        editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
+        editMassage($token,$chat_id,$message_id,$posData['more'],More($pos_id,$category,$pos_id));
     } 
     if($button == 'promocode'){
-        $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n".promocode();
+        $reply = $posData['posName']."\n"."Промо-код: "."\n".promocode();
         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
     }
     if($button == 'nextfun'){
