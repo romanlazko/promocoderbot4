@@ -74,8 +74,10 @@ if(isset($inline_data)){
     
     if($button == 'more'){
         editMassage($token,$chat_id,$message_id,showMore($pos_id,$dbconnect,$category),More($pos_id,$category,$pos_id));
-        
-    }       
+    } 
+    if($button == 'promocode'){
+        sendMessage($token,$chat_id,'код');
+    }
 }
 
 switch ($text) {
@@ -108,7 +110,7 @@ function nextprev(){
 }
 function More($more,$param,$code){
     $more = array('text' => 'Подробнее', 'callback_data' => 'more/'.$param.'/'.$more);
-    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode'.$code);
+    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode/'.$param.'/'.$code);
     $buttons = [
          [$more,$promocode]
     ];  
