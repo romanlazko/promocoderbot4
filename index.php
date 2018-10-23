@@ -59,10 +59,10 @@ if(isset($inline_data)){
     }
     
     if($button == 'more'){
-        editMassage($token,$chat_id,$message_id,showMore($pos_id,$dbconnect,$category),More($pos_id,$category,$pos_id));
+        editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
     } 
     if($button == 'promocode'){
-        $reply = takePosName($dbconnect,$user_id,$pos_id,$category)."\n"."Промо-код: "."\n".promocode();
+        $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n".promocode();
         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
     }
     if($button == 'nextfun'){
