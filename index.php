@@ -37,29 +37,43 @@ if(isset($inline_data)){
     $button = substr($str, 0, strrpos($str, '/'));
     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
     
-//     switch ($inline_data) {
-//         case 'category':        
-//             showPos(1,$token,$dbconnect,$chat_id,$inline_data);
-//             inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,1));
-//             break;
-//     }
-    if($button == 'category'){        
-        showPos(1,$token,$dbconnect,$chat_id,$category);
-        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
-    } 
-    if($button == 'more'){        
-        editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
-    } 
-    if($button == 'promocode'){
-        $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n".promocode();
-        editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
+    switch ($button) {
+        case 'category':        
+            showPos(1,$token,$dbconnect,$chat_id,$category);
+            inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
+            break;
+        case 'more':        
+            editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
+            break;
+        case 'promocode':        
+            $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n".promocode();
+            editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
+            break;
+        case 'nextfun':        
+            $position = $pos_id + 1;
+            showPos($position,$token,$dbconnect,$chat_id,$category);
+            deleteMessage($token,$chat_id,$message_id);
+            inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
+            break;
+        
     }
-    if($button == 'nextfun'){
-        $position = $pos_id + 1;
-        showPos($position,$token,$dbconnect,$chat_id,$category);
-        deleteMessage($token,$chat_id,$message_id);
-        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
-    } 
+//     if($button == 'category'){        
+//         showPos(1,$token,$dbconnect,$chat_id,$category);
+//         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
+//     } 
+//     if($button == 'more'){        
+//         editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
+//     } 
+//     if($button == 'promocode'){
+//         $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n".promocode();
+//         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
+//     }
+//     if($button == 'nextfun'){
+//         $position = $pos_id + 1;
+//         showPos($position,$token,$dbconnect,$chat_id,$category);
+//         deleteMessage($token,$chat_id,$message_id);
+//         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
+//     } 
 }else{
     $chat_id = $output['message']['chat']['id'];
     $user_id = $output['message']['from']['id'];
