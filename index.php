@@ -68,8 +68,8 @@ if(isset($inline_data)){
     if($button == 'nextfun'){
         $position = $pos_id + 1;
         showPos($position,$token,$dbconnect,$chat_id,$category);
-        //deleteMessage($token,$chat_id,$message_id);
-        inlineKeyboard($token,$chat_id,$position,nextprev($category,$position));
+        deleteMessage($token,$chat_id,$message_id);
+        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
     } 
 }
 
