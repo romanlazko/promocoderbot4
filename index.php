@@ -40,12 +40,12 @@ if(isset($latitude) or isset($longitude)){
 }
 if(isset($inline_data)){
     $str = substr($inline_data, 0, strrpos($inline_data, '/'));
-    $str1 = substr($str, strrpos($str,"/")+1);
-    $str2 = substr($str, 0, strrpos($str, '/'));
-    $str3 = substr($inline_data, strrpos($inline_data,"/")+1);
+    $category = substr($str, strrpos($str,"/")+1);
+    $button = substr($str, 0, strrpos($str, '/'));
+    $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
     sendMessage($token,$chat_id,$str1.' '.$str2.' '.$str3);
     switch ($inline_data) {
-        case 'EatAndDrinks':        
+        case '/EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
             showPos(takeUserData($dbconnect,$user_id)['position'],$token,$dbconnect,$chat_id,$inline_data);
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
@@ -62,16 +62,20 @@ if(isset($inline_data)){
 // //             editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
 //             sendMessage($token,$chat_id,'слово');
 //             break;
-        default:
-            if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-                sendMessage($token,$chat_id,'код');}
+//         default:
+//             if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
+//                 sendMessage($token,$chat_id,'код');}
 //             }else{
 //                 editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data,$inline_data));
 //             }
     }
     
-            
+    if($button == 'more'){
+        editMassage($token,$chat_id,$message_id,showMore($pos_id,$dbconnect,$category),More($pos_id,$category,$pos_id));
+        
+    }       
 }
+
 switch ($text) {
     case '/start':
         $reply = "Привет ".$first_name.".\n".
@@ -110,7 +114,7 @@ function More($more,$param,$code){
 }
 
 function category(){
-    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'EatAndDrinks');
+    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => '/EatAndDrinks');
     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
     $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
     $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
