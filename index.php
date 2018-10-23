@@ -43,7 +43,7 @@ if(isset($inline_data)){
     $category = substr($str, strrpos($str,"/")+1);
     $button = substr($str, 0, strrpos($str, '/'));
     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
-    sendMessage($token,$chat_id,$str1.' '.$str2.' '.$str3);
+    sendMessage($token,$chat_id,$category.' '.$button.' '.$pos_id);
     switch ($inline_data) {
         case '/EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
