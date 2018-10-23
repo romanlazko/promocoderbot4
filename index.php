@@ -18,7 +18,13 @@ $text = $output['message']['text'];
 $latitude = $output['message']['location']['latitude'];
 $longitude = $output['message']['location']['longitude'];
 $first_name = $output['message']['from']['first_name'];
-
+if(isset($inline_data)){
+    $chat_id = $output['callback_query']['message']['chat']['id'];
+    $user_id = $output['callback_query']['from']['id'];
+}else{
+    $chat_id = $output['message']['chat']['id'];
+    $user_id = $output['message']['from']['id'];
+}
 include 'distance.php';
 include 'BD.php';
 include 'promocode.php';
@@ -29,8 +35,6 @@ if(isset($latitude) or isset($longitude)){
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 if(isset($inline_data)){
-    $chat_id = $output['callback_query']['message']['chat']['id'];
-    $user_id = $output['callback_query']['from']['id'];
     
     $str = substr($inline_data, 0, strrpos($inline_data, '/'));
     $category = substr($str, strrpos($str,"/")+1);
@@ -74,9 +78,6 @@ if(isset($inline_data)){
 //         deleteMessage($token,$chat_id,$message_id);
 //         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
 //     } 
-}else{
-    $chat_id = $output['message']['chat']['id'];
-    $user_id = $output['message']['from']['id'];
 }
     
 switch ($text) {
