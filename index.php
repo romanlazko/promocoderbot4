@@ -46,30 +46,16 @@ if(isset($inline_data)){
     //sendMessage($token,$chat_id,$pos_id);
     switch ($inline_data) {
         case 'EatAndDrinks':        
-            updateName($user_id,$dbconnect,$inline_data,1);
-            showPos(takeUserData($dbconnect,$user_id)['position'],$token,$dbconnect,$chat_id,$inline_data);
-            inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
+            showPos(1,$token,$dbconnect,$chat_id,$inline_data);
+            inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,2));
             break;
-        case 'nextfun':           
-            $position = takeUserData($dbconnect,$user_id)['position'] + 1;
-            updateName($user_id,$dbconnect,takeUserData($dbconnect,$user_id)['posName'],$position);
-            showPos($position,$token,$dbconnect,$chat_id,takeUserData($dbconnect,$user_id)['posName']);
-            deleteMessage($token,$chat_id,$message_id);
-            inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
-            break;
-//         case 'promocode'.'1111':
-// //             $reply = takePosName($dbconnect,$user_id,$POS_NAME['pos_id'])."\n"."Промо-код: "."\n".promocode();
-// //             editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
-//             sendMessage($token,$chat_id,'слово');
+//         case 'nextfun':           
+//             $position = takeUserData($dbconnect,$user_id)['position'] + 1;
+//             updateName($user_id,$dbconnect,takeUserData($dbconnect,$user_id)['posName'],$position);
+//             showPos($position,$token,$dbconnect,$chat_id,takeUserData($dbconnect,$user_id)['posName']);
+//             deleteMessage($token,$chat_id,$message_id);
+//             inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
 //             break;
-//         default:
-//             if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-//                 sendMessage($token,$chat_id,'код');
-//                 break;
-//             }
-//             }else{
-//                 editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data,$inline_data));
-//             }
     }
     
     if($button == 'more'){
@@ -79,6 +65,12 @@ if(isset($inline_data)){
         $reply = takePosName($dbconnect,$user_id,$pos_id,$category)."\n"."Промо-код: "."\n".promocode();
         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
     }
+    if($button == 'nextfun'){
+        $position = $pos_id + 1;
+        showPos($position,$token,$dbconnect,$chat_id,$category);
+        deleteMessage($token,$chat_id,$message_id);
+        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
+    } 
 }
 
 switch ($text) {
@@ -102,8 +94,8 @@ switch ($text) {
         break;        
 }
 
-function nextprev(){
-    $next = array('text' => '⬇️⬇️⬇️', 'callback_data' => 'nextfun');
+function nextprev($category,$nextpos){
+    $next = array('text' => '⬇️⬇️⬇️', 'callback_data' => 'nextfun/'.$category.'/'.$nextpos);
     $buttons = [
          [$next]
     ];
