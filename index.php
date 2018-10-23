@@ -40,8 +40,8 @@ if(isset($latitude) or isset($longitude)){
 }
 if(isset($inline_data)){
     $str = substr($inline_data, 0, strrpos($inline_data, '/'));
-    //$str1 = substr($inline_data, strrpos($inline_data,"/")+1);
-    $str2 = substr($str, 0, strrpos($str, '/'));
+    $str1 = substr($str, strrpos($str,"/")+1);
+    //$str2 = substr($str, 0, strrpos($str, '/'));
     sendMessage($token,$chat_id,$str.' '.$str1.' '.$str2);
     switch ($inline_data) {
         case 'EatAndDrinks':        
