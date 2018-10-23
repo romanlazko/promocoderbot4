@@ -70,10 +70,10 @@ if(isset($inline_data)){
 //             }
     }
     
-    if($button == 'more'){
-        editMassage($token,$chat_id,$message_id,showMore($pos_id,$dbconnect,$category),More($pos_id,$category,$pos_id));
+//     if($button == 'more'){
+//         editMassage($token,$chat_id,$message_id,showMore($pos_id,$dbconnect,$category),More($pos_id,$category,$pos_id));
         
-    }       
+//     }       
 }
 
 switch ($text) {
