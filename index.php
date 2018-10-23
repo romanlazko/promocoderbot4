@@ -45,7 +45,7 @@ if(isset($inline_data)){
 //     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
     sendMessage($token,$chat_id,$category);
     switch ($inline_data) {
-        case '/EatAndDrinks':        
+        case 'EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
             showPos(takeUserData($dbconnect,$user_id)['position'],$token,$dbconnect,$chat_id,$inline_data);
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
@@ -114,7 +114,7 @@ function More($more,$param,$code){
 }
 
 function category(){
-    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => '/EatAndDrinks');
+    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'EatAndDrinks');
     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
     $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
     $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
