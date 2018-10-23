@@ -39,7 +39,7 @@ if(isset($latitude) or isset($longitude)){
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 if(isset($inline_data)){
-    $a = substr($inline_data, strrpos($inline_data, '\\')+1);
+    $a = end(explode('\\', $inline_data));
     sendMessage($token,$chat_id,$a);
     sendMessage($token,$chat_id,$inline_data);
     switch ($inline_data) {
