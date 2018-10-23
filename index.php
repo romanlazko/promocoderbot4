@@ -53,16 +53,14 @@ if(isset($inline_data)){
             showPos(1,$token,$dbconnect,$chat_id,$inline_data);
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,1));
             break;
-        default:
-            $posData = posData($pos_id,$dbconnect,$category);
     }
     
     if($button == 'more'){
         
-        editMassage($token,$chat_id,$message_id,$posData['more'],More($pos_id,$category,$pos_id));
+        editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
     } 
     if($button == 'promocode'){
-        $reply = $posData['posName']."\n"."Промо-код: "."\n".promocode();
+        $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n".promocode();
         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
     }
     if($button == 'nextfun'){
