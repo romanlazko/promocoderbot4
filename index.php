@@ -39,10 +39,10 @@ if(isset($latitude) or isset($longitude)){
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 if(isset($inline_data)){
-//     $str = substr($inline_data, 0, strrpos($inline_data, '/'));
-//     $category = substr($str, strrpos($str,"/")+1);
-//     $button = substr($str, 0, strrpos($str, '/'));
-//     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
+    $str = substr($inline_data, 0, strrpos($inline_data, '/'));
+    $category = substr($str, strrpos($str,"/")+1);
+    $button = substr($str, 0, strrpos($str, '/'));
+    $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
     //sendMessage($token,$chat_id,$category);
     switch ($inline_data) {
         case 'EatAndDrinks':        
