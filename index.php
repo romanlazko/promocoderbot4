@@ -42,7 +42,7 @@ if(isset($inline_data)){
     $str = substr($inline_data, 0, strrpos($inline_data, '/'));
     $str1 = substr($str, strrpos($str,"/")+1);
     $str2 = substr($str, 0, strrpos($str, '/'));
-    $str3 = substr($inline_data, 0, strrpos($inline_data, '/'));
+    $str3 = substr($inline_data, strrpos($inline_data,"/")+1);
     sendMessage($token,$chat_id,$str1.' '.$str2.' '.$str3);
     switch ($inline_data) {
         case 'EatAndDrinks':        
