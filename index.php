@@ -40,8 +40,10 @@ if(isset($latitude) or isset($longitude)){
 }
 if(isset($inline_data)){
     $a = end(explode('/', $inline_data));
+    $str = substr($inline_data, strrpos($inline_data,"/")+1);
+    $str1 = substr($inline_data, 0, strrpos($inline_data, '/'));
     sendMessage($token,$chat_id,$a);
-    sendMessage($token,$chat_id,$inline_data);
+    sendMessage($token,$chat_id,$inline_data.' '.$str.' '.$str1);
     switch ($inline_data) {
         case 'EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
