@@ -60,9 +60,9 @@ function showPos($position,$token,$dbconnect,$chat_id,$category){
         inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id'],$category,$row['pos_id']));        
     }   
 }
-function showMore($inline_data,$dbconnect){
+function showMore($pos_id,$dbconnect,$from){
     
-    $result = $dbconnect->query("SELECT more FROM EatAndDrinks WHERE pos_id = '$inline_data'");
+    $result = $dbconnect->query("SELECT more FROM $from WHERE pos_id = '$pos_id'");
     while($row = $result->fetch_assoc()){        
         return $row['more'];
     }   
