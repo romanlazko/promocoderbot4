@@ -76,7 +76,7 @@ if(isset($inline_data)){
         editMassage($token,$chat_id,$message_id,showMore($pos_id,$dbconnect,$category),More($pos_id,$category,$pos_id));
     } 
     if($button == 'promocode'){
-        $reply = showMore($pos_id,$dbconnect,$category)."\n"."Промо-код: "."\n".promocode();
+        $reply = takePosName($dbconnect,$user_id,$pos_id,$category)."\n"."Промо-код: "."\n".promocode();
         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
     }
 }
