@@ -109,9 +109,9 @@ function nextprev(){
     ];
     return $buttons;
 }
-function More($more,$param){
+function More($more,$param,$code){
     $more = array('text' => 'Подробнее', 'callback_data' => 'more/'.$param.'/'.$more);
-    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode/'.$param.'/'.$more);
+    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode/'.$param.'/'.$code);
     $buttons = [
          [$more,$promocode]
     ];  
