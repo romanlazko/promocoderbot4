@@ -47,7 +47,7 @@ if(isset($inline_data)){
     switch ($inline_data) {
         case 'EatAndDrinks':        
             showPos(1,$token,$dbconnect,$chat_id,$inline_data);
-            inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,2));
+            inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,1));
             break;
 //         case 'nextfun':           
 //             $position = takeUserData($dbconnect,$user_id)['position'] + 1;
