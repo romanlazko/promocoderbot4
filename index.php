@@ -54,7 +54,7 @@ if(isset($inline_data)){
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,1));
             break;
         default:
-            $posData = posData($pos_id,$dbconnect,$category);)
+            $posData = posData($pos_id,$dbconnect,$category);
     }
     
     if($button == 'more'){
