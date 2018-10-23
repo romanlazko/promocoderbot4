@@ -59,10 +59,10 @@ if(isset($inline_data)){
 //             break;
         default:
             if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-                sendMessage($token,$chat_id,'код');
-            }else{
-                editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data,$inline_data));
-            }
+                sendMessage($token,$chat_id,'код');}
+//             }else{
+//                 editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data,$inline_data));
+//             }
     }
     
             
@@ -95,8 +95,8 @@ function nextprev(){
     ];
     return $buttons;
 }
-function More($more,$code){
-    $more = array('text' => 'Подробнее', 'callback_data' => $more);
+function More($more,$param,$code){
+    $more = array('text' => 'Подробнее', 'callback_data' => $param.'/'.$more);
     $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode'.$code);
     $buttons = [
          [$more,$promocode]
