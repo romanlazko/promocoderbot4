@@ -18,6 +18,16 @@ $text = $output['message']['text'];
 $latitude = $output['message']['location']['latitude'];
 $longitude = $output['message']['location']['longitude'];
 $first_name = $output['message']['from']['first_name'];
+
+include 'distance.php';
+include 'BD.php';
+include 'promocode.php';
+
+if(isset($latitude) or isset($longitude)){
+    updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
+    $reply = "Выберете категорию";
+    inlineKeyboard($token,$chat_id,$reply,category());
+}
 if(isset($inline_data)){
     $chat_id = $output['callback_query']['message']['chat']['id'];
     $user_id = $output['callback_query']['from']['id'];
@@ -27,36 +37,17 @@ if(isset($inline_data)){
     $button = substr($str, 0, strrpos($str, '/'));
     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
     
-}else{
-    $chat_id = $output['message']['chat']['id'];
-    $user_id = $output['message']['from']['id'];
-}
-include 'distance.php';
-include 'BD.php';
-include 'promocode.php';
-
-
-
-//$userData = takeUserData($dbconnect,$user_id);
-//$posData = posData($dbconnect,$user_id,$userData['posName']);
-if(isset($latitude) or isset($longitude)){
-    updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
-    $reply = "Выберете категорию";
-    inlineKeyboard($token,$chat_id,$reply,category());
-}
-if(isset($inline_data)){
-    
-    
-    sendMessage($token,$chat_id,$pos_id);
-    switch ($inline_data) {
-        case 'EatAndDrinks':        
-            showPos(1,$token,$dbconnect,$chat_id,$inline_data);
-            inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,1));
-            break;
-    }
-    
-    if($button == 'more'){
-        
+//     switch ($inline_data) {
+//         case 'category':        
+//             showPos(1,$token,$dbconnect,$chat_id,$inline_data);
+//             inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,1));
+//             break;
+//     }
+    if($button == 'category'){        
+        showPos(1,$token,$dbconnect,$chat_id,$category);
+        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
+    } 
+    if($button == 'more'){        
         editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
     } 
     if($button == 'promocode'){
@@ -69,8 +60,11 @@ if(isset($inline_data)){
         deleteMessage($token,$chat_id,$message_id);
         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
     } 
+}else{
+    $chat_id = $output['message']['chat']['id'];
+    $user_id = $output['message']['from']['id'];
 }
-
+    
 switch ($text) {
     case '/start':
         $reply = "Привет ".$first_name.".\n".
@@ -109,7 +103,7 @@ function More($more,$param,$code){
 }
 
 function category(){
-    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'EatAndDrinks');
+    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'category/'.'EatAndDrinks/'.1);
     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
     $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
     $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
