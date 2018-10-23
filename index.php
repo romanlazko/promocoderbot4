@@ -39,11 +39,11 @@ if(isset($latitude) or isset($longitude)){
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 if(isset($inline_data)){
-    $a = end(explode('/', $inline_data));
-    $str = substr($inline_data, strrpos($inline_data,"/")+1);
-    $str1 = substr($inline_data, 0, strrpos($inline_data, '/'));
-    sendMessage($token,$chat_id,$a);
-    sendMessage($token,$chat_id,$inline_data.' '.$str.' '.$str1);
+    $str = substr($inline_data, 0, strrpos($inline_data, '/'));
+    $str1 = substr($inline_data, strrpos($inline_data,"/")+1);
+    
+    $str2 = substr($str1, 0, strrpos($str1, '/'));
+    sendMessage($token,$chat_id,$inline_data.' '.$str.' '.$str1.' '.$str2);
     switch ($inline_data) {
         case 'EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
@@ -101,7 +101,7 @@ function nextprev(){
     return $buttons;
 }
 function More($more,$param,$code){
-    $more = array('text' => 'Подробнее', 'callback_data' => $param.'/'.$more);
+    $more = array('text' => 'Подробнее', 'callback_data' => 'more/'.$param.'/'.$more);
     $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode'.$code);
     $buttons = [
          [$more,$promocode]
