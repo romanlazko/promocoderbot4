@@ -42,8 +42,8 @@ if(isset($inline_data)){
     $str = substr($inline_data, 0, strrpos($inline_data, '/'));
     $str1 = substr($str, strrpos($str,"/")+1);
     $str2 = substr($str, 0, strrpos($str, '/'));
-    $str2 = substr($inline_data, 0, strrpos($inline_data, '/'));
-    sendMessage($token,$chat_id,$str1.' '.$str2);
+    $str3 = substr($inline_data, 0, strrpos($inline_data, '/'));
+    sendMessage($token,$chat_id,$str1.' '.$str2.' '.$str3);
     switch ($inline_data) {
         case 'EatAndDrinks':        
             updateName($user_id,$dbconnect,$inline_data,1);
