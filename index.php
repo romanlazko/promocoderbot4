@@ -21,6 +21,13 @@ $first_name = $output['message']['from']['first_name'];
 if(isset($inline_data)){
     $chat_id = $output['callback_query']['message']['chat']['id'];
     $user_id = $output['callback_query']['from']['id'];
+    
+    $str = substr($inline_data, 0, strrpos($inline_data, '/'));
+    $category = substr($str, strrpos($str,"/")+1);
+    $button = substr($str, 0, strrpos($str, '/'));
+    $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
+    
+    $posData = posData($pos_id,$dbconnect,$category);
 }else{
     $chat_id = $output['message']['chat']['id'];
     $user_id = $output['message']['from']['id'];
@@ -39,12 +46,9 @@ if(isset($latitude) or isset($longitude)){
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 if(isset($inline_data)){
-    $str = substr($inline_data, 0, strrpos($inline_data, '/'));
-    $category = substr($str, strrpos($str,"/")+1);
-    $button = substr($str, 0, strrpos($str, '/'));
-    $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
     
-    //sendMessage($token,$chat_id,$pos_id);
+    
+    sendMessage($token,$chat_id,$pos_id);
     switch ($inline_data) {
         case 'EatAndDrinks':        
             showPos(1,$token,$dbconnect,$chat_id,$inline_data);
@@ -60,8 +64,8 @@ if(isset($inline_data)){
     }
     
     if($button == 'more'){
-        //$posData = posData($pos_id,$dbconnect,$category);
-        editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
+        
+        editMassage($token,$chat_id,$message_id,$posData['more'],More($pos_id,$category,$pos_id));
     } 
     if($button == 'promocode'){
         $reply = $posData['posName']."\n"."Промо-код: "."\n".promocode();
