@@ -62,9 +62,11 @@ if(isset($inline_data)){
 // //             editMassage($token,$chat_id,$message_id,$reply,More($POS_NAME['pos_id']));
 //             sendMessage($token,$chat_id,'слово');
 //             break;
-//         default:
-//             if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
-//                 sendMessage($token,$chat_id,'код');}
+        default:
+            if(setMore($inline_data,$dbconnect,takeUserData($dbconnect,$user_id)['posName']) === TRUE){
+                sendMessage($token,$chat_id,'код');
+                break;
+            }
 //             }else{
 //                 editMassage($token,$chat_id,$message_id,showMore($inline_data,$dbconnect),More($inline_data,$inline_data));
 //             }
