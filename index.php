@@ -27,7 +27,6 @@ if(isset($inline_data)){
     $button = substr($str, 0, strrpos($str, '/'));
     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
     
-    $posData = posData($pos_id,$dbconnect,$category);
 }else{
     $chat_id = $output['message']['chat']['id'];
     $user_id = $output['message']['from']['id'];
@@ -54,13 +53,8 @@ if(isset($inline_data)){
             showPos(1,$token,$dbconnect,$chat_id,$inline_data);
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev($inline_data,1));
             break;
-//         case 'nextfun':           
-//             $position = takeUserData($dbconnect,$user_id)['position'] + 1;
-//             updateName($user_id,$dbconnect,takeUserData($dbconnect,$user_id)['posName'],$position);
-//             showPos($position,$token,$dbconnect,$chat_id,takeUserData($dbconnect,$user_id)['posName']);
-//             deleteMessage($token,$chat_id,$message_id);
-//             inlineKeyboard($token,$chat_id,'Показать еще',nextprev());
-//             break;
+        default:
+            $posData = posData($pos_id,$dbconnect,$category);)
     }
     
     if($button == 'more'){
