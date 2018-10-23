@@ -103,7 +103,7 @@ function More($more,$param,$code){
 }
 
 function category(){
-    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'category/'.'EatAndDrinks/'.1);
+    $eatAndFood = array('text' => 'Еда и напитки', 'callback_data' => 'category/'.'EatAndDrinks/'.'1');
     $entertainmentAndLaisure = array('text' => 'Развлечения и досуг', 'callback_data' => 'entertainmentAndLaisure');
     $healthAndBeauty = array('text' => 'Красота и здоровье', 'callback_data' => 'healthAndBeauty');
     $Delivery = array('text' => 'Доставка', 'callback_data' => 'Delivery');
