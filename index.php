@@ -61,7 +61,7 @@ if(isset($inline_data)){
     
     if($button == 'more'){
         $posData = posData($pos_id,$dbconnect,$category);
-        editMassage($token,$chat_id,$message_id,$posData['more'],More($pos_id,$category,$pos_id));
+        editMassage($token,$chat_id,$message_id,$posData[1],More($pos_id,$category,$pos_id));
     } 
     if($button == 'promocode'){
         $reply = $posData['posName']."\n"."Промо-код: "."\n".promocode();
