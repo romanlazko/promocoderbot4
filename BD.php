@@ -67,13 +67,13 @@ function showMore($pos_id,$dbconnect,$from){
         return $row['more'];
     }   
 }
-// function takePosName($dbconnect,$user_id,$pos_id){
+function takePosName($dbconnect,$user_id,$pos_id,$from){
      
-//     $result = $dbconnect->query("SELECT posName FROM EatAndDrinks WHERE pos_id = '$pos_id'");
-//     while($row = $result->fetch_assoc()){        
-//         return $row['posName'];      
-//     }   
-// }
+    $result = $dbconnect->query("SELECT posName FROM $from WHERE pos_id = '$pos_id'");
+    while($row = $result->fetch_assoc()){        
+        return $row['posName'];      
+    }   
+}
 function setMore($inline_data,$dbconnect,$from){
     
     $result = $dbconnect->query("SELECT pos_id FROM $from");
