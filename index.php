@@ -30,6 +30,7 @@ include 'BD.php';
 include 'promocode.php';
 
 
+
 //$userData = takeUserData($dbconnect,$user_id);
 // $posData = takePosData($dbconnect,$user_id,$userData['posName']);
 if(isset($latitude) or isset($longitude)){
@@ -38,6 +39,8 @@ if(isset($latitude) or isset($longitude)){
     inlineKeyboard($token,$chat_id,$reply,category());
 }
 if(isset($inline_data)){
+    $a = substr($inline_data, strrpos($inline_data, '\\')+1);
+    sendMessage($token,$chat_id,$a);
     sendMessage($token,$chat_id,$inline_data);
     switch ($inline_data) {
         case 'EatAndDrinks':        
