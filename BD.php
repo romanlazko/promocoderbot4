@@ -56,20 +56,20 @@ function promocodeInsert($token,$chat_id,$pos_id,$user_id,$promocode){
 }
 
 
-function create($token,$chat_id,$dbconnect){
-    $login = "promocodes";
-    $ucertable = "CREATE TABLE $login (
-                    pos_id INT(30) NOT NULL,
-                    user_id INT(30) NOT NULL,
-                    promocode INT(30) NOT NULL)";
-    if($dbconnect->query($ucertable) === TRUE){
-        sendMessage($token,$chat_id,'Создана таблица');
-    }      
-//     $login = "MisterCat";
-//     $createUser = "INSERT INTO EatAndDrinks(posName,posLat, posLong, posShow) VALUES('$login','48.4643541','35.0468668','notShow')";
-//             if($dbconnect->query($createUser) === TRUE){
-//                 sendMessage($token,$chat_id,'Добавлено'); 
-//             }
- };
+// function create($token,$chat_id,$dbconnect){
+//     $login = "promocodes";
+//     $ucertable = "CREATE TABLE $login (
+//                     pos_id INT(30) NOT NULL,
+//                     user_id INT(30) NOT NULL,
+//                     promocode INT(30) NOT NULL)";
+//     if($dbconnect->query($ucertable) === TRUE){
+//         sendMessage($token,$chat_id,'Создана таблица');
+//     }      
+// //     $login = "MisterCat";
+// //     $createUser = "INSERT INTO EatAndDrinks(posName,posLat, posLong, posShow) VALUES('$login','48.4643541','35.0468668','notShow')";
+// //             if($dbconnect->query($createUser) === TRUE){
+// //                 sendMessage($token,$chat_id,'Добавлено'); 
+// //             }
+//  };
 
 ?>
