@@ -28,7 +28,7 @@ if(isset($inline_data)){
 include 'distance.php';
 include 'BD.php';
 include 'promocode.php';
-create($token,$chat_id,$dbconnect);
+//create($token,$chat_id,$dbconnect);
 if(isset($latitude) or isset($longitude)){
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
     $reply = "Выберете категорию";
@@ -49,8 +49,9 @@ if(isset($inline_data)){
         case 'more':        
             editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
             break;
-        case 'promocode':        
-            $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n".promocode();
+        case 'promocode':    
+            promocodeInsert($token,$chat_id,$pos_id,$user_id,promocode());
+            $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n";
             editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
             break;
         case 'nextfun':        
