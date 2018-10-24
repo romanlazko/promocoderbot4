@@ -65,7 +65,7 @@ function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
         $updatePromocode = $dbconnect->query("UPDATE `promocodes` 
                                               SET `promocode` = '$promocode' 
                                               WHERE `user_id` = '$user_id'");
-        if($dbconnect->query($updatePromocode) === TRUE){
+        if($updatePromocode === TRUE){
             sendMessage($token,$chat_id,$promocode); 
         }
     }
