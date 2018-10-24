@@ -48,7 +48,7 @@ function posData($pos_id,$dbconnect,$from){
         return $row;
     }   
 }
-function promocodeInsert($token,$chat_id,$pos_id,$user_id,$promocode){
+function promocodeInsert($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
     $promocodeInsert = "INSERT INTO promocodes(pos_id,user_id,promocode) VALUES('$pos_id','$user_id','$promocode')";            
     if($dbconnect->query($promocodeInsert) === TRUE){
         sendMessage($token,$chat_id,'Промо-код записан'); 
