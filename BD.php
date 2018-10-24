@@ -55,7 +55,7 @@ function posData($pos_id,$dbconnect,$from){
 //     }
 // }
 function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
-    $result = $dbconnect->query("SELECT promocode FROM promocodes WHERE pos_id='$pos_id',user_id='$user_id'") 
+    $result = $dbconnect->query("SELECT promocode FROM promocodes WHERE pos_id='$pos_id',user_id='$user_id'");
     if ($result->num_rows == 0) {
         $promocodeInsert = "INSERT INTO promocodes(pos_id,user_id,promocode) VALUES('$pos_id','$user_id','$promocode')";            
         if($dbconnect->query($promocodeInsert) === TRUE){
