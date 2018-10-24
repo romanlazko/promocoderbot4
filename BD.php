@@ -59,14 +59,14 @@ function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
     if ($result->num_rows == 0) {
         $promocodeInsert = "INSERT INTO promocodes(pos_id,user_id,promocode) VALUES('$pos_id','$user_id','$promocode')";            
         if($dbconnect->query($promocodeInsert) === TRUE){
-            sendMessage($token,$chat_id,$promocode); 
+            return $promocode; 
         }
     }else{
         $updatePromocode = $dbconnect->query("UPDATE `promocodes` 
                                               SET `promocode` = '$promocode' 
                                               WHERE `user_id` = '$user_id'");
         if($updatePromocode === TRUE){
-            sendMessage($token,$chat_id,$promocode); 
+            return $promocode; 
         }
     }
 }
