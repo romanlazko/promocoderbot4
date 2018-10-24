@@ -50,7 +50,7 @@ if(isset($inline_data)){
             editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
             break;
         case 'promocode':    
-            promocodeInsert($token,$chat_id,$dbconnect,$pos_id,$user_id,promocode());
+            promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,promocode());
             $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: ";
             editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
             break;
