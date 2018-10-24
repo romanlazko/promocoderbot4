@@ -28,7 +28,7 @@ if(isset($inline_data)){
 include 'distance.php';
 include 'BD.php';
 include 'promocode.php';
-
+create($token,$chat_id,$dbconnect);
 if(isset($latitude) or isset($longitude)){
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
     $reply = "Выберете категорию";
@@ -58,26 +58,8 @@ if(isset($inline_data)){
             showPos($position,$token,$dbconnect,$chat_id,$category);
             deleteMessage($token,$chat_id,$message_id);
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
-            break;
-        
+            break;        
     }
-//     if($button == 'category'){        
-//         showPos(1,$token,$dbconnect,$chat_id,$category);
-//         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
-//     } 
-//     if($button == 'more'){        
-//         editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
-//     } 
-//     if($button == 'promocode'){
-//         $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: "."\n".promocode();
-//         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
-//     }
-//     if($button == 'nextfun'){
-//         $position = $pos_id + 1;
-//         showPos($position,$token,$dbconnect,$chat_id,$category);
-//         deleteMessage($token,$chat_id,$message_id);
-//         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
-//     } 
 }
     
 switch ($text) {
@@ -108,9 +90,9 @@ function nextprev($category,$nextpos){
     ];
     return $buttons;
 }
-function More($more,$param,$code){
-    $more = array('text' => 'Подробнее', 'callback_data' => 'more/'.$param.'/'.$more);
-    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode/'.$param.'/'.$code);
+function More($more,$category,$code){
+    $more = array('text' => 'Подробнее', 'callback_data' => 'more/'.$category.'/'.$more);
+    $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode/'.$category.'/'.$code);
     $buttons = [
          [$more,$promocode]
     ];  
