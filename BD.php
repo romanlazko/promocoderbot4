@@ -59,7 +59,7 @@ function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
                                  FROM promocodes 
                                  WHERE pos_id = '$pos_id' AND user_id = '$user_id'");
     
-        if(num_rows($row) == 1) {
+        if(num_rows($result) == 1) {
             sendMessage($token,$chat_id,'Промо-код есть');
         }
         else {
