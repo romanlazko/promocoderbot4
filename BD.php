@@ -38,7 +38,7 @@ function updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude
 function showPos($position,$token,$dbconnect,$chat_id,$category){
     $result = $dbconnect->query("SELECT posName, pos_id FROM $category WHERE position = '$position'");
     while($row = $result->fetch_assoc()){
-        inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id'],$category,$row['pos_id']));        
+        inlineKeyboard($token,$chat_id,$row['posName'],More($row['pos_id'],$category));        
     }   
 }
 function posData($pos_id,$dbconnect,$from){
