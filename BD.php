@@ -58,7 +58,7 @@ function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
     $result = $dbconnect->query("SELECT EXISTS(SELECT *
                                                FROM promocodes 
                                                WHERE pos_id = '$pos_id' AND user_id = '$user_id')");
-    if ($result === FALSE) {
+    if ($result === 1) {
         sendMessage($token,$chat_id,'Промо-код уже есть');
     }
     else $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
