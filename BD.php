@@ -55,15 +55,22 @@ function posData($pos_id,$dbconnect,$from){
 //     }
 // }
 function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
-    $updatePromocode = $dbconnect->query("UPDATE `promocodes` 
-                                          SET `promocode` = '$promocode' 
-                                          WHERE `user_id` = '$user_id' AND `pos_id` = '$pos_id'");
-    if ($updatePromocode === TRUE) {
-        sendMessage($token,$chat_id,'Промо-код записан');
-//         $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
-//                                               VALUES('$pos_id','$user_id','$promocode')");            
-        
+    $result = $dbconnect->query("SELECT EXISTS(SELECT promocode 
+                                               FROM promocodes 
+                                               WHERE pos_id = '$pos_id' AND user_id = '$user_id')");
+    if ($result === TRUE) {
+        sendMessage($token,$chat_id,'Промо-код уже есть');
     }
+    else sendMessage($token,$chat_id,'Промо-кода нету');
+//     $updatePromocode = $dbconnect->query("UPDATE `promocodes` 
+//                                           SET `promocode` = '$promocode' 
+//                                           WHERE `user_id` = '$user_id' AND `pos_id` = '$pos_id'");
+//     if ($updatePromocode === TRUE) {
+//         sendMessage($token,$chat_id,'Промо-код записан');
+// //         $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
+// //                                               VALUES('$pos_id','$user_id','$promocode')");            
+        
+//     }
 }
 
 
