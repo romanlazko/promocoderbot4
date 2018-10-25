@@ -55,7 +55,7 @@ function posData($pos_id,$dbconnect,$from){
 //     }
 // }
 function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
-    $result = $dbconnect->query("SELECT promocode
+    $result = $dbconnect->query("SELECT 1
                                  FROM promocodes 
                                  WHERE pos_id = '$pos_id' AND user_id = '$user_id'");
     if ($result->num_rows > 0) {
