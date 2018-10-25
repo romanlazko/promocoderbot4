@@ -62,7 +62,8 @@ function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
         sendMessage($token,$chat_id,'Промо-код есть');
     }
     else {
-        sendMessage($token,$chat_id,'нету');
+        $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
+                                              VALUES('$pos_id','$user_id','$promocode')");
     }
 //     while($row = $result->fetch_assoc()){        
 //         if($row['promocode'] == $promocode){
