@@ -59,11 +59,11 @@ function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
 //                                  FROM promocodes 
 //                                  WHERE pos_id = '$pos_id' AND user_id = '$user_id')");
     $result = $dbconnect->query("SELECT count(*) as count FROM promocodes WHERE pos_id ='$pos_id' AND user_id = '$user_id'");
-    if ($result == 1) {
-        sendMessage($token,$chat_id,'Промо-код уже есть');
-    }
-    else $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
-                                               VALUES('$pos_id','$user_id','$promocode')");
+//     if ($result == 1) {
+        sendMessage($token,$chat_id,$result);
+//     }
+//     else $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
+//                                                VALUES('$pos_id','$user_id','$promocode')");
 //     $updatePromocode = $dbconnect->query("UPDATE `promocodes` 
 //                                           SET `promocode` = '$promocode' 
 //                                           WHERE `user_id` = '$user_id' AND `pos_id` = '$pos_id'");
