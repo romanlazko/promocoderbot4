@@ -47,14 +47,13 @@ if(isset($inline_data)){
             inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
             break;
         case 'more':        
-            editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],More($pos_id,$category,$pos_id));
+            editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],Code($category,$pos_id));
             break;
         case 'promocode':    
             $promocode = promocode();
-                promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode);
             $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."Промо-код: ".$promocode;
-            //promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,promocode());
-            editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category,$pos_id));
+            promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode);
+            editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category));
             break;
         case 'nextfun':        
             $position = $pos_id + 1;
@@ -93,11 +92,17 @@ function nextprev($category,$nextpos){
     ];
     return $buttons;
 }
-function More($more,$category,$code){
+function More($more,$category){
     $more = array('text' => 'Подробнее', 'callback_data' => 'more/'.$category.'/'.$more);
+    $buttons = [
+         [$more]
+    ];  
+    return $buttons;
+}
+function Code($category,$code){    
     $promocode = array('text' => 'Получить промо-код', 'callback_data' => 'promocode/'.$category.'/'.$code);
     $buttons = [
-         [$more,$promocode]
+         [$promocode]
     ];  
     return $buttons;
 }
