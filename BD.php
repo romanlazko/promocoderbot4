@@ -55,10 +55,11 @@ function posData($pos_id,$dbconnect,$from){
 //     }
 // }
 function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
-    $result = $dbconnect->query("SELECT EXISTS(SELECT *
-                                               FROM promocodes 
-                                               WHERE pos_id = '$pos_id' AND user_id = '$user_id')");
-    if ($result == 1) {
+//     $result = $dbconnect->query("SELECT promocode
+//                                  FROM promocodes 
+//                                  WHERE pos_id = '$pos_id' AND user_id = '$user_id')");
+    $result = $dbconnect->query("SELECT EXISTS(SELECT 1 FROM promocodes WHERE pos_id ='$pos_id' LIMIT 1)");
+    if ($result == true) {
         sendMessage($token,$chat_id,'Промо-код уже есть');
     }
     else $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
