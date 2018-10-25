@@ -57,7 +57,7 @@ function posData($pos_id,$dbconnect,$from){
 function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
     $result = $dbconnect->query("SELECT promocode
                                  FROM promocodes 
-                                 WHERE pos_id = '$pos_id' AND user_id = '$user_id')");
+                                 WHERE pos_id = '$pos_id' AND user_id = '$user_id'");
     
         if(num_rows($row) == 1) {
             sendMessage($token,$chat_id,'Промо-код есть');
