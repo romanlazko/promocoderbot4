@@ -56,7 +56,7 @@ function posData($pos_id,$dbconnect,$from){
 // }
 function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
     $result = $dbconnect->query("SELECT EXISTS(SELECT promocode 
-                                               FROM promocodes 
+                                               FROM * 
                                                WHERE pos_id = '$pos_id' AND user_id = '$user_id')");
     if ($result === TRUE) {
         sendMessage($token,$chat_id,'Промо-код уже есть');
