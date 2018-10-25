@@ -60,7 +60,11 @@ function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
                                  WHERE pos_id = '$pos_id' AND user_id = '$user_id'");
     if($result === TRUE){
             sendMessage($token,$chat_id,'промокод есть'); 
+    }else {
+        $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
+                                              VALUES('$pos_id','$user_id','$promocode')");
     }
+
     
 //         if(num_rows($result) == 1) {
 //             sendMessage($token,$chat_id,'Промо-код есть');
