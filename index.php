@@ -38,47 +38,87 @@ if(isset($inline_data)){
     $user_id = $output['message']['from']['id'];
 }
     
-switch ($button) {
-    case 'category':        
-        showPos(1,$token,$dbconnect,$chat_id,$category);
-        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
-        break;
-    case 'more':        
-        editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],Code($category,$pos_id));
-        break;
-    case 'promocode':    
-        
-        $promocode = promocodeExam($dbconnect,$pos_id,$user_id);
-        $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."\n"."*Промо-код:* ".$promocode;
-        //promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode);
-        editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category));
-        break;
-    case 'nextfun':        
-        $position = $pos_id + 1;
-        showPos($position,$token,$dbconnect,$chat_id,$category);
-        deleteMessage($token,$chat_id,$message_id);
-        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
-        break;   
-    case '/start':
-        
-        $reply = "Привет ".$first_name.".\n".
-            "Добро пожаловать в бота!
-            \n*Список доступных команд:*
-            \n/start\n/help
-            \nЧтобы начать, отправь свою геолокацию!";
-        userfunc($token,$chat_id,$user_id,$dbconnect);
-        $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Категории"]];
-        sendKeyboard($token,$chat_id,$buttons,$reply);
-        break;
-    case 'Настройки':
-        $reply = "Тут нихуя не работает, хули палишь?";
-        sendMessage($token,$chat_id,$reply);
-        break;
-    case 'Категории':
-        $reply = "Выберете категорию";
-        inlineKeyboard($token,$chat_id,$reply,category());
-        break;  
+
+if($button =='category'){
+    showPos(1,$token,$dbconnect,$chat_id,$category);
+    inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
 }
+if($button =='more'){        
+    editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],Code($category,$pos_id));
+}
+if($button =='promocode'){    
+    $promocode = promocodeExam($dbconnect,$pos_id,$user_id);
+    $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."\n"."*Промо-код:* ".$promocode;
+    editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category));
+}        
+if($button =='nextfun'){        
+    $position = $pos_id + 1;
+    showPos($position,$token,$dbconnect,$chat_id,$category);
+    deleteMessage($token,$chat_id,$message_id);
+    inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
+}   
+if($button =='/start'){        
+    $reply = "Привет ".$first_name.".\n".
+        "Добро пожаловать в бота!
+        \n*Список доступных команд:*
+        \n/start\n/help
+        \nЧтобы начать, отправь свою геолокацию!";
+    userfunc($token,$chat_id,$user_id,$dbconnect);
+    $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Категории"]];
+    sendKeyboard($token,$chat_id,$buttons,$reply);
+}
+if($button == 'Настройки'){
+    $reply = "Тут нихуя не работает, хули палишь?";
+    sendMessage($token,$chat_id,$reply);
+}
+if($button == 'Категории'){
+    $reply = "Выберете категорию";
+    inlineKeyboard($token,$chat_id,$reply,category());
+}  
+
+// switch ($button) {
+//     case 'category':        
+//         {
+//             showPos(1,$token,$dbconnect,$chat_id,$category);
+//             inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
+//             break;
+//         }
+//     case 'more':        
+//         editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],Code($category,$pos_id));
+//         break;
+//     case 'promocode':    
+        
+//         $promocode = promocodeExam($dbconnect,$pos_id,$user_id);
+//         $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."\n"."*Промо-код:* ".$promocode;
+//         //promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode);
+//         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category));
+//         break;
+//     case 'nextfun':        
+//         $position = $pos_id + 1;
+//         showPos($position,$token,$dbconnect,$chat_id,$category);
+//         deleteMessage($token,$chat_id,$message_id);
+//         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
+//         break;   
+//     case '/start':
+        
+//         $reply = "Привет ".$first_name.".\n".
+//             "Добро пожаловать в бота!
+//             \n*Список доступных команд:*
+//             \n/start\n/help
+//             \nЧтобы начать, отправь свою геолокацию!";
+//         userfunc($token,$chat_id,$user_id,$dbconnect);
+//         $buttons = [[['text'=>"ОТПРАВИТЬ ГЕОЛОКАЦИЮ",'request_location'=>true]],["Категории"]];
+//         sendKeyboard($token,$chat_id,$buttons,$reply);
+//         break;
+//     case 'Настройки':
+//         $reply = "Тут нихуя не работает, хули палишь?";
+//         sendMessage($token,$chat_id,$reply);
+//         break;
+//     case 'Категории':
+//         $reply = "Выберете категорию";
+//         inlineKeyboard($token,$chat_id,$reply,category());
+//         break;  
+// }
 
 if(isset($latitude) or isset($longitude)){
     include 'distance.php';
