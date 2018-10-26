@@ -18,9 +18,9 @@ $latitude = $output['message']['location']['latitude'];
 $longitude = $output['message']['location']['longitude'];
 $first_name = $output['message']['from']['first_name'];
 
-include 'distance.php';
-include 'BD.php';
-include 'promocode.php';
+
+
+
 
 if(isset($inline_data)){
     $chat_id = $output['callback_query']['message']['chat']['id'];
@@ -30,6 +30,7 @@ if(isset($inline_data)){
     $category = substr($str, strrpos($str,"/")+1);
     $button = substr($str, 0, strrpos($str, '/'));
     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
+    include 'BD.php';
 }else{
     $button = $output['message']['text'];
     $chat_id = $output['message']['chat']['id'];
@@ -45,6 +46,7 @@ switch ($button) {
         editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],Code($category,$pos_id));
         break;
     case 'promocode':    
+        include 'promocode.php';
         $promocode = promocode();
         $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."\n"."*Промо-код:* ".$promocode;
         promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode);
@@ -57,6 +59,7 @@ switch ($button) {
         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
         break;   
     case '/start':
+        include 'distance.php';
         $reply = "Привет ".$first_name.".\n".
             "Добро пожаловать в бота!
             \n*Список доступных команд:*
