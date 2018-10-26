@@ -20,7 +20,7 @@ $first_name = $output['message']['from']['first_name'];
 
 
 
-
+include 'BD.php';
 
 if(isset($inline_data)){
     $chat_id = $output['callback_query']['message']['chat']['id'];
@@ -30,7 +30,7 @@ if(isset($inline_data)){
     $category = substr($str, strrpos($str,"/")+1);
     $button = substr($str, 0, strrpos($str, '/'));
     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
-    include 'BD.php';
+    
 }else{
     $button = $output['message']['text'];
     $chat_id = $output['message']['chat']['id'];
