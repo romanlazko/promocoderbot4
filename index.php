@@ -14,57 +14,48 @@ $output = json_decode(file_get_contents('php://input'),true);
 
 $inline_data = $output['callback_query']['data'];
 $message_id = $output['callback_query']['message']['message_id'];
-$text = $output['message']['text'];
 $latitude = $output['message']['location']['latitude'];
 $longitude = $output['message']['location']['longitude'];
 $first_name = $output['message']['from']['first_name'];
-if(isset($inline_data)){
-    $chat_id = $output['callback_query']['message']['chat']['id'];
-    $user_id = $output['callback_query']['from']['id'];
-}else{
-    $chat_id = $output['message']['chat']['id'];
-    $user_id = $output['message']['from']['id'];
-}
+
 include 'distance.php';
 include 'BD.php';
 include 'promocode.php';
-//create($token,$chat_id,$dbconnect);
-if(isset($latitude) or isset($longitude)){
-    updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
-    $reply = "Выберете категорию";
-    inlineKeyboard($token,$chat_id,$reply,category());
-}
+
 if(isset($inline_data)){
+    $chat_id = $output['callback_query']['message']['chat']['id'];
+    $user_id = $output['callback_query']['from']['id'];
     
     $str = substr($inline_data, 0, strrpos($inline_data, '/'));
     $category = substr($str, strrpos($str,"/")+1);
     $button = substr($str, 0, strrpos($str, '/'));
     $pos_id = substr($inline_data, strrpos($inline_data,"/")+1);
-    
-    switch ($button) {
-        case 'category':        
-            showPos(1,$token,$dbconnect,$chat_id,$category);
-            inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
-            break;
-        case 'more':        
-            editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],Code($category,$pos_id));
-            break;
-        case 'promocode':    
-            $promocode = promocode();
-            $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."\n"."*Промо-код:* ".$promocode;
-            promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode);
-            editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category));
-            break;
-        case 'nextfun':        
-            $position = $pos_id + 1;
-            showPos($position,$token,$dbconnect,$chat_id,$category);
-            deleteMessage($token,$chat_id,$message_id);
-            inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
-            break;        
-    }
+}else{
+    $button = $output['message']['text'];
+    $chat_id = $output['message']['chat']['id'];
+    $user_id = $output['message']['from']['id'];
 }
     
-switch ($text) {
+switch ($button) {
+    case 'category':        
+        showPos(1,$token,$dbconnect,$chat_id,$category);
+        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,1));
+        break;
+    case 'more':        
+        editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],Code($category,$pos_id));
+        break;
+    case 'promocode':    
+        $promocode = promocode();
+        $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."\n"."*Промо-код:* ".$promocode;
+        promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode);
+        editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category));
+        break;
+    case 'nextfun':        
+        $position = $pos_id + 1;
+        showPos($position,$token,$dbconnect,$chat_id,$category);
+        deleteMessage($token,$chat_id,$message_id);
+        inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
+        break;   
     case '/start':
         $reply = "Привет ".$first_name.".\n".
             "Добро пожаловать в бота!
@@ -82,8 +73,17 @@ switch ($text) {
     case 'Категории':
         $reply = "Выберете категорию";
         inlineKeyboard($token,$chat_id,$reply,category());
-        break;        
+        break;  
 }
+
+if(isset($latitude) or isset($longitude)){
+    updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
+    $reply = "Выберете категорию";
+    inlineKeyboard($token,$chat_id,$reply,category());
+}
+
+          
+
 
 function nextprev($category,$nextpos){
     $next = array('text' => '⬇️⬇️⬇️', 'callback_data' => 'nextfun/'.$category.'/'.$nextpos);
