@@ -55,16 +55,19 @@ function posData($pos_id,$dbconnect,$from){
 //     }
 // }
 function promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode){
-    $result = $dbconnect->query("SELECT 1
+    $result = $dbconnect->query("SELECT promocode
                                  FROM promocodes 
                                  WHERE pos_id = '$pos_id' AND user_id = '$user_id'");
+    
     if ($result->num_rows > 0) {
-        $promocodeInsert = $dbconnect->query("UPDATE `promocodes` SET `promocode` = '$promocode' 
-                                              WHERE `user_id` = '$user_id' AND `pos_id` = '$pos_id'");
+        while($row = $result->fetch_assoc()){        
+            return $row['promocode'];
+        } 
     }
     else {
         $promocodeInsert = $dbconnect->query("INSERT INTO promocodes(pos_id,user_id,promocode) 
                                               VALUES('$pos_id','$user_id','$promocode')");
+        return $promocode;
     }   
 }
 
