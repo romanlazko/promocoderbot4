@@ -47,8 +47,8 @@ switch ($button) {
         editMassage($token,$chat_id,$message_id,posData($pos_id,$dbconnect,$category)['more'],Code($category,$pos_id));
         break;
     case 'promocode':    
-        include 'promocode.php';
-        $promocode = promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,promocode());
+        
+        $promocode = promocodeExam($dbconnect,$pos_id,$user_id);
         $reply = posData($pos_id,$dbconnect,$category)['posName']."\n"."\n"."*Промо-код:* ".$promocode;
         //promocodeExam($token,$chat_id,$dbconnect,$pos_id,$user_id,$promocode);
         editMassage($token,$chat_id,$message_id,$reply,More($pos_id,$category));
