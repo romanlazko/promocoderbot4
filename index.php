@@ -22,6 +22,7 @@ $first_name = $output['message']['from']['first_name'];
 
 include 'BD.php';
 
+
 if(isset($inline_data)){
     $chat_id = $output['callback_query']['message']['chat']['id'];
     $user_id = $output['callback_query']['from']['id'];
@@ -59,7 +60,7 @@ switch ($button) {
         inlineKeyboard($token,$chat_id,'Показать еще',nextprev($category,$position));
         break;   
     case '/start':
-        include 'distance.php';
+        
         $reply = "Привет ".$first_name.".\n".
             "Добро пожаловать в бота!
             \n*Список доступных команд:*
@@ -80,6 +81,7 @@ switch ($button) {
 }
 
 if(isset($latitude) or isset($longitude)){
+    include 'distance.php';
     updateLocation($token,$chat_id,$dbconnect,$user_id,$latitude,$longitude);
     $reply = "Выберете категорию";
     inlineKeyboard($token,$chat_id,$reply,category());
